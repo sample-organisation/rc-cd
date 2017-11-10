@@ -1,0 +1,15 @@
+
+resources:
+  - name: ci-params
+    type: params
+    version:
+      params:
+        KEY1: "value1"
+        KEY2: "value2"
+        
+  - name: ci-gitRepo
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: sample-organisation/gitRepo
+      branch: master

@@ -4,7 +4,7 @@ jobs:
     steps:
       - TASK:
         - script: echo "hello world"
-        - script: ssh ubuntu@52.41.122.70 cat get-docker.sh
+        # - script: ssh ubuntu@52.41.122.70 cat get-docker.sh
 
   - name: new-min-sh
     type: runSh

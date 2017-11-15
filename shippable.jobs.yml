@@ -14,6 +14,23 @@ jobs:
             - ps aux
             - ls -a /var/lib/shippable/2e067920-ef36-43e6-80ee-a5adef3d4ca1/build/IN/aarch-gitRepo/gitRepo
 
+  - name: aarch64-new-yml-cus-container
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+      options:
+         imageName: drydockaarch64/u16pyt
+         imageTag: master
+    steps:
+      - TASK:
+          name: system-facts
+          script: 
+            - uname -m
+            - ps aux
+            - docker ps 
+
   - name: old-min-sh
     type: runSh
     steps:

@@ -6,6 +6,7 @@ jobs:
       os: Ubuntu_16.04
       container: true
     steps:
+      - IN: ci-gitRepo
       - TASK:
           name: system-facts
           script: 

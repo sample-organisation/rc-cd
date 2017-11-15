@@ -1,10 +1,22 @@
 jobs:
+  - name: aarch64-new-yml-def-container
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+    steps:
+      - TASK:
+          name: system-facts
+          script: 
+            - uname -m
+            - ps aux
+
   - name: old-min-sh
     type: runSh
     steps:
       - TASK:
         - script: echo "hello world"
-        - script: ssh ubuntu@52.41.122.70 cat get-docker.sh
 
   - name: new-min-sh
     type: runSh

@@ -25,16 +25,3 @@ jobs:
     steps:
       - IN: ci-params
       - IN: ci-gitRepo
-
-  - name: aarch64-new-yml-def-container
-    type: runSh
-    runtime:
-      architecture: aarch64
-      os: Ubuntu_16.04
-      container: true
-    steps:
-      - TASK:
-          name: echo-facts
-          script: 
-            - uname -m
-            - ps aux

@@ -26,6 +26,7 @@ jobs:
           script: 
             - docker ps
       - TASK:
+          name: pyt-container
           runtime:
             options:
               imageName: drydockaarch64/u16pyt

@@ -13,3 +13,11 @@ resources:
     pointer:
       sourceName: sample-organisation/gitRepo
       branch: master
+
+        
+  - name: aarch-gitRepo
+    type: gitRepo
+    integration: github
+    pointer:
+      sourceName: sample-organisation/gitRepo
+      branch: aarch

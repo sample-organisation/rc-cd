@@ -13,24 +13,6 @@ jobs:
             - uname -m
             - ps aux
             - ls -a /var/lib/shippable/2e067920-ef36-43e6-80ee-a5adef3d4ca1/build/IN/aarch-gitRepo/gitRepo
-            
-  - name: aarch64-new-yml-def-container-opts
-    type: runSh
-    runtime:
-      architecture: aarch64
-      os: Ubuntu_16.04
-      container: true
-      options:
-        env:
-          HELLO: world
-    steps:
-      - TASK:
-          name: system-facts
-          script: 
-            - uname -m
-            - ps aux
-            - printenv
-            - echo "$HELLO"
 
   - name: aarch64-new-yml-cus-container
     type: runSh

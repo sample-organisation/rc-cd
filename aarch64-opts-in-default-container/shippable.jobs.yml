@@ -39,3 +39,21 @@ jobs:
             - printenv
             - echo "$HELLO"
             - test "$HELLO" == "world"
+
+  - name: aarch64-opts-in-default-container-base-opts
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+      options:
+        options: "--name \"my-con\""
+    steps:
+      - IN: aarch64-default-container-trigger
+      - TASK:
+          name: system-facts
+          script:
+            - docker ps -a
+            - printenv
+            - echo "$HELLO"
+            - test "$HELLO" == "world"

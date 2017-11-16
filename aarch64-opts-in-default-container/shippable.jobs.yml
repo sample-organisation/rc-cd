@@ -67,8 +67,8 @@ jobs:
           name: should-have-right-memory
           runtime:
             options:
-              options: -m 300m --name my-container
+              options: -m 300m
           script:
             - docker ps -a
-            - docker inspect my-container
+            - docker inspect reqExec.5a0d7a60d05fcc0500df9f54.0
 

@@ -71,4 +71,5 @@ jobs:
           script:
             - docker ps -a
             - docker inspect reqExec.$BUILD_JOB_ID.0
+            - docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0
 

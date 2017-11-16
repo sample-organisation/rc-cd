@@ -71,5 +71,6 @@ jobs:
           script:
             - docker ps -a
             - docker inspect reqExec.$BUILD_JOB_ID.0
-            - docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0
+            - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$MEM" -eq 314572800
 

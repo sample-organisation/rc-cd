@@ -2,7 +2,7 @@ jobs:
   
   - name: aarch64-old-yml-min
     type: runSh
-    scripts:
+    steps:
       - TASK:
         - script: echo "hi"
         - script: echo "hello"

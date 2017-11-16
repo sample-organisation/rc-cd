@@ -70,5 +70,5 @@ jobs:
               options: -m 300m
           script:
             - docker ps -a
-            - docker inspect reqExec.5a0d7a60d05fcc0500df9f54.0
+            - docker inspect reqExec.$BUILD_JOB_ID.0
 

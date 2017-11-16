@@ -1,0 +1,38 @@
+jobs:
+
+  - name: aarch64-opts-in-default-container-base-opts
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+      options:
+        env:
+          HELLO: world
+    steps:
+      - TASK:
+          name: system-facts
+          script: 
+            - uname -m
+            - ps aux
+            - printenv
+            - echo "$HELLO"
+            
+
+  - name: aarch64-opts-in-default-container-task-opts
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+    steps:
+      - TASK:
+          name: system-facts
+          options:
+            env:
+              HELLO: world
+          script: 
+            - uname -m
+            - ps aux
+            - printenv
+            - echo "$HELLO"

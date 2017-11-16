@@ -17,6 +17,8 @@ jobs:
           name: system-facts
           script:
             - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
             - printenv
             - echo "$HELLO"
             - test "$HELLO" == "world"
@@ -40,6 +42,8 @@ jobs:
                 HELLO: world
           script:
             - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
             - printenv
             - echo "$HELLO"
             - test "$HELLO" == "world"
@@ -60,6 +64,11 @@ jobs:
           name: should-have-right-memory
           script:
             - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
+            - docker inspect reqExec.$BUILD_JOB_ID.0
+            - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$MEM" -eq 314572800
             
   - name: aarch64-opts-in-custom-container-task-opts-mem
     type: runSh
@@ -78,6 +87,8 @@ jobs:
               options: -m 300m
           script:
             - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
             - docker inspect reqExec.$BUILD_JOB_ID.0
             - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
             - test "$MEM" -eq 314572800
@@ -98,6 +109,8 @@ jobs:
           name: should-have-right-volume-mounts
           script:
             - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
             - docker inspect reqExec.$BUILD_JOB_ID.0
             - test -f /greetings/hi.txt
 
@@ -119,6 +132,8 @@ jobs:
               options: -v /root/hello:/greetings
           script:
             - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
             - docker inspect reqExec.$BUILD_JOB_ID.0
             - test -f /greetings/hi.txt
 
@@ -138,6 +153,8 @@ jobs:
           name: should-have-right-volume-mounts-n-memory
           script:
             - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
             - docker inspect reqExec.$BUILD_JOB_ID.0
             - test -f /greetings/hi.txt
             - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
@@ -160,6 +177,8 @@ jobs:
               options: -m 200mb -v /root/hello:/greetings
           script:
             - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
             - docker inspect reqExec.$BUILD_JOB_ID.0
             - test -f /greetings/hi.txt
             - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)

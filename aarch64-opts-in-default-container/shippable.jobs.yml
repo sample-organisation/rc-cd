@@ -74,6 +74,22 @@ jobs:
             - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
             - test "$MEM" -eq 314572800
 
+  - name: aarch64-opts-in-default-container-base-opts-volume
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+      options:
+        options: -v /root/hello:/greetings
+    steps:
+      - IN: aarch64-default-container-trigger
+      - TASK:
+          name: should-have-right-volume-mounts
+          script:
+            - docker ps -a
+            - docker inspect reqExec.$BUILD_JOB_ID.0
+            - test -f /greetings/hi.txt
 
     # Please run mkdir -p /root/hello; touch /root/hello/hi.txt
   - name: aarch64-opts-in-default-container-task-opts-volume
@@ -93,3 +109,42 @@ jobs:
             - docker ps -a
             - docker inspect reqExec.$BUILD_JOB_ID.0
             - test -f /greetings/hi.txt
+
+  - name: aarch64-opts-in-default-container-base-multi-opts
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+      options:
+        options: -m 200mb -v /root/hello:/greetings
+    steps:
+      - IN: aarch64-default-container-trigger
+      - TASK:
+          name: should-have-right-volume-mounts
+          script:
+            - docker ps -a
+            - docker inspect reqExec.$BUILD_JOB_ID.0
+            - test -f /greetings/hi.txt
+            - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$MEM" -eq 314572800
+            
+  - name: aarch64-opts-in-default-container-task-multi-opts
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+    steps:
+      - IN: aarch64-default-container-trigger
+      - TASK:
+          name: should-have-right-volume-mounts
+          runtime:
+            options:
+              options: -m 200mb -v /root/hello:/greetings
+          script:
+            - docker ps -a
+            - docker inspect reqExec.$BUILD_JOB_ID.0
+            - test -f /greetings/hi.txt
+            - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$MEM" -eq 314572800

@@ -10,6 +10,7 @@ jobs:
         env:
           HELLO: world
     steps:
+      - IN: aarch64-default-container-trigger
       - TASK:
           name: system-facts
           script: 
@@ -26,6 +27,7 @@ jobs:
       os: Ubuntu_16.04
       container: true
     steps:
+      - IN: aarch64-default-container-trigger
       - TASK:
           name: system-facts
           options:

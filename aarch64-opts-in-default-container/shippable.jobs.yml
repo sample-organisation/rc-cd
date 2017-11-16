@@ -1,6 +1,6 @@
 jobs:
 
-  - name: aarch64-opts-in-default-container-base-opts
+  - name: aarch64-opts-in-default-container-base-env
     type: runSh
     runtime:
       architecture: aarch64
@@ -14,13 +14,12 @@ jobs:
       - TASK:
           name: system-facts
           script: 
-            - uname -m
-            - ps aux
             - printenv
             - echo "$HELLO"
+            - test "$HELLO" == "world"
             
 
-  - name: aarch64-opts-in-default-container-task-opts
+  - name: aarch64-opts-in-default-container-task-env
     type: runSh
     runtime:
       architecture: aarch64
@@ -34,7 +33,6 @@ jobs:
             env:
               HELLO: world
           script: 
-            - uname -m
-            - ps aux
             - printenv
             - echo "$HELLO"
+            - test "$HELLO" == "world"

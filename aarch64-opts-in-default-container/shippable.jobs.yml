@@ -13,7 +13,8 @@ jobs:
       - IN: aarch64-default-container-trigger
       - TASK:
           name: system-facts
-          script: 
+          script:
+            - docker ps -a
             - printenv
             - echo "$HELLO"
             - test "$HELLO" == "world"
@@ -31,10 +32,10 @@ jobs:
           name: system-facts
           runtime:
             options:
-              container: true
               env:
                 HELLO: world
-          script: 
+          script:
+            - docker ps -a
             - printenv
             - echo "$HELLO"
             - test "$HELLO" == "world"

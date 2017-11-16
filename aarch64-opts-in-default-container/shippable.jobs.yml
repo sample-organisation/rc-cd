@@ -51,9 +51,6 @@ jobs:
     steps:
       - IN: aarch64-default-container-trigger
       - TASK:
-          name: system-facts
+          name: should-have-right-name
           script:
             - docker ps -a
-            - printenv
-            - echo "$HELLO"
-            - test "$HELLO" == "world"

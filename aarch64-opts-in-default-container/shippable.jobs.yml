@@ -74,3 +74,22 @@ jobs:
             - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
             - test "$MEM" -eq 314572800
 
+
+    # Please run mkdir -p /root/hello; touch /root/hello/hi.txt
+  - name: aarch64-opts-in-default-container-task-opts-volume
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+    steps:
+      - IN: aarch64-default-container-trigger
+      - TASK:
+          name: should-have-right-volume-mounts
+          runtime:
+            options:
+              options: -v /root/hello:/greetings
+          script:
+            - docker ps -a
+            - docker inspect reqExec.$BUILD_JOB_ID.0
+            - test -f /greetings/hi.txt

@@ -127,7 +127,7 @@ jobs:
             - docker inspect reqExec.$BUILD_JOB_ID.0
             - test -f /greetings/hi.txt
             - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
-            - test "$MEM" -eq 314572800
+            - test "$MEM" -eq 209715200
             
   - name: aarch64-opts-in-default-container-task-multi-opts
     type: runSh
@@ -147,4 +147,4 @@ jobs:
             - docker inspect reqExec.$BUILD_JOB_ID.0
             - test -f /greetings/hi.txt
             - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
-            - test "$MEM" -eq 314572800
+            - test "$MEM" -eq 209715200

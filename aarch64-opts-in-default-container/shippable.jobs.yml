@@ -40,7 +40,7 @@ jobs:
             - echo "$HELLO"
             - test "$HELLO" == "world"
 
-  - name: aarch64-opts-in-default-container-base-opts
+  - name: aarch64-opts-in-default-container-base-opts-mem
     type: runSh
     runtime:
       architecture: aarch64
@@ -51,6 +51,23 @@ jobs:
     steps:
       - IN: aarch64-default-container-trigger
       - TASK:
-          name: should-have-right-name
+          name: should-have-right-memory
           script:
             - docker ps -a
+            
+  - name: aarch64-opts-in-default-container-task-opts-mem
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+    steps:
+      - IN: aarch64-default-container-trigger
+      - TASK:
+          name: should-have-right-memory
+          runtime:
+            options:
+              options: -m 300m
+          script:
+            - docker ps -a
+

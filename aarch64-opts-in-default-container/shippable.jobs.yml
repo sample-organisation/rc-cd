@@ -121,7 +121,7 @@ jobs:
     steps:
       - IN: aarch64-default-container-trigger
       - TASK:
-          name: should-have-right-volume-mounts
+          name: should-have-right-volume-mounts-n-memory
           script:
             - docker ps -a
             - docker inspect reqExec.$BUILD_JOB_ID.0
@@ -138,7 +138,7 @@ jobs:
     steps:
       - IN: aarch64-default-container-trigger
       - TASK:
-          name: should-have-right-volume-mounts
+          name: should-have-right-volume-mounts-n-memory
           runtime:
             options:
               options: -m 200mb -v /root/hello:/greetings

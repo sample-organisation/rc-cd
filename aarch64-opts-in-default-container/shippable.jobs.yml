@@ -29,10 +29,11 @@ jobs:
       - IN: aarch64-default-container-trigger
       - TASK:
           name: system-facts
-          options:
-            container: true
-            env:
-              HELLO: world
+          runtime:
+            options:
+              container: true
+              env:
+                HELLO: world
           script: 
             - printenv
             - echo "$HELLO"

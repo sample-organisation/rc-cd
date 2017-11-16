@@ -30,6 +30,7 @@ jobs:
       - TASK:
           name: system-facts
           options:
+            container: true
             env:
               HELLO: world
           script: 

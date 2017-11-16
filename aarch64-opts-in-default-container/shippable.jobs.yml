@@ -47,7 +47,7 @@ jobs:
       os: Ubuntu_16.04
       container: true
       options:
-        options: "--name \"my-con\""
+        options: -m 300m
     steps:
       - IN: aarch64-default-container-trigger
       - TASK:

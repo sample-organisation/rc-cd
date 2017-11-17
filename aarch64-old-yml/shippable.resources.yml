@@ -2,7 +2,7 @@ resources:
   - name: aarch64-old-yml-trigger
     type: trigger
     version:
-      counter: 1
+      counter: 2
       
 # - name: aarch64-old-yml-gitRepo
 #   type: gitRepo

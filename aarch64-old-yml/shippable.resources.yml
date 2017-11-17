@@ -3,10 +3,11 @@ resources:
     type: trigger
     version:
       counter: 2
-      
-# - name: aarch64-old-yml-gitRepo
-#   type: gitRepo
-#   integration: github
-#   pointer:
-#     sourceName: sample-organisation/gitRepo
-#     branch: aarch64-old-yml
+
+- name: aarch64-old-yml-gitRepo
+  type: gitRepo
+  integration: github
+  pointer:
+    sourceName: sample-organisation/gitRepo
+    branch: aarch-old-yml
+

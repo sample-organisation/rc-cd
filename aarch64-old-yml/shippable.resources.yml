@@ -4,9 +4,9 @@ resources:
     version:
       counter: 1
       
-  - name: aarch64-old-yml-gitRepo
-    type: gitRepo
-    integration: github
-    pointer:
-      sourceName: sample-organisation/gitRepo
-      branch: aarch64-old-yml
+# - name: aarch64-old-yml-gitRepo
+#   type: gitRepo
+#   integration: github
+#   pointer:
+#     sourceName: sample-organisation/gitRepo
+#     branch: aarch64-old-yml

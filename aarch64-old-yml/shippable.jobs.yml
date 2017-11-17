@@ -3,7 +3,7 @@ jobs:
   - name: aarch64-old-yml-min
     type: runSh
     runtime:
-      architecture: x86_64
+      architecture: aarch64
       os: Ubuntu_16.04
       container: true
     steps:

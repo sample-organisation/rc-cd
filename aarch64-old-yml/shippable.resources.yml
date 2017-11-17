@@ -11,3 +11,9 @@ resources:
       sourceName: sample-organisation/gitRepo
       branch: aarch-old-yml
 
+  - name: aarch64-old-yml-image
+    type: image
+    pointer:
+      sourceName: scriptnull/sample_node
+    seed:
+      versionName: "myapp3"

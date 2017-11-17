@@ -33,3 +33,15 @@ jobs:
       - IN: aarch64-old-yml-gitRepo
       - TASK:
         - script: echo "hi"
+
+  - name: aarch64-old-yml-out-img
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+    steps:
+      - TASK:
+        - script: echo "hi"
+        - script: echo "versionName=master.$BUILD_NUMBER" >> $JOB_STATE/aarch64-old-yml-image.env
+      - OUT: aarch64-old-yml-image

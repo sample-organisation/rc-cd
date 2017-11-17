@@ -2,4 +2,4 @@ resources:
   - name: aarch64-custom-container-trigger
     type: trigger
     version:
-      counter: 2
+      counter: 4

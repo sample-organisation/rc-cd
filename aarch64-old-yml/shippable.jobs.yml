@@ -10,3 +10,14 @@ jobs:
       - TASK:
         - script: echo "hi"
         - script: echo "hello"
+
+  - name: aarch64-old-yml-in-processing
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+    steps:
+      - IN: aarch64-old-yml-trigger
+      - TASK:
+        - script: echo "hi"

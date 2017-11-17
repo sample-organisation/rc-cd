@@ -11,7 +11,7 @@ jobs:
         - script: echo "hi"
         - script: echo "hello"
 
-  - name: aarch64-old-yml-in-processing
+  - name: aarch64-old-yml-in-trigger
     type: runSh
     runtime:
       architecture: aarch64
@@ -19,5 +19,17 @@ jobs:
       container: true
     steps:
       - IN: aarch64-old-yml-trigger
+      - TASK:
+        - script: echo "hi"
+
+
+  - name: aarch64-old-yml-in-gitRepo
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+    steps:
+      - IN: aarch64-old-yml-gitRepo
       - TASK:
         - script: echo "hi"

@@ -7,6 +7,8 @@ jobs:
       os: Ubuntu_16.04
       container: false
     steps:
+      - IN: aarch64-host-old-yml-trigger
+      - IN: heap-1635-trigger
       - TASK:
         - script: echo "hi"
         - script: echo "hello"
@@ -19,6 +21,7 @@ jobs:
       container: false
     steps:
       - IN: aarch64-host-old-yml-trigger
+      - IN: heap-1635-trigger
       - TASK:
         - script: echo "hi"
 
@@ -31,6 +34,7 @@ jobs:
       container: true
     steps:
       - IN: aarch64-host-old-yml-gitRepo
+      - IN: heap-1635-trigger
       - TASK:
         - printenv
         - test "$AARCH64HOSTINOUTGITREPO_BRANCH" == "aarch64-host-in-out"
@@ -42,6 +46,7 @@ jobs:
       os: Ubuntu_16.04
       container: true
     steps:
+      - IN: heap-1635-trigger
       - TASK:
         - script: echo "hi"
         - script: echo "versionName=master.$BUILD_NUMBER" >> $JOB_STATE/aarch64-host-old-yml-image.env

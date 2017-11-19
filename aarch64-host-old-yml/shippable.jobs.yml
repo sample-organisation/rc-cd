@@ -1,0 +1,49 @@
+jobs:
+  
+  - name: aarch64-host-old-yml-min
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - TASK:
+        - script: echo "hi"
+        - script: echo "hello"
+
+  - name: aarch64-host-old-yml-in-trigger
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - IN: aarch64-host-old-yml-trigger
+      - TASK:
+        - script: echo "hi"
+
+
+  - name: aarch64-host-old-yml-in-gitRepo
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+    steps:
+      - IN: aarch64-host-old-yml-gitRepo
+      - TASK:
+        - printenv
+        - test "$AARCH64HOSTINOUTGITREPO_BRANCH" == "aarch64-host-in-out"
+
+  - name: aarch64-host-old-yml-out-img
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
+    steps:
+      - TASK:
+        - script: echo "hi"
+        - script: echo "versionName=master.$BUILD_NUMBER" >> $JOB_STATE/aarch64-host-old-yml-image.env
+        - script: test "$AARCH64HOSTINOUTIMAGE_NAME" == "aarch64-host-in-out-image"
+      - OUT: aarch64-host-old-yml-image

@@ -1,4 +1,4 @@
-# jobs:
+jobs:
 #   - name: aarch64-new-yml-def-container
 #     type: runSh
 #     runtime:

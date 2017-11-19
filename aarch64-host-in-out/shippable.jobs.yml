@@ -28,7 +28,6 @@ jobs:
     steps:
       - IN: aarch64-host-in-out-trigger
       - OUT: aarch64-host-in-out-image
-      - OUT: 
       - TASK:
           name: should-pass-with-image-envs
           runtime:

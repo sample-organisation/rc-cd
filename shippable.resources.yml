@@ -21,3 +21,9 @@ resources:
     pointer:
       sourceName: sample-organisation/gitRepo
       branch: aarch
+
+
+  - name: heap-1635-trigger
+    type: trigger
+    version:
+      counter: 1

@@ -37,7 +37,7 @@ jobs:
       - IN: heap-1635-trigger
       - TASK:
         - printenv
-        - test "$AARCH64HOSTINOUTGITREPO_BRANCH" == "aarch64-host-in-out"
+        - test "$AARCH64HOSTOLDYMLGITREPO_BRANCH" == "aarch64-host-old-yml"
 
   - name: aarch64-host-old-yml-out-img
     type: runSh
@@ -50,5 +50,5 @@ jobs:
       - TASK:
         - script: echo "hi"
         - script: echo "versionName=master.$BUILD_NUMBER" >> $JOB_STATE/aarch64-host-old-yml-image.env
-        - script: test "$AARCH64HOSTINOUTIMAGE_NAME" == "aarch64-host-in-out-image"
+        - script: test "$AARCH64HOSTOLDYMLIMAGE_NAME" == "aarch64-host-old-yml-image"
       - OUT: aarch64-host-old-yml-image

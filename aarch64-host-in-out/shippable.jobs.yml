@@ -7,6 +7,7 @@ jobs:
       container: false
     steps:
       - IN: aarch64-host-in-out-trigger
+      - IN: heap-1635-trigger
       - IN: aarch64-host-in-out-gitRepo
       - TASK:
           name: should-pass-with-gitRepo-envs
@@ -27,6 +28,7 @@ jobs:
       container: false
     steps:
       - IN: aarch64-host-in-out-trigger
+      - IN: heap-1635-trigger
       - OUT: aarch64-host-in-out-image
       - TASK:
           name: should-pass-with-image-envs

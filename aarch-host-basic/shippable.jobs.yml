@@ -1,0 +1,44 @@
+jobs:
+
+  - name: aarch64-host-new-yml-basic
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - TASK:
+          name: echo-facts
+          script: 
+            - uname -m
+            - ps aux
+
+  - name: aarch64-host-new-yml-fail
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - TASK:
+          name: echo-facts
+          script: 
+            - exit 1
+
+  - name: aarch64-host-new-yml-multi-task
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - TASK:
+          name: echo-facts
+          script: 
+            - uname -m
+      - TASK:
+          name: ps-facts
+          script:
+            - ps aux
+            
+

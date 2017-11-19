@@ -1,0 +1,19 @@
+resources:
+  - name: aarch64-host-old-yml-trigger
+    type: trigger
+    version:
+      counter: 2
+
+  - name: aarch64-host-old-yml-gitRepo
+    type: gitRepo
+    integration: github-test
+    pointer:
+      sourceName: sample-organisation/gitRepo
+      branch: aarch64-host-old-yml
+
+  - name: aarch64-host-old-yml-image
+    type: image
+    pointer:
+      sourceName: scriptnull/sample_node
+    seed:
+      versionName: "myapp3"

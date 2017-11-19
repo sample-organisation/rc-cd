@@ -7,6 +7,7 @@ jobs:
       os: Ubuntu_16.04
       container: false
     steps:
+      - IN: heap-1635-trigger
       - TASK:
           name: echo-facts
           script: 
@@ -20,6 +21,7 @@ jobs:
       os: Ubuntu_16.04
       container: false
     steps:
+      - IN: heap-1635-trigger
       - TASK:
           name: echo-facts
           script: 
@@ -32,6 +34,7 @@ jobs:
       os: Ubuntu_16.04
       container: false
     steps:
+      - IN: heap-1635-trigger
       - TASK:
           name: echo-facts
           script: 

@@ -1,0 +1,14 @@
+jobs:
+
+  - name: aarch64-host-ssh-basic
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - IN: aarch64-host-ssh-trigger
+      - TASK:
+          name: should-ssh
+          script: 
+            - ssh ubuntu@<some-ip-address> -c echo "hello" # or cat something

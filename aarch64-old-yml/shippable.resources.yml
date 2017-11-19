@@ -6,7 +6,7 @@ resources:
 
   - name: aarch64-old-yml-gitRepo
     type: gitRepo
-    integration: github
+    integration: github-test
     pointer:
       sourceName: sample-organisation/gitRepo
       branch: aarch-old-yml

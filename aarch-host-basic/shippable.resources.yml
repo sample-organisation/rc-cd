@@ -1,0 +1,5 @@
+resources:
+  - name: aarch64-host-basic-trigger
+    type: trigger
+    version:
+      counter: 1

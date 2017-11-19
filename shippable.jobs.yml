@@ -1,61 +1,61 @@
-jobs:
-  - name: aarch64-new-yml-def-container
-    type: runSh
-    runtime:
-      architecture: aarch64
-      os: Ubuntu_16.04
-      container: true
-    steps:
-      - IN: aarch-gitRepo
-      - TASK:
-          name: system-facts
-          script: 
-            - uname -m
-            - ps aux
-            - ls -a /var/lib/shippable/2e067920-ef36-43e6-80ee-a5adef3d4ca1/build/IN/aarch-gitRepo/gitRepo
-
-  - name: aarch64-new-yml-cus-container
-    type: runSh
-    runtime:
-      architecture: aarch64
-      os: Ubuntu_16.04
-      container: true
-    steps:
-      - TASK:
-          name: default-container
-          script: 
-            - docker ps
-      - TASK:
-          name: pyt-container
-          runtime:
-            options:
-              imageName: drydockaarch64/u16pyt
-              imageTag: master
-          script:
-            - docker ps
-
-  - name: old-min-sh
-    type: runSh
-    steps:
-      - TASK:
-        - script: echo "hello world"
-
-  - name: new-min-sh
-    type: runSh
-    runtime:
-      architecture: x86_64
-      os: Ubuntu_16.04
-      container: false
-    steps:
-      - TASK:
-          name: echo-facts
-          script: 
-            - echo "cats are cute"
-            - printenv
-            # - ssh ubuntu@52.41.122.70 cat get-docker.sh
-
-  - name: rc-ci_runCI
-    type: runCI
-    steps:
-      - IN: ci-params
-      - IN: ci-gitRepo
+# jobs:
+#   - name: aarch64-new-yml-def-container
+#     type: runSh
+#     runtime:
+#       architecture: aarch64
+#       os: Ubuntu_16.04
+#       container: true
+#     steps:
+#       - IN: aarch-gitRepo
+#       - TASK:
+#           name: system-facts
+#           script: 
+#             - uname -m
+#             - ps aux
+#             - ls -a /var/lib/shippable/2e067920-ef36-43e6-80ee-a5adef3d4ca1/build/IN/aarch-gitRepo/gitRepo
+# 
+#   - name: aarch64-new-yml-cus-container
+#     type: runSh
+#     runtime:
+#       architecture: aarch64
+#       os: Ubuntu_16.04
+#       container: true
+#     steps:
+#       - TASK:
+#           name: default-container
+#           script: 
+#             - docker ps
+#       - TASK:
+#           name: pyt-container
+#           runtime:
+#             options:
+#               imageName: drydockaarch64/u16pyt
+#               imageTag: master
+#           script:
+#             - docker ps
+# 
+#   - name: old-min-sh
+#     type: runSh
+#     steps:
+#       - TASK:
+#         - script: echo "hello world"
+# 
+#   - name: new-min-sh
+#     type: runSh
+#     runtime:
+#       architecture: x86_64
+#       os: Ubuntu_16.04
+#       container: false
+#     steps:
+#       - TASK:
+#           name: echo-facts
+#           script: 
+#             - echo "cats are cute"
+#             - printenv
+#             # - ssh ubuntu@52.41.122.70 cat get-docker.sh
+# 
+#   - name: rc-ci_runCI
+#     type: runCI
+#     steps:
+#       - IN: ci-params
+#       - IN: ci-gitRepo

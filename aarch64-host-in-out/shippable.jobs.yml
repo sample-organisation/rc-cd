@@ -37,4 +37,5 @@ jobs:
           script:
             - docker ps -a
             - printenv
+            - echo "versionName=master.$BUILD_NUMBER" >> $JOB_STATE/aarch64-host-in-out-image.env
             - test "$AARCH64HOSTINOUTIMAGE_NAME" == "aarch64-host-in-out-image"

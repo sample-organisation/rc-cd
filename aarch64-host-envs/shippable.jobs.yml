@@ -1,0 +1,40 @@
+jobs:
+  - name: aarch64-host-envs-single
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - TASK:
+          name: should-pass-for-single-envs
+          runtime:
+            options:
+              env:
+                HELLO: world
+          script:
+            - docker ps -a
+            - printenv
+            - echo "$HELLO"
+            - test "$HELLO" == "world"
+            
+  - name: aarch64-host-envs-multiple
+    type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - TASK:
+          name: should-pass-for-multiple-envs
+          runtime:
+            options:
+              env:
+                HELLO: world
+                HI: there
+          script:
+            - docker ps -a
+            - printenv
+            - echo "$HELLO"
+            - test "$HELLO" == "world"
+            - test "$HI" == "there"

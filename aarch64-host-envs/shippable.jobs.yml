@@ -7,6 +7,7 @@ jobs:
       container: false
     steps:
       - IN: aarch64-host-envs-trigger
+      - IN: heap-1635-trigger
       - TASK:
           name: should-pass-for-single-envs
           runtime:
@@ -27,6 +28,7 @@ jobs:
       container: false
     steps:
       - IN: aarch64-host-envs-trigger
+      - IN: heap-1635-trigger
       - TASK:
           name: should-pass-for-multiple-envs
           runtime:

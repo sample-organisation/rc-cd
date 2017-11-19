@@ -1,0 +1,5 @@
+resources:
+  - name: aarch64-host-envs-trigger
+    type: trigger
+    version:
+      counter: 1

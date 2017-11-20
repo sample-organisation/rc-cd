@@ -2,7 +2,7 @@ resources:
   - name: aarch64-host-in-out-trigger
     type: trigger
     version:
-      counter: 1
+      counter: 2
 
   - name: aarch64-host-in-out-gitRepo
     type: gitRepo

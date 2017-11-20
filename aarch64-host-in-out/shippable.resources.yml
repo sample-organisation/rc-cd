@@ -17,7 +17,3 @@ resources:
       sourceName: scriptnull/sample_node
     seed:
       versionName: "myapp3"
-
-  - name: aarch64-host-in-out-docker-cliConfig
-    type: cliConfig
-    integration: docker-hub

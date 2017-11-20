@@ -11,4 +11,4 @@ jobs:
       - TASK:
           name: should-ssh
           script: 
-            - ssh ubuntu@35.166.229.98 echo "hello" # or cat something
+            - ssh -v ubuntu@35.166.229.98 echo "hello" # or cat something

@@ -69,5 +69,5 @@ jobs:
           script:
             - docker ps -a
             - export CONTAINER_COUNT=$(docker ps -a | wc -l)
-            - test "CONTAINER_COUNT" == 2 # one line denotes the heading and another line denotes reqProc container
+            - test "$CONTAINER_COUNT" == 2 # one line denotes the heading and another line denotes reqProc container
 

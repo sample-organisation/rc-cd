@@ -50,13 +50,6 @@ jobs:
       - IN: heap-1635-trigger
       - TASK:
           name: echo-facts
-          runtime:
-            architecture: aarch64
-            os: Ubuntu_16.04
-            container: true
-            options:
-              imageName: drydockaarch64/u16pyt
-              imageTag: master
           script: 
             - uname -m
       - TASK:

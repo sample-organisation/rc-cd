@@ -46,14 +46,24 @@ jobs:
             
   - name: aarch64-host-new-yml-mix-container
     type: runSh
+    runtime:
+      architecture: aarch64
+      os: Ubuntu_16.04
+      container: true
     steps:
       - IN: heap-1635-trigger
       - TASK:
           name: echo-facts
+          runtime:
+            options:
+              imageName: drydockaarch64/u16pyt
+              imageTag: master
           script: 
             - uname -m
       - TASK:
           name: ps-facts
+          runtime:
+            container: false
           script:
             - ps aux
 

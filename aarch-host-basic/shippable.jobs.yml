@@ -53,17 +53,21 @@ jobs:
     steps:
       - IN: heap-1635-trigger
       - TASK:
-          name: echo-facts
+          name: should-run-inside-container
           runtime:
             options:
               imageName: drydockaarch64/u16pyt
               imageTag: master
           script: 
-            - uname -m
+            - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
       - TASK:
-          name: ps-facts
+          name: should-run-on-host
           runtime:
             container: false
           script:
-            - ps aux
+            - docker ps -a
+            - export CONTAINER_COUNT=$(docker ps -a | wc -l)
+            - test "CONTAINER_COUNT" == 2 # one line denotes the heading and another line denotes reqProc container
 

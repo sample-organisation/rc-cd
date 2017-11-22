@@ -71,3 +71,4 @@ jobs:
           name: say-hello
           script: 
             - echo "hello"
+            - /usr/bin/xcodebuild -version

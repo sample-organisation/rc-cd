@@ -5,6 +5,9 @@ jobs:
       architecture: x86_64
       os: macOS_10.12
       container: false
+    flags:
+      - macos-10-12
+      - x86-64
     steps:
       - IN: macos-10-12-trigger
       - IN: x86-64-trigger
@@ -19,6 +22,9 @@ jobs:
       architecture: x86_64
       os: macOS_10.12
       container: false
+    flags:
+      - macos-10-12
+      - x86-64
     steps:
       - IN: macos-10-12-trigger
       - IN: x86-64-trigger
@@ -32,6 +38,9 @@ jobs:
       architecture: x86_64
       os: macOS_10.12
       container: false
+    flags:
+      - macos-10-12
+      - x86-64
     steps:
       - IN: macos-10-12-trigger
       - IN: x86-64-trigger

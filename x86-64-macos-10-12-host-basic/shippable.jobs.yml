@@ -6,7 +6,40 @@ jobs:
       os: macOS_10.12
       container: false
     steps:
+      - IN: macos-10-12-trigger
+      - IN: x86-64-trigger
       - TASK:
           name: say-hello
           script: 
             - echo "hello"
+
+  - name: x86-64-macos-10-12-host-old-yml
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
+    steps:
+      - IN: macos-10-12-trigger
+      - IN: x86-64-trigger
+      - TASK:
+        - script: echo "hi"
+        - script: echo "hello"
+        
+  - name: x86-64-macos-10-12-host-new-yml-multi
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
+    steps:
+      - IN: macos-10-12-trigger
+      - IN: x86-64-trigger
+      - TASK:
+          name: say-hello
+          script: 
+            - echo "hello"
+      - TASK:
+          name: say-hi
+          script: 
+            - echo "hi"

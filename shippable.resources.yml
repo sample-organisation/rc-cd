@@ -31,7 +31,7 @@ resources:
   - name: macos-10-12-trigger
     type: trigger
     version:
-      counter: 2
+      counter: 3
 
   - name: x86-64-trigger
     type: trigger

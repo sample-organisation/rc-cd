@@ -32,3 +32,8 @@ resources:
     type: trigger
     version:
       counter: 1
+
+  - name: x86-64-trigger
+    type: trigger
+    version:
+      counter: 1

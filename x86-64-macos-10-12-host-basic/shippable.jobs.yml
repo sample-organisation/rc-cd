@@ -15,7 +15,7 @@ jobs:
           name: say-hello
           script: 
             - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
-            - test "$MACOS_VERSION" == "10.12"
+            - test "$MACOS_VERSION" == "10.12.6"
             - echo "hello"
 
   - name: x86-64-macos-10-12-host-old-yml

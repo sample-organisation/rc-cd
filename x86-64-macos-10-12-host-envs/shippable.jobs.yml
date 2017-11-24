@@ -1,0 +1,52 @@
+jobs:
+  - name: x86-64-macos-10-12-host-envs-single
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
+    flags:
+      - macos-10-12
+      - x86-64
+    steps:
+      - IN: macos-10-12-trigger
+      - IN: x86-64-trigger
+      - TASK:
+          name: should-pass-for-single-envs
+          runtime:
+            options:
+              env:
+                HELLO: world
+          script:
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
+            - printenv
+            - echo "$HELLO"
+            - test "$HELLO" == "world"
+            
+  - name: x86-64-macos-10-12-host-envs-multiple
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
+    flags:
+      - macos-10-12
+      - x86-64
+    steps:
+      - IN: macos-10-12-trigger
+      - IN: x86-64-trigger
+      - TASK:
+          name: should-pass-for-multiple-envs
+          runtime:
+            options:
+              env:
+                HELLO: world
+                HI: there
+          script:
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
+            - printenv
+            - echo "$HELLO"
+            - test "$HELLO" == "world"
+            - test "$HI" == "there"

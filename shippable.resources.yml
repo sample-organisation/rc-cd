@@ -22,6 +22,12 @@ resources:
       sourceName: sample-organisation/gitRepo
       branch: aarch
 
+  - name: x86-64-macos-gitRepo
+    type: gitRepo
+    integration: github-test
+    pointer:
+      sourceName: sample-organisation/gitRepo
+      branch: x86-64-macos
 
   - name: heap-1635-trigger
     type: trigger

@@ -1,0 +1,41 @@
+jobs:
+  - name: x86-64-macos-10-12-host-in-out-process-in
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
+    flags:
+      - macos-10-12
+      - x86-64
+    steps:
+      - IN: macos-10-12-trigger
+      - IN: x86-64-trigger
+      - IN: x86-64-macos-gitRepo
+      - TASK:
+          name: should-pass-with-gitRepo-envs
+          script:
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
+            - test "$X8664MACOSGITREPO_BRANCH" == "x86-64-macos"
+
+  - name: x86-64-macos-10-12-host-in-out-process-out
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
+    flags:
+      - macos-10-12
+      - x86-64
+    steps:
+      - IN: macos-10-12-trigger
+      - IN: x86-64-trigger
+      - OUT: x86-64-macos-image
+      - TASK:
+          name: should-pass-with-image-envs
+          script:
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
+            - echo "versionName=master.$BUILD_NUMBER" >> $JOB_STATE/x86-64-macos-image.env
+            - test "$X8664MACOSIMAGE_NAME" == "x86-64-macos-image"

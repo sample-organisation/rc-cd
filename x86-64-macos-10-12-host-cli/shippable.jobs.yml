@@ -18,4 +18,5 @@ jobs:
             - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
             - test "$MACOS_VERSION" == "10.12.6"
             - echo "$PATH"
+            - export PATH="$PATH:/usr/local/bin"
             - aws ec2 describe-instances

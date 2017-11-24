@@ -1,0 +1,12 @@
+jobs:
+  - name: x86-64-macos-10-12-host-new-yml
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
+    steps:
+      - TASK:
+          name: say-hello
+          script: 
+            - echo "hello"

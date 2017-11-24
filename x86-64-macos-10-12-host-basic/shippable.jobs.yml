@@ -14,6 +14,8 @@ jobs:
       - TASK:
           name: say-hello
           script: 
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
             - echo "hello"
 
   - name: x86-64-macos-10-12-host-old-yml
@@ -29,9 +31,11 @@ jobs:
       - IN: macos-10-12-trigger
       - IN: x86-64-trigger
       - TASK:
+        - script: export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+        - script: test "$MACOS_VERSION" == "10.12.6"
         - script: echo "hi"
         - script: echo "hello"
-        
+
   - name: x86-64-macos-10-12-host-new-yml-multi
     type: runSh
     runtime:
@@ -47,10 +51,14 @@ jobs:
       - TASK:
           name: say-hello
           script: 
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
             - echo "hello"
       - TASK:
           name: say-hi
           script: 
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
             - echo "hi"
             
   - name: x86-64-macos-10-12-host-new-yml-fail
@@ -68,4 +76,6 @@ jobs:
       - TASK:
           name: should-fail
           script: 
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
             - exit 1

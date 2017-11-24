@@ -44,7 +44,7 @@ resources:
     version:
       counter: 1
       
-  - name: x86-macos-image
+  - name: x86-64-macos-image
     type: image
     pointer:
       sourceName: scriptnull/sample_node

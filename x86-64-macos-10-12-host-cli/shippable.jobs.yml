@@ -13,7 +13,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: test-aws-cli
       - TASK:
-          name: should-pass-with-gitRepo-envs
+          name: should-list-ec2-instances
           script:
             - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
             - test "$MACOS_VERSION" == "10.12.6"

@@ -52,3 +52,20 @@ jobs:
           name: say-hi
           script: 
             - echo "hi"
+            
+  - name: x86-64-macos-10-12-host-new-yml-fail
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
+    flags:
+      - macos-10-12
+      - x86-64
+    steps:
+      - IN: macos-10-12-trigger
+      - IN: x86-64-trigger
+      - TASK:
+          name: should-fail
+          script: 
+            - exit 1

@@ -1,0 +1,17 @@
+jobs:
+  - name: x86-64-ubuntu-16-04-host-shipctl
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
+    flags:
+      - x86-64
+      - ubuntu-16-04
+    steps:
+      - IN: x86-64-trigger
+      - IN: ubuntu-16-04-trigger
+      - TASK:
+          name: shipctl-should-work
+          script: 
+            - shipctl retry echo "it works"

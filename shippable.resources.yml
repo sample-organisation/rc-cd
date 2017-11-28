@@ -34,16 +34,6 @@ resources:
     version:
       counter: 1
 
-  - name: macos-10-12-trigger
-    type: trigger
-    version:
-      counter: 3
-
-  - name: x86-64-trigger
-    type: trigger
-    version:
-      counter: 1
-
   - name: test-aws-cli
     type: cliConfig
     integration: test-aws
@@ -56,3 +46,32 @@ resources:
       sourceName: scriptnull/sample_node
     seed:
       versionName: "myapp3"
+
+#### Operating System Triggers ####
+
+  - name: ubuntu-16-04-trigger
+    type: trigger
+    version:
+      counter: 1
+
+  - name: ubuntu-14-04-trigger
+    type: trigger
+    version:
+      counter: 1
+
+  - name: macos-10-12-trigger
+    type: trigger
+    version:
+      counter: 3
+ 
+#### Architecture Triggers ####
+
+  - name: x86-64-trigger
+    type: trigger
+    version:
+      counter: 1
+      
+  - name: aarch64-trigger
+    type: trigger
+    version:
+      counter: 1

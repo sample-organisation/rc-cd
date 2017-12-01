@@ -81,3 +81,7 @@ resources:
   - name: test-docker-cli
     type: cliConfig
     integration: test-docker-hub
+    
+  - name: test-quay-cli
+    type: cliConfig
+    integration: test-quay

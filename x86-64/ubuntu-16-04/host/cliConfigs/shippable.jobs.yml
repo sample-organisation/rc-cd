@@ -79,6 +79,8 @@ jobs:
             # - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
             # - test "$OS_VERSION" == "16.04"
             - echo "$HOME"
+            - printenv
+            - who
             - kubectl get services
 
   - name: x86-64-ubuntu-16-04-host-docker-registry

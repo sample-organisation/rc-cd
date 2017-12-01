@@ -13,7 +13,9 @@ jobs:
       - IN: ubuntu-16-04-trigger
       - TASK:
           name: shipctl-should-work
-          script: 
+          script:
+            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
+            - test "$OS_VERSION" == "16.04"
             - shipctl retry echo "it works"
 
 

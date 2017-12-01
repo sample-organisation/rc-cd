@@ -97,3 +97,7 @@ resources:
   - name: test-kubernetes-cli
     type: cliConfig
     integration: test-kubernetes
+    
+  - name: test-artifactory-cli
+    type: cliConfig
+    integration: test-artifactory

@@ -68,3 +68,9 @@ jobs:
             - cat Dockerfile 
             - docker build -t="vishnushippable/private:nginx.$BUILD_NUMBER" .
             - popd
+      - TASK:
+          name: should-push-private-image
+          script:
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
+            - docker push vishnushippable/private:nginx.$BUILD_NUMBER

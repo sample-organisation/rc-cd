@@ -93,3 +93,7 @@ resources:
   - name: test-azure-cli
     type: cliConfig
     integration: test-azure
+
+  - name: test-kubernetes-cli
+    type: cliConfig
+    integration: test-kubernetes

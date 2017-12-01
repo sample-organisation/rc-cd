@@ -63,11 +63,8 @@ jobs:
             - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
             - test "$MACOS_VERSION" == "10.12.6"
             - mkdir private
-            - pwd
             - pushd private
-            - pwd
-            - ls
-            - printf "FROM vishnushippable/private:nginx \n RUN touch hi" > Dockerfile
+            - printf "FROM vishnushippable/private:nginx \nRUN touch hi" > Dockerfile
             - cat Dockerfile 
-            - ls
+            - docker build -t="vishnushippable/private:nginx.$BUILD_NUMBER" .
             - popd

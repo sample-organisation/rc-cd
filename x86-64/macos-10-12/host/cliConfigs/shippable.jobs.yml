@@ -1,21 +1,4 @@
 jobs:
-  - name: x86-64-macos-10-12-host-shipctl
-    type: runSh
-    runtime:
-      architecture: x86_64
-      os: macOS_10.12
-      container: false
-    flags:
-      - x86-64
-      - macos-10-12
-    steps:
-      - IN: x86-64-trigger
-      - IN: macos-10-12-trigger
-      - TASK:
-          name: shipctl-should-work
-          script: 
-            - shipctl retry echo "it works"
-
   - name: x86-64-macos-10-12-host-aws-cli
     type: runSh
     runtime:

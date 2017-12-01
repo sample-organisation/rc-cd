@@ -91,7 +91,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: test-kubernetes-cli
       - TASK:
-          name: should-list-azure-instances
+          name: should-list-kubernete-services
           script:
             - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
             - test "$MACOS_VERSION" == "10.12.6"

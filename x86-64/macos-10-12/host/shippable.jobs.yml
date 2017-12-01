@@ -74,3 +74,41 @@ jobs:
             - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
             - test "$MACOS_VERSION" == "10.12.6"
             - docker push vishnushippable/private:nginx.$BUILD_NUMBER
+            
+
+  - name: x86-64-macos-10-12-host-quay-registry
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: macOS_10.12
+      container: false
+    flags:
+      - x86-64
+      - macos-10-12
+    steps:
+      - IN: macos-10-12-trigger
+      - IN: x86-64-trigger
+      - IN: test-quay-cli
+      - TASK:
+          name: should-pull-public-image
+          script:
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
+            - docker pull nginx
+      - TASK:
+          name: should-build-private-image
+          script:
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
+            - mkdir private
+            - pushd private
+            - printf "FROM nginx \nRUN touch hi" > Dockerfile
+            - cat Dockerfile 
+            - docker build -t="quay.io/shippablequay/sample_node_01:nginx" .
+            - popd
+      - TASK:
+          name: should-push-private-image
+          script:
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
+            - docker push quay.io/shippablequay/sample_node_01:nginx

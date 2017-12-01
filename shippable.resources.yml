@@ -85,3 +85,7 @@ resources:
   - name: test-quay-cli
     type: cliConfig
     integration: test-quay
+
+  - name: test-gcloud-cli
+    type: cliConfig
+    integration: test-gcloud

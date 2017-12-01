@@ -15,11 +15,11 @@ jobs:
       - TASK:
           name: should-list-ec2-instances
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - echo "$IMG"
             - echo "$PATH"
             - aws ec2 describe-instances
-            
+
   - name: x86-64-ubuntu-16-04-container-gcloud-cli
     type: runSh
     runtime:
@@ -36,10 +36,10 @@ jobs:
       - TASK:
           name: should-list-gcloud-instances
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - echo "$IMG"
             - gcloud compute instances list
-            
+
   - name: x86-64-ubuntu-16-04-container-azure-cli
     type: runSh
     runtime:
@@ -56,10 +56,10 @@ jobs:
       - TASK:
           name: should-list-azure-instances
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
-            - az vm list 
-            
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - echo "$IMG"
+            - az vm list
+
   - name: x86-64-ubuntu-16-04-container-kubernetes-cli
     type: runSh
     runtime:
@@ -76,8 +76,8 @@ jobs:
       - TASK:
           name: should-list-kubernete-services
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - echo "$IMG"
             - kubectl get services
 
   - name: x86-64-ubuntu-16-04-container-docker-registry
@@ -96,27 +96,27 @@ jobs:
       - TASK:
           name: should-pull-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - echo "$IMG"
             - docker pull vishnushippable/private:nginx
       - TASK:
           name: should-build-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - echo "$IMG"
             - mkdir private
             - pushd private
             - printf "FROM vishnushippable/private:nginx \nRUN touch hi" > Dockerfile
-            - cat Dockerfile 
+            - cat Dockerfile
             - docker build -t="vishnushippable/private:nginx.$BUILD_NUMBER" .
             - popd
       - TASK:
           name: should-push-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - echo "$IMG"
             - docker push vishnushippable/private:nginx.$BUILD_NUMBER
-            
+
 
   - name: x86-64-ubuntu-16-04-container-quay-registry
     type: runSh
@@ -134,23 +134,23 @@ jobs:
       - TASK:
           name: should-pull-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - echo "$IMG"
             - docker pull quay.io/shippablequay/sample_node_01:nginx
       - TASK:
           name: should-build-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - echo "$IMG"
             - mkdir private
             - pushd private
             - printf "FROM quay.io/shippablequay/sample_node_01:nginx \nRUN touch hi" > Dockerfile
-            - cat Dockerfile 
+            - cat Dockerfile
             - docker build -t="quay.io/shippablequay/sample_node_01:nginx.$BUILD_NUMBER" .
             - popd
       - TASK:
           name: should-push-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - echo "$IMG"
             - docker push quay.io/shippablequay/sample_node_01:nginx.$BUILD_NUMBER

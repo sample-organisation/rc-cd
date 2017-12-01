@@ -15,8 +15,8 @@ jobs:
       - TASK:
           name: should-list-ec2-instances
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/microbase:master"
             - echo "$PATH"
             - aws ec2 describe-instances
 
@@ -36,8 +36,8 @@ jobs:
       - TASK:
           name: should-list-gcloud-instances
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/microbase:master"
             - gcloud compute instances list
 
   - name: aarch64-ubuntu-16-04-container-azure-cli
@@ -56,8 +56,8 @@ jobs:
       - TASK:
           name: should-list-azure-instances
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/microbase:master"
             - az vm list
 
   - name: aarch64-ubuntu-16-04-container-kubernetes-cli
@@ -76,8 +76,8 @@ jobs:
       - TASK:
           name: should-list-kubernete-services
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/microbase:master"
             - kubectl get services
 
   - name: aarch64-ubuntu-16-04-container-docker-registry
@@ -96,14 +96,14 @@ jobs:
       - TASK:
           name: should-pull-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/microbase:master"
             - docker pull vishnushippable/private:nginx
       - TASK:
           name: should-build-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/microbase:master"
             - mkdir private
             - pushd private
             - printf "FROM vishnushippable/private:nginx \nRUN touch hi" > Dockerfile
@@ -113,8 +113,8 @@ jobs:
       - TASK:
           name: should-push-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/microbase:master"
             - docker push vishnushippable/private:nginx.$BUILD_NUMBER
 
 
@@ -134,14 +134,14 @@ jobs:
       - TASK:
           name: should-pull-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/microbase:master"
             - docker pull quay.io/shippablequay/sample_node_01:nginx
       - TASK:
           name: should-build-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/microbase:master"
             - mkdir private
             - pushd private
             - printf "FROM quay.io/shippablequay/sample_node_01:nginx \nRUN touch hi" > Dockerfile
@@ -151,6 +151,6 @@ jobs:
       - TASK:
           name: should-push-private-image
           script:
-            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
-            - test "$OS_VERSION" == "16.04"
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/microbase:master"
             - docker push quay.io/shippablequay/sample_node_01:nginx.$BUILD_NUMBER

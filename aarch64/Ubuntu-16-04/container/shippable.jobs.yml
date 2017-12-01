@@ -1,10 +1,10 @@
 jobs:
-  - name: aarch64-ubuntu-16-04-host-shipctl
+  - name: aarch64-ubuntu-16-04-container-shipctl
     type: runSh
     runtime:
       architecture: aarch64
       os: Ubuntu_16.04
-      container: false
+      container: true
     flags:
       - aarch64
       - ubuntu-16-04

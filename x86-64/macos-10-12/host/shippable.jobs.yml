@@ -90,11 +90,11 @@ jobs:
       - IN: x86-64-trigger
       - IN: test-quay-cli
       - TASK:
-          name: should-pull-public-image
+          name: should-pull-private-image
           script:
             - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
             - test "$MACOS_VERSION" == "10.12.6"
-            - docker pull nginx
+            - docker pull quay.io/shippablequay/sample_node_01:nginx
       - TASK:
           name: should-build-private-image
           script:
@@ -102,13 +102,13 @@ jobs:
             - test "$MACOS_VERSION" == "10.12.6"
             - mkdir private
             - pushd private
-            - printf "FROM nginx \nRUN touch hi" > Dockerfile
+            - printf "FROM quay.io/shippablequay/sample_node_01:nginx \nRUN touch hi" > Dockerfile
             - cat Dockerfile 
-            - docker build -t="quay.io/shippablequay/sample_node_01:nginx" .
+            - docker build -t="quay.io/shippablequay/sample_node_01:nginx.$BUILD_NUMBER" .
             - popd
       - TASK:
           name: should-push-private-image
           script:
             - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
             - test "$MACOS_VERSION" == "10.12.6"
-            - docker push quay.io/shippablequay/sample_node_01:nginx
+            - docker push quay.io/shippablequay/sample_node_01:nginx.$BUILD_NUMBER

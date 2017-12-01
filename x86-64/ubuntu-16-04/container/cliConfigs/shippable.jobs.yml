@@ -1,5 +1,5 @@
 jobs:
-  - name: x86-64-ubuntu-16-04-host-aws-cli
+  - name: x86-64-ubuntu-16-04-container-aws-cli
     type: runSh
     runtime:
       architecture: x86_64
@@ -20,7 +20,7 @@ jobs:
             - echo "$PATH"
             - aws ec2 describe-instances
             
-  - name: x86-64-ubuntu-16-04-host-gcloud-cli
+  - name: x86-64-ubuntu-16-04-container-gcloud-cli
     type: runSh
     runtime:
       architecture: x86_64
@@ -40,7 +40,7 @@ jobs:
             - test "$OS_VERSION" == "16.04"
             - gcloud compute instances list
             
-  - name: x86-64-ubuntu-16-04-host-azure-cli
+  - name: x86-64-ubuntu-16-04-container-azure-cli
     type: runSh
     runtime:
       architecture: x86_64
@@ -60,7 +60,7 @@ jobs:
             - test "$OS_VERSION" == "16.04"
             - az vm list 
             
-  - name: x86-64-ubuntu-16-04-host-kubernetes-cli
+  - name: x86-64-ubuntu-16-04-container-kubernetes-cli
     type: runSh
     runtime:
       architecture: x86_64
@@ -80,7 +80,7 @@ jobs:
             - test "$OS_VERSION" == "16.04"
             - kubectl get services
 
-  - name: x86-64-ubuntu-16-04-host-docker-registry
+  - name: x86-64-ubuntu-16-04-container-docker-registry
     type: runSh
     runtime:
       architecture: x86_64
@@ -118,7 +118,7 @@ jobs:
             - docker push vishnushippable/private:nginx.$BUILD_NUMBER
             
 
-  - name: x86-64-ubuntu-16-04-host-quay-registry
+  - name: x86-64-ubuntu-16-04-container-quay-registry
     type: runSh
     runtime:
       architecture: x86_64

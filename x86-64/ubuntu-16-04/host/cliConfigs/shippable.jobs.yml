@@ -81,7 +81,7 @@ jobs:
             - echo "$HOME"
             - printenv
             - who
-            - kubectl get services
+            - sudo kubectl get services
 
   - name: x86-64-ubuntu-16-04-host-docker-registry
     type: runSh

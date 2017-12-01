@@ -34,12 +34,6 @@ resources:
     version:
       counter: 1
 
-  - name: test-aws-cli
-    type: cliConfig
-    integration: test-aws
-    pointer:
-      region: us-west-2
-
   - name: x86-64-macos-image
     type: image
     pointer:
@@ -75,3 +69,15 @@ resources:
     type: trigger
     version:
       counter: 1
+      
+#### CliConfigs ####
+  
+  - name: test-aws-cli
+    type: cliConfig
+    integration: test-aws
+    pointer:
+      region: us-west-2
+      
+  - name: test-docker-cli
+    type: cliConfig
+    integration: test-docker-hub

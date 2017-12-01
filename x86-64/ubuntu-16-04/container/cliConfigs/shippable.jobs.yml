@@ -16,7 +16,7 @@ jobs:
           name: should-list-ec2-instances
           script:
             - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
-            - echo "$IMG"
+            - test "$IMG" == "drydock/microbase:master"
             - echo "$PATH"
             - aws ec2 describe-instances
 
@@ -37,7 +37,7 @@ jobs:
           name: should-list-gcloud-instances
           script:
             - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
-            - echo "$IMG"
+            - test "$IMG" == "drydock/microbase:master"
             - gcloud compute instances list
 
   - name: x86-64-ubuntu-16-04-container-azure-cli
@@ -57,7 +57,7 @@ jobs:
           name: should-list-azure-instances
           script:
             - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
-            - echo "$IMG"
+            - test "$IMG" == "drydock/microbase:master"
             - az vm list
 
   - name: x86-64-ubuntu-16-04-container-kubernetes-cli
@@ -77,7 +77,7 @@ jobs:
           name: should-list-kubernete-services
           script:
             - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
-            - echo "$IMG"
+            - test "$IMG" == "drydock/microbase:master"
             - kubectl get services
 
   - name: x86-64-ubuntu-16-04-container-docker-registry
@@ -97,13 +97,13 @@ jobs:
           name: should-pull-private-image
           script:
             - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
-            - echo "$IMG"
+            - test "$IMG" == "drydock/microbase:master"
             - docker pull vishnushippable/private:nginx
       - TASK:
           name: should-build-private-image
           script:
             - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
-            - echo "$IMG"
+            - test "$IMG" == "drydock/microbase:master"
             - mkdir private
             - pushd private
             - printf "FROM vishnushippable/private:nginx \nRUN touch hi" > Dockerfile
@@ -114,7 +114,7 @@ jobs:
           name: should-push-private-image
           script:
             - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
-            - echo "$IMG"
+            - test "$IMG" == "drydock/microbase:master"
             - docker push vishnushippable/private:nginx.$BUILD_NUMBER
 
 
@@ -135,13 +135,13 @@ jobs:
           name: should-pull-private-image
           script:
             - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
-            - echo "$IMG"
+            - test "$IMG" == "drydock/microbase:master"
             - docker pull quay.io/shippablequay/sample_node_01:nginx
       - TASK:
           name: should-build-private-image
           script:
             - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
-            - echo "$IMG"
+            - test "$IMG" == "drydock/microbase:master"
             - mkdir private
             - pushd private
             - printf "FROM quay.io/shippablequay/sample_node_01:nginx \nRUN touch hi" > Dockerfile
@@ -152,5 +152,5 @@ jobs:
           name: should-push-private-image
           script:
             - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
-            - echo "$IMG"
+            - test "$IMG" == "drydock/microbase:master"
             - docker push quay.io/shippablequay/sample_node_01:nginx.$BUILD_NUMBER

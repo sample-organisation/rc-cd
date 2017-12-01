@@ -23,8 +23,8 @@ jobs:
       os: macOS_10.12
       container: false
     flags:
-      - macos-10-12
       - x86-64
+      - macos-10-12
     steps:
       - IN: macos-10-12-trigger
       - IN: x86-64-trigger

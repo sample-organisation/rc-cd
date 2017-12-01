@@ -57,4 +57,16 @@ jobs:
             - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
             - test "$MACOS_VERSION" == "10.12.6"
             - docker pull vishnushippable/private:nginx
-            
+      - TASK:
+          name: should-build-private-image
+          script:
+            - export MACOS_VERSION=$(sw_vers | head -2 | tail -1 | awk '{print $2}')
+            - test "$MACOS_VERSION" == "10.12.6"
+            - mkdir private
+            - pwd
+            - pushd private
+            - pwd
+            - ls
+            - echo "FROM vishnushippable/private:nginx" > Dockerfile
+            - ls
+            - popd

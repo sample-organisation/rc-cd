@@ -67,6 +67,9 @@ jobs:
             - pushd private
             - pwd
             - ls
-            - echo "FROM vishnushippable/private:nginx" > Dockerfile
+            - echo "FROM vishnushippable/private:nginx
+              RUN touch hi
+              " > Dockerfile
+            - cat Dockerfile 
             - ls
             - popd

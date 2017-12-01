@@ -89,3 +89,7 @@ resources:
   - name: test-gcloud-cli
     type: cliConfig
     integration: test-gcloud
+
+  - name: test-azure-cli
+    type: cliConfig
+    integration: test-azure

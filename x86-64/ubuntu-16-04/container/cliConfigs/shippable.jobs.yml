@@ -90,7 +90,7 @@ jobs:
       - x86-64
       - macos-10-12
     steps:
-      - IN: macos-10-12-trigger
+      - IN: ubuntu-16-04-trigger
       - IN: x86-64-trigger
       - IN: test-artifactory-cli
       - TASK:

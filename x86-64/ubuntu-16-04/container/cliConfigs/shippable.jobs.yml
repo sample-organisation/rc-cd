@@ -79,6 +79,27 @@ jobs:
             - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
             - test "$IMG" == "drydock/microbase:master"
             - kubectl get services
+            
+  - name: x86-64-ubuntu-16-04-container-artifactory-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: true
+    flags:
+      - x86-64
+      - macos-10-12
+    steps:
+      - IN: macos-10-12-trigger
+      - IN: x86-64-trigger
+      - IN: test-artifactory-cli
+      - TASK:
+          name: should-upload-file
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - echo "build number is $BUILD_NUMBER" > myfile.$BUILD_NUMBER.txt
+            - jfrog rt u myfile.$BUILD_NUMBER.txt generic-local/myfile.$BUILD_NUMBER.txt
 
   - name: x86-64-ubuntu-16-04-container-docker-registry
     type: runSh

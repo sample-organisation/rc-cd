@@ -82,6 +82,27 @@ jobs:
             - printenv
             - who
             - sudo kubectl get services
+            
+  - name: x86-64-ubuntu-16-04-host-artifactory-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
+    flags:
+      - x86-64
+      - ubuntu-16-04
+    steps:
+      - IN: ubuntu-16-04-trigger
+      - IN: x86-64-trigger
+      - IN: test-artifactory-cli
+      - TASK:
+          name: should-upload-file
+          script:
+            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
+            - test "$OS_VERSION" == "16.04"
+            - echo "build number is $BUILD_NUMBER" > myfile.$BUILD_NUMBER.txt
+            - jfrog rt u myfile.$BUILD_NUMBER.txt generic-local/myfile.$BUILD_NUMBER.txt
 
   - name: x86-64-ubuntu-16-04-host-docker-registry
     type: runSh

@@ -1,0 +1,177 @@
+jobs:
+  - name: x86-64-cent-os-7-container-aws-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-aws-cli
+      - TASK:
+          name: should-list-ec2-instances
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - echo "$PATH"
+            - aws ec2 describe-instances
+
+  - name: x86-64-cent-os-7-container-gcloud-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-gcloud-cli
+      - TASK:
+          name: should-list-gcloud-instances
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - gcloud compute instances list
+
+  - name: x86-64-cent-os-7-container-azure-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-azure-cli
+      - TASK:
+          name: should-list-azure-instances
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - az vm list
+
+  - name: x86-64-cent-os-7-container-kubernetes-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-kubernetes-cli
+      - TASK:
+          name: should-list-kubernete-services
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - kubectl get services
+            
+  - name: x86-64-cent-os-7-container-artifactory-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-artifactory-cli
+      - TASK:
+          name: should-upload-file
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - echo "build number is $BUILD_NUMBER" > myfile.$BUILD_NUMBER.txt
+            - jfrog rt u myfile.$BUILD_NUMBER.txt generic-local/myfile.$BUILD_NUMBER.txt
+
+  - name: x86-64-cent-os-7-container-docker-registry
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-docker-cli
+      - TASK:
+          name: should-pull-private-image
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - docker pull vishnushippable/private:nginx
+      - TASK:
+          name: should-build-private-image
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - mkdir private
+            - pushd private
+            - printf "FROM vishnushippable/private:nginx \nRUN touch hi" > Dockerfile
+            - cat Dockerfile
+            - docker build -t="vishnushippable/private:nginx.$BUILD_NUMBER" .
+            - popd
+      - TASK:
+          name: should-push-private-image
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - docker push vishnushippable/private:nginx.$BUILD_NUMBER
+
+
+  - name: x86-64-cent-os-7-container-quay-registry
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-quay-cli
+      - TASK:
+          name: should-pull-private-image
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - docker pull quay.io/shippablequay/sample_node_01:nginx
+      - TASK:
+          name: should-build-private-image
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - mkdir private
+            - pushd private
+            - printf "FROM quay.io/shippablequay/sample_node_01:nginx \nRUN touch hi" > Dockerfile
+            - cat Dockerfile
+            - docker build -t="quay.io/shippablequay/sample_node_01:nginx.$BUILD_NUMBER" .
+            - popd
+      - TASK:
+          name: should-push-private-image
+          script:
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydock/microbase:master"
+            - docker push quay.io/shippablequay/sample_node_01:nginx.$BUILD_NUMBER

@@ -1,0 +1,19 @@
+jobs:
+  - name: x86-64-cent-os-7-container-shipctl
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: x86-64-trigger
+      - IN: cent-os-7-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
+            - test "$OS_VERSION" == "14.04"
+            - shipctl retry echo "it works"

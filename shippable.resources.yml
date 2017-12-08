@@ -53,6 +53,11 @@ resources:
     version:
       counter: 1
 
+  - name: cent-os-7-trigger
+    type: trigger
+    version:
+      counter: 1
+
   - name: macos-10-12-trigger
     type: trigger
     version:

@@ -1,0 +1,101 @@
+jobs:
+
+  - name: cent-os-7-opts-in-custom-container-task-env
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    steps:
+      - IN: x86-64-trigger
+      - IN: cent-os-7-trigger
+      - TASK:
+          name: system-facts
+          runtime:
+            options:
+              imageName: drydock/u16pyt
+              imageTag: master
+              env:
+                HELLO: world
+          script:
+            - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
+            - printenv
+            - echo "$HELLO"
+            - test "$HELLO" == "world"
+            
+  - name: cent-os-7-opts-in-custom-container-task-opts-mem
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    steps:
+      - IN: x86-64-trigger
+      - IN: cent-os-7-trigger
+      - TASK:
+          name: should-have-right-memory
+          runtime:
+            options:
+              imageName: drydock/u16pyt
+              imageTag: master
+              options: -m 300m
+          script:
+            - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
+            - docker inspect reqExec.$BUILD_JOB_ID.0
+            - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$MEM" -eq 314572800
+
+
+    # Please run mkdir -p /root/hello; touch /root/hello/hi.txt
+  - name: cent-os-7-opts-in-custom-container-task-opts-volume
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    steps:
+      - IN: x86-64-trigger
+      - IN: cent-os-7-trigger
+      - TASK:
+          name: should-have-right-volume-mounts
+          runtime:
+            options:
+              imageName: drydock/u16pyt
+              imageTag: master
+              options: -v /root/hello:/greetings
+          script:
+            - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
+            - docker inspect reqExec.$BUILD_JOB_ID.0
+            - test -f /greetings/hi.txt
+
+            
+  - name: cent-os-7-opts-in-custom-container-task-multi-opts
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: true
+    steps:
+      - IN: x86-64-trigger
+      - IN: cent-os-7-trigger
+      - TASK:
+          name: should-have-right-volume-mounts-n-memory
+          runtime:
+            options:
+              imageName: drydock/u16pyt
+              imageTag: master
+              options: -m 200mb -v /root/hello:/greetings
+          script:
+            - docker ps -a
+            - export IMG=$(docker inspect --format='{{.Config.Image}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$IMG" == "drydockaarch64/u16pyt:master"
+            - docker inspect reqExec.$BUILD_JOB_ID.0
+            - test -f /greetings/hi.txt
+            - export MEM=$(docker inspect --format='{{.HostConfig.Memory}}' reqExec.$BUILD_JOB_ID.0)
+            - test "$MEM" -eq 209715200

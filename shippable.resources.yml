@@ -29,6 +29,20 @@ resources:
       sourceName: sample-organisation/gitRepo
       branch: x86-64-macos
 
+  - name: cent-os-7-old-yml-gitRepo
+    type: gitRepo
+    integration: github-test
+    pointer:
+      sourceName: sample-organisation/gitRepo
+      branch: aarch-old-yml
+
+  - name: cent-os-7-old-yml-image
+    type: image
+    pointer:
+      sourceName: scriptnull/sample_node
+    seed:
+      versionName: "myapp3"
+
   - name: heap-1635-trigger
     type: trigger
     version:

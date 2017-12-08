@@ -13,7 +13,7 @@ jobs:
           name: system-facts
           runtime:
             options:
-              imageName: drydock/u16pyt
+              imageName: drydock/u14pyt
               imageTag: master
               env:
                 HELLO: world

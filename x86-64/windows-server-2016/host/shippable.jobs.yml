@@ -7,9 +7,10 @@ jobs:
       container: false
     flags:
       - x86-64
-      - ubuntu-16-04
+      - windows-server-2016
     steps:
       - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
       - TASK:
           name: shipctl-should-work
           script:

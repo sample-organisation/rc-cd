@@ -57,6 +57,11 @@ resources:
     type: trigger
     version:
       counter: 3
+      
+  - name: windows-server-2016-trigger
+    type: trigger
+    version:
+      counter: 1
  
 #### Architecture Triggers ####
 

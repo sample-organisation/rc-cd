@@ -13,8 +13,8 @@ jobs:
           name: system-facts
           runtime:
             options:
-              imageName: drydock/u14pyt:prod
-              imageTag: master
+              imageName: drydock/u14pyt
+              imageTag: prod
               env:
                 HELLO: world
           script:
@@ -38,8 +38,8 @@ jobs:
           name: should-have-right-memory
           runtime:
             options:
-              imageName: drydock/u14pyt:prod
-              imageTag: master
+              imageName: drydock/u14pyt
+              imageTag: prod
               options: -m 300m
           script:
             - docker ps -a
@@ -64,8 +64,8 @@ jobs:
           name: should-have-right-volume-mounts
           runtime:
             options:
-              imageName: drydock/u14pyt:prod
-              imageTag: master
+              imageName: drydock/u14pyt
+              imageTag: prod
               options: -v /root/hello:/greetings
           script:
             - docker ps -a
@@ -88,8 +88,8 @@ jobs:
           name: should-have-right-volume-mounts-n-memory
           runtime:
             options:
-              imageName: drydock/u14pyt:prod
-              imageTag: master
+              imageName: drydock/u14pyt
+              imageTag: prod
               options: -m 200mb -v /root/hello:/greetings
           script:
             - docker ps -a

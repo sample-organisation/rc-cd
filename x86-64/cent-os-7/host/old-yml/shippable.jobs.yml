@@ -1,0 +1,47 @@
+jobs:
+  
+  - name: cent-os-7-old-yml-host-min
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: false
+    steps:
+      - TASK:
+        - script: echo "hi"
+        - script: echo "hello"
+
+  - name: cent-os-7-old-yml-host-in-trigger
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: false
+    steps:
+      - IN: cent-os-7-trigger
+      - TASK:
+        - script: echo "hi"
+
+
+  - name: cent-os-7-old-yml-host-in-gitRepo
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: false
+    steps:
+      - IN: cent-os-7-old-yml-gitRepo
+      - TASK:
+        - script: echo "hi"
+
+  - name: cent-os-7-old-yml-host-out-img
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: false
+    steps:
+      - TASK:
+        - script: echo "hi"
+        - script: echo "versionName=master.$BUILD_NUMBER" >> $JOB_STATE/cent-os-7-old-yml-image.env
+      - OUT: cent-os-7-old-yml-image

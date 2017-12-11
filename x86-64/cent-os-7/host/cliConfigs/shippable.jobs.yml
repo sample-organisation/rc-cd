@@ -77,7 +77,7 @@ jobs:
           script:
             - export OS_VERSION=$(rpm --eval '%{centos_ver}')
             - test "$OS_VERSION" == "7"
-            - kubectl get services
+            - sudo kubectl get services
             
   - name: x86-64-cent-os-7-host-artifactory-cli
     type: runSh

@@ -1,0 +1,176 @@
+jobs:
+  - name: x86-64-cent-os-7-host-aws-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: false
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-aws-cli
+      - TASK:
+          name: should-list-ec2-instances
+          script:
+            - export OS_VERSION=$(rpm --eval '%{centos_ver}')
+            - test "$OS_VERSION" == "7"
+            - aws ec2 describe-instances
+
+  - name: x86-64-cent-os-7-host-gcloud-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: false
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-gcloud-cli
+      - TASK:
+          name: should-list-gcloud-instances
+          script:
+            - export OS_VERSION=$(rpm --eval '%{centos_ver}')
+            - test "$OS_VERSION" == "7"
+            - gcloud compute instances list
+
+  - name: x86-64-cent-os-7-host-azure-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: false
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-azure-cli
+      - TASK:
+          name: should-list-azure-instances
+          script:
+            - export OS_VERSION=$(rpm --eval '%{centos_ver}')
+            - test "$OS_VERSION" == "7"
+            - az vm list
+
+  - name: x86-64-cent-os-7-host-kubernetes-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: false
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-kubernetes-cli
+      - TASK:
+          name: should-list-kubernete-services
+          script:
+            - export OS_VERSION=$(rpm --eval '%{centos_ver}')
+            - test "$OS_VERSION" == "7"
+            - kubectl get services
+            
+  - name: x86-64-cent-os-7-host-artifactory-cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: false
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-artifactory-cli
+      - TASK:
+          name: should-upload-file
+          script:
+            - export OS_VERSION=$(rpm --eval '%{centos_ver}')
+            - test "$OS_VERSION" == "7"
+            - echo "build number is $BUILD_NUMBER" > myfile.$BUILD_NUMBER.txt
+            - jfrog rt u myfile.$BUILD_NUMBER.txt generic-local/myfile.$BUILD_NUMBER.txt
+
+  - name: x86-64-cent-os-7-host-docker-registry
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: false
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-docker-cli
+      - TASK:
+          name: should-pull-private-image
+          script:
+            - export OS_VERSION=$(rpm --eval '%{centos_ver}')
+            - test "$OS_VERSION" == "7"
+            - docker pull vishnushippable/private:nginx
+      - TASK:
+          name: should-build-private-image
+          script:
+            - export OS_VERSION=$(rpm --eval '%{centos_ver}')
+            - test "$OS_VERSION" == "7"
+            - mkdir private
+            - pushd private
+            - printf "FROM vishnushippable/private:nginx \nRUN touch hi" > Dockerfile
+            - cat Dockerfile
+            - docker build -t="vishnushippable/private:nginx.$BUILD_NUMBER" .
+            - popd
+      - TASK:
+          name: should-push-private-image
+          script:
+            - export OS_VERSION=$(rpm --eval '%{centos_ver}')
+            - test "$OS_VERSION" == "7"
+            - docker push vishnushippable/private:nginx.$BUILD_NUMBER
+
+
+  - name: x86-64-cent-os-7-host-quay-registry
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: CentOS_7
+      container: false
+    flags:
+      - x86-64
+      - cent-os-7
+    steps:
+      - IN: cent-os-7-trigger
+      - IN: x86-64-trigger
+      - IN: test-quay-cli
+      - TASK:
+          name: should-pull-private-image
+          script:
+            - export OS_VERSION=$(rpm --eval '%{centos_ver}')
+            - test "$OS_VERSION" == "7"
+            - docker pull quay.io/shippablequay/sample_node_01:nginx
+      - TASK:
+          name: should-build-private-image
+          script:
+            - export OS_VERSION=$(rpm --eval '%{centos_ver}')
+            - test "$OS_VERSION" == "7"
+            - mkdir private
+            - pushd private
+            - printf "FROM quay.io/shippablequay/sample_node_01:nginx \nRUN touch hi" > Dockerfile
+            - cat Dockerfile
+            - docker build -t="quay.io/shippablequay/sample_node_01:nginx.$BUILD_NUMBER" .
+            - popd
+      - TASK:
+          name: should-push-private-image
+          script:
+            - export OS_VERSION=$(rpm --eval '%{centos_ver}')
+            - test "$OS_VERSION" == "7"
+            - docker push quay.io/shippablequay/sample_node_01:nginx.$BUILD_NUMBER

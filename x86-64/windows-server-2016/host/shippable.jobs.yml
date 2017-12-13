@@ -12,7 +12,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: single-cmd-should-work
           script:
             - dir
             
@@ -29,7 +29,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: single-cmd-should-not-work
           script:
             - invalidCommand
 
@@ -46,7 +46,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: multiple-cmd-should-work
           script:
             - dir
             - echo "hello world"
@@ -64,7 +64,30 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: multiple-cmd-should-not-work
           script:
             - echo "next command will be invalid"
             - invalidCommand
+            
+  - name: x86-64-windows-server-2016-host-multitask-multiple-valid
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: say-hi
+          script:
+            - echo "hi 1"
+            - echo "hi 2"
+      - TASK:
+          name: say-hello
+          script:
+            - echo "hello 1"
+            - echo "hello 2"

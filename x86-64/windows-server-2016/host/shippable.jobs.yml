@@ -126,6 +126,6 @@ jobs:
       - TASK:
           name: shipctl-should-work
           script:
-            - dir
+            - invalidCommand
    on_failure:
       - script: echo "this should be logged"

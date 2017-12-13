@@ -1,5 +1,5 @@
 jobs:
-  - name: x86-64-windows-server-2016-host-basic
+  - name: x86-64-windows-server-2016-host-basic-single-valid
     type: runSh
     runtime:
       architecture: x86_64
@@ -15,3 +15,56 @@ jobs:
           name: shipctl-should-work
           script:
             - dir
+            
+  - name: x86-64-windows-server-2016-host-basic-single-invalid
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - invalidCommand
+
+  - name: x86-64-windows-server-2016-host-basic-multiple-valid
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - dir
+            - echo "hello world"
+            
+  - name: x86-64-windows-server-2016-host-basic-multiple-invalid
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - echo "next command will be invalid"
+            - invalidCommand

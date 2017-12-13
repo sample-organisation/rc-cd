@@ -91,3 +91,41 @@ jobs:
           script:
             - echo "hello 1"
             - echo "hello 2"
+            
+  - name: x86-64-windows-server-2016-host-basic-on-success
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - dir
+   on_success:
+      - script: echo "this should be logged"
+      
+  - name: x86-64-windows-server-2016-host-basic-on-failure
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - dir
+   on_failure:
+      - script: echo "this should be logged"

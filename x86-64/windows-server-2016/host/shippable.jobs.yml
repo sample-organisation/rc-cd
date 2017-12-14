@@ -68,7 +68,45 @@ jobs:
           script:
             - echo "next command will be invalid"
             - invalidCommand
+
+  - name: x86-64-windows-server-2016-host-basic-multiple-error
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: multiple-cmd-should-not-work
+          script:
+            - echo "next command will throw error"
+            - cat x
+            - echo "this command should not even be executed"
             
+  - name: x86-64-windows-server-2016-host-basic-exit-cmd
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: multiple-cmd-should-not-work
+          script:
+            - echo "next command will be exit"
+            - exit 1
+            - echo "this command should not even be executed"
+
   - name: x86-64-windows-server-2016-host-multitask-multiple-valid
     type: runSh
     runtime:

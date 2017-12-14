@@ -146,7 +146,7 @@ jobs:
           name: shipctl-should-work
           script:
             - dir
-   on_success:
+    on_success:
       - script: echo "this should be logged"
       
   - name: x86-64-windows-server-2016-host-basic-on-failure
@@ -165,5 +165,5 @@ jobs:
           name: shipctl-should-work
           script:
             - invalidCommand
-   on_failure:
+    on_failure:
       - script: echo "this should be logged"

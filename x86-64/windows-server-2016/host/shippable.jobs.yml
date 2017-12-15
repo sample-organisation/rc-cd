@@ -167,3 +167,45 @@ jobs:
             - invalidCommand
     on_failure:
       - script: echo "this should be logged"
+      
+  - name: x86-64-windows-server-2016-host-basic-on-success-always
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - dir
+    on_success:
+      - script: echo "this should be logged"
+    always:
+      - script: echo "this is always script"
+      
+  - name: x86-64-windows-server-2016-host-basic-on-failure-always
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - invalidCommand
+    on_failure:
+      - script: echo "this should be logged"
+    always:
+      - script: echo "this is always script"

@@ -80,7 +80,7 @@ resources:
   - name: windows-server-2016-trigger
     type: trigger
     version:
-      counter: 2
+      counter: 3
  
 #### Architecture Triggers ####
 

@@ -20,4 +20,30 @@ jobs:
                 HELLO: world
           script:
             - gci env:*
-            - if ( "$env:SHIPPABLE_NODE_ARCHITECTURE" -eq "x86_64" ) { Write-Error "incorrect env" }
+            - if ( "$env:HELLO" -ne "world" ) { Write-Error "incorrect env" }
+            
+
+  - name: x86-64-windows-server-2016-host-envs-inbuilt
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: should-have-inbuilt-envs
+          runtime:
+            options:
+              env:
+                HELLO: world
+          script:
+            - gci env:*
+            - if ( "$env:SHIPPABLE_NODE_ARCHITECTURE" -ne "x86_64" ) { Write-Error "incorrect env" }
+            - if ( "$env:SHIPPABLE_NODE_OPERATING_SYSTEM" -ne "WindowsServer_2016" ) { Write-Error "incorrect env" }
+            - if ( "$env:TASK_NAME" -ne "WindowsServer_2016" ) { Write-Error "incorrect env" }

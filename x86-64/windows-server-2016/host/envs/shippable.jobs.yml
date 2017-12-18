@@ -153,3 +153,5 @@ jobs:
           name: should-have-image-envs
           script:
             - gci env:*
+            - if ( "$env:CHECKINGDOINTEGRATION_INTEGRATION_APITOKEN" -ne "not-really-an-api-token" ) { Write-Error "incorrect env" }
+            

@@ -22,6 +22,30 @@ jobs:
             - gci env:*
             - if ( "$env:HELLO" -ne "world" ) { Write-Error "incorrect env" }
             
+  - name: x86-64-windows-server-2016-host-envs-multiple
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: should-pass-for-multiple-envs
+          runtime:
+            options:
+              env:
+                HELLO: world
+                HI: there
+          script:
+            - gci env:*
+            - if ( "$env:HELLO" -ne "world" ) { Write-Error "incorrect env" }
+            - if ( "$env:HI" -ne "there" ) { Write-Error "incorrect env" }
 
   - name: x86-64-windows-server-2016-host-envs-inbuilt
     type: runSh

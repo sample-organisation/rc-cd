@@ -140,3 +140,8 @@ resources:
   - name: test-artifactory-cli
     type: cliConfig
     integration: test-artifactory
+    
+# checking-* resources contain dummy data and should be used for verifying decryption of creds in the YML script
+  - name: checking-do-integration
+    type: integration
+    integration: checking-digital-ocean

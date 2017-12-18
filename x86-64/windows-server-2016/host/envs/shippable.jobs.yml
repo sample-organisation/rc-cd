@@ -1,0 +1,22 @@
+jobs:
+  - name: x86-64-windows-server-2016-host-envs-single
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: should-pass-for-single-envs
+          runtime:
+            options:
+              env:
+                HELLO: world
+          script:
+            - gci env:*

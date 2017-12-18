@@ -134,3 +134,22 @@ jobs:
           script:
             - gci env:*
             - if ( "$env:MASTERIMAGE_NAME" -ne "master-image" ) { Write-Error "incorrect env" }
+            
+  - name: x86-64-windows-server-2016-host-envs-integration
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - IN: checking-do-integration
+      - TASK:
+          name: should-have-image-envs
+          script:
+            - gci env:*

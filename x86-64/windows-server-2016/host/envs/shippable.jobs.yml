@@ -20,3 +20,4 @@ jobs:
                 HELLO: world
           script:
             - gci env:*
+            - if ( "$env:SHIPPABLE_NODE_ARCHITECTURE" -ne "x86_64" ) { Write-Error "incorrect env" }

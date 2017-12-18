@@ -72,3 +72,65 @@ jobs:
             - if ( "$env:SHIPPABLE_NODE_OPERATING_SYSTEM" -ne "WindowsServer_2016" ) { Write-Error "incorrect env" }
             - if ( "$env:TASK_NAME" -ne "should-have-inbuilt-envs" ) { Write-Error "incorrect env" }
             - if ( "$env:TASK_IN_CONTAINER" -ne "False" ) { Write-Error "incorrect env" }
+            
+  - name: x86-64-windows-server-2016-host-envs-in-gitRepo
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - IN: master-gitRepo
+      - TASK:
+          name: should-have-gitRepo-envs
+          script:
+            - gci env:*
+            - if ( "$env:MASTERGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
+            - if ( "$env:MASTERGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
+            
+  - name: x86-64-windows-server-2016-host-envs-in-param
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - IN: master-params
+      - TASK:
+          name: should-have-param-envs
+          script:
+            - gci env:*
+            - if ( "$env:KEY1" -ne "value1" ) { Write-Error "incorrect env" }
+            - if ( "$env:KEY2" -ne "value2" ) { Write-Error "incorrect env" }
+            
+  - name: x86-64-windows-server-2016-host-envs-out-image
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - IN: master-image
+      - TASK:
+          name: should-have-image-envs
+          script:
+            - gci env:*
+            - if ( "$env:MASTERIMAGE_NAME" -ne "master-image" ) { Write-Error "incorrect env" }

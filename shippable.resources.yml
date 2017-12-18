@@ -145,3 +145,7 @@ resources:
   - name: checking-do-integration
     type: integration
     integration: checking-digital-ocean
+    
+  - name: checking-ssh-integration
+    type: integration
+    integration: checking-ssh-key

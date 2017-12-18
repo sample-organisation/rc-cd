@@ -46,5 +46,5 @@ jobs:
             - gci env:*
             - if ( "$env:SHIPPABLE_NODE_ARCHITECTURE" -ne "x86_64" ) { Write-Error "incorrect env" }
             - if ( "$env:SHIPPABLE_NODE_OPERATING_SYSTEM" -ne "WindowsServer_2016" ) { Write-Error "incorrect env" }
-            - if ( "$env:TASK_NAME" -ne "WindowsServer_2016" ) { Write-Error "incorrect env" }
+            - if ( "$env:TASK_NAME" -ne "should-have-inbuilt-envs" ) { Write-Error "incorrect env" }
             - if ( "$env:TASK_IN_CONTAINER" -ne "False" ) { Write-Error "incorrect env" }

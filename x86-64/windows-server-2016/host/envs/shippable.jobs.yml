@@ -128,7 +128,7 @@ jobs:
     steps:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
-      - IN: master-image
+      - OUT: master-image
       - TASK:
           name: should-have-image-envs
           script:

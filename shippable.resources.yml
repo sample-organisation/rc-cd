@@ -14,7 +14,6 @@ resources:
        params:
          KEY1: "value1"
          KEY2: "value2"
-   
 
   - name: master-gitRepo
     type: gitRepo
@@ -22,6 +21,20 @@ resources:
     pointer:
       sourceName: sample-organisation/gitRepo
       branch: master
+      
+  - name: master-image
+    type: image
+    pointer:
+      sourceName: scriptnull/sample_node
+    seed:
+      versionName: "myapp3"
+      
+  - name: x86-64-macos-image
+    type: image
+    pointer:
+      sourceName: scriptnull/sample_node
+    seed:
+      versionName: "myapp3"
   
   - name: aarch-gitRepo
     type: gitRepo
@@ -56,12 +69,6 @@ resources:
     version:
       counter: 1
 
-  - name: x86-64-macos-image
-    type: image
-    pointer:
-      sourceName: scriptnull/sample_node
-    seed:
-      versionName: "myapp3"
 
 #### Operating System Triggers ####
 

@@ -17,7 +17,7 @@ jobs:
           runtime:
             options:
               env:
-                HELLO": "world"
+                HELLO: world
           script:
             - gci env:*
             - if ( "$env:HELLO" -ne "world" ) { Write-Error "incorrect env" }

@@ -155,3 +155,27 @@ jobs:
             - gci env:*
             - if ( "$env:CHECKINGDOINTEGRATION_INTEGRATION_APITOKEN" -ne "not-really-an-api-token" ) { Write-Error "incorrect env" }
             
+  - name: x86-64-windows-server-2016-host-envs-single-multiline
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: should-pass-for-single-envs
+          runtime:
+            options:
+              env:
+                HELLO: |
+                  first line
+                  second line
+          script:
+            - gci env:*
+            - if ( "$env:HELLO" -ne "world" ) { Write-Error "incorrect env" } # change test

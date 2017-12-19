@@ -178,4 +178,4 @@ jobs:
                   second line
           script:
             - gci env:*
-            - if ( "$env:HELLO" -ne "world" ) { Write-Error "incorrect env" } # change test
+            - echo $env:HELLO

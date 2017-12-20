@@ -35,7 +35,7 @@ jobs:
           script:
             - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
             - test "$OS_VERSION" == "16.04"
-            - ssh ubuntu@34.213.228.98 "echo hello"
+            - ssh -o StrictHostKeyChecking=no -v ubuntu@34.213.228.98 echo "hello"
 
   - name: x86-64-ubuntu-16-04-host-basic-multiple-error
     type: runSh

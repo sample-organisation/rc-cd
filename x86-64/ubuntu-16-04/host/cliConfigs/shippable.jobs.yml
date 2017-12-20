@@ -1,5 +1,5 @@
 jobs:
-  - name: x86-64-ubuntu-16-04-host-aws-cli
+  - name: x86-64-ubuntu-16-04-host-cliConfig-aws
     type: runSh
     runtime:
       architecture: x86_64
@@ -8,6 +8,7 @@ jobs:
     flags:
       - x86-64
       - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-cliConfig
     steps:
       - IN: ubuntu-16-04-trigger
       - IN: x86-64-trigger
@@ -20,7 +21,7 @@ jobs:
             - echo "$PATH"
             - aws ec2 describe-instances
 
-  - name: x86-64-ubuntu-16-04-host-gcloud-cli
+  - name: x86-64-ubuntu-16-04-host-cliConfig-gcloud
     type: runSh
     runtime:
       architecture: x86_64
@@ -29,6 +30,7 @@ jobs:
     flags:
       - x86-64
       - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-cliConfig
     steps:
       - IN: ubuntu-16-04-trigger
       - IN: x86-64-trigger
@@ -40,7 +42,7 @@ jobs:
             - test "$OS_VERSION" == "16.04"
             - gcloud compute instances list
 
-  - name: x86-64-ubuntu-16-04-host-azure-cli
+  - name: x86-64-ubuntu-16-04-host-cliConfig-azure
     type: runSh
     runtime:
       architecture: x86_64
@@ -49,6 +51,7 @@ jobs:
     flags:
       - x86-64
       - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-cliConfig
     steps:
       - IN: ubuntu-16-04-trigger
       - IN: x86-64-trigger
@@ -60,7 +63,7 @@ jobs:
             - test "$OS_VERSION" == "16.04"
             - az vm list
 
-  - name: x86-64-ubuntu-16-04-host-kubernetes-cli
+  - name: x86-64-ubuntu-16-04-host-cliConfig-kubernetes
     type: runSh
     runtime:
       architecture: x86_64
@@ -69,6 +72,7 @@ jobs:
     flags:
       - x86-64
       - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-cliConfig
     steps:
       - IN: ubuntu-16-04-trigger
       - IN: x86-64-trigger
@@ -82,8 +86,8 @@ jobs:
             - printenv
             - who
             - sudo kubectl get services
-            
-  - name: x86-64-ubuntu-16-04-host-artifactory-cli
+
+  - name: x86-64-ubuntu-16-04-host-cliConfig-artifactory
     type: runSh
     runtime:
       architecture: x86_64
@@ -92,6 +96,7 @@ jobs:
     flags:
       - x86-64
       - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-cliConfig
     steps:
       - IN: ubuntu-16-04-trigger
       - IN: x86-64-trigger
@@ -104,7 +109,7 @@ jobs:
             - echo "build number is $BUILD_NUMBER" > myfile.$BUILD_NUMBER.txt
             - jfrog rt u myfile.$BUILD_NUMBER.txt generic-local/myfile.$BUILD_NUMBER.txt
 
-  - name: x86-64-ubuntu-16-04-host-docker-registry
+  - name: x86-64-ubuntu-16-04-host-cliConfig-docker-registry
     type: runSh
     runtime:
       architecture: x86_64
@@ -113,6 +118,7 @@ jobs:
     flags:
       - x86-64
       - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-cliConfig
     steps:
       - IN: ubuntu-16-04-trigger
       - IN: x86-64-trigger
@@ -142,7 +148,7 @@ jobs:
             - docker push vishnushippable/private:nginx.$BUILD_NUMBER
 
 
-  - name: x86-64-ubuntu-16-04-host-quay-registry
+  - name: x86-64-ubuntu-16-04-host-cliConfig-quay-registry
     type: runSh
     runtime:
       architecture: x86_64
@@ -151,6 +157,7 @@ jobs:
     flags:
       - x86-64
       - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-cliConfig
     steps:
       - IN: ubuntu-16-04-trigger
       - IN: x86-64-trigger

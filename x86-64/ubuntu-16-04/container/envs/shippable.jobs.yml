@@ -22,6 +22,28 @@ jobs:
             - printenv
             - test "$HELLO" == "world"
 
+  - name: x86-64-ubuntu-16-04-container-envs-single-break
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: true
+    flags:
+      - x86-64
+      - ubuntu-16-04
+      - x86-64-ubuntu-16-04-container-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: ubuntu-16-04-trigger
+      - TASK:
+          name: should-pass-for-single-envs
+          runtime:
+            options:
+              env:
+                HELLO: "this contains a \" special character"
+          script:
+            - printenv
+
   - name: x86-64-ubuntu-16-04-container-envs-multiple
     type: runSh
     runtime:

@@ -43,7 +43,6 @@ jobs:
                 HELLO: "this contains a \" special character"
           script:
             - gci env:*
-            - if ( "$env:HELLO" -ne @'this contains a \" special character'@ ) { Write-Error "incorrect env" }
 
   - name: x86-64-windows-server-2016-host-envs-multiple
     type: runSh

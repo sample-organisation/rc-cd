@@ -20,9 +20,8 @@ jobs:
                 HELLO: world
           script:
             - printenv
-            - echo "$HELLO"
             - test "$HELLO" == "world"
-            
+
   - name: x86-64-ubuntu-16-04-host-envs-multiple
     type: runSh
     runtime:
@@ -44,8 +43,28 @@ jobs:
                 HELLO: world
                 HI: there
           script:
-            - docker ps -a
             - printenv
-            - echo "$HELLO"
             - test "$HELLO" == "world"
             - test "$HI" == "there"
+
+  - name: x86-64-ubuntu-16-04-host-envs-inbuilt
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
+    flags:
+      - x86-64
+      - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: ubuntu-16-04-trigger
+      - TASK:
+          name: should-have-inbuilt-envs
+          script:
+            - printenv
+            - test "$SHIPPABLE_NODE_ARCHITECTURE" == "x86_64"
+            - test "$SHIPPABLE_NODE_OPERATING_SYSTEM" == "Ubuntu_16.04"
+            - test "$TASK_NAME" == "should-have-inbuilt-envs"
+            - test "$TASK_IN_CONTAINER" == "false"

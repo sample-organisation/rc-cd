@@ -21,7 +21,7 @@ jobs:
           script:
             - gci env:*
             - if ( "$env:HELLO" -ne "world" ) { Write-Error "incorrect env" }
-            
+
   - name: x86-64-windows-server-2016-host-envs-multiple
     type: runSh
     runtime:
@@ -62,17 +62,13 @@ jobs:
       - IN: windows-server-2016-trigger
       - TASK:
           name: should-have-inbuilt-envs
-          runtime:
-            options:
-              env:
-                HELLO: world
           script:
             - gci env:*
             - if ( "$env:SHIPPABLE_NODE_ARCHITECTURE" -ne "x86_64" ) { Write-Error "incorrect env" }
             - if ( "$env:SHIPPABLE_NODE_OPERATING_SYSTEM" -ne "WindowsServer_2016" ) { Write-Error "incorrect env" }
             - if ( "$env:TASK_NAME" -ne "should-have-inbuilt-envs" ) { Write-Error "incorrect env" }
             - if ( "$env:TASK_IN_CONTAINER" -ne "False" ) { Write-Error "incorrect env" }
-            
+
   - name: x86-64-windows-server-2016-host-envs-in-gitRepo
     type: runSh
     runtime:
@@ -93,7 +89,7 @@ jobs:
             - gci env:*
             - if ( "$env:MASTERGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:MASTERGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
-            
+
   - name: x86-64-windows-server-2016-host-envs-in-param
     type: runSh
     runtime:
@@ -114,7 +110,7 @@ jobs:
             - gci env:*
             - if ( "$env:KEY1" -ne "value1" ) { Write-Error "incorrect env" }
             - if ( "$env:KEY2" -ne "value2" ) { Write-Error "incorrect env" }
-            
+
   - name: x86-64-windows-server-2016-host-envs-out-image
     type: runSh
     runtime:
@@ -134,7 +130,7 @@ jobs:
           script:
             - gci env:*
             - if ( "$env:MASTERIMAGE_NAME" -ne "master-image" ) { Write-Error "incorrect env" }
-            
+
   - name: x86-64-windows-server-2016-host-envs-integration
     type: runSh
     runtime:
@@ -154,7 +150,7 @@ jobs:
           script:
             - gci env:*
             - if ( "$env:CHECKINGDOINTEGRATION_INTEGRATION_APITOKEN" -ne "not-really-an-api-token" ) { Write-Error "incorrect env" }
-            
+
   - name: x86-64-windows-server-2016-host-envs-single-multiline
     type: runSh
     runtime:

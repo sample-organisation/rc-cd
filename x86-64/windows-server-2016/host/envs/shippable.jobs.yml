@@ -165,7 +165,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: should-pass-for-single-envs
+          name: should-pass-for-multiline-envs
           runtime:
             options:
               env:

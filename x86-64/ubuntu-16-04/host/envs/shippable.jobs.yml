@@ -110,3 +110,23 @@ jobs:
             - printenv
             - test "$KEY1" == "value1"
             - test "$KEY2" == "value2"
+
+  - name: x86-64-ubuntu-16-04-host-envs-out-image
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
+    flags:
+      - x86-64
+      - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: ubuntu-16-04-trigger
+      - OUT: master-image
+      - TASK:
+          name: should-have-image-envs
+          script:
+            - printenv
+            - test "$MASTERIMAGE_NAME" == "master-image"

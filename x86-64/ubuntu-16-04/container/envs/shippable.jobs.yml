@@ -197,3 +197,32 @@ jobs:
           script:
             - printenv
             - echo $HELLO
+
+  - name: x86-64-ubuntu-16-04-container-envs-all-in
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: true
+    flags:
+      - x86-64
+      - ubuntu-16-04
+      - x86-64-ubuntu-16-04-container-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: ubuntu-16-04-trigger
+      - IN: master-cluster
+      - IN: master-dockerOptions
+      - IN: master-file
+      - IN: master-gitRepo
+      - IN: master-image
+      - IN: checking-do-integration
+      - IN: checking-ssh-integration
+      - IN: master-params
+      - IN: master-replicas
+      - IN: master-trigger
+      - IN: master-version
+      - TASK:
+          name: should-show-envs-for-all-INs
+          script:
+            - printenv

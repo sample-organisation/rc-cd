@@ -108,5 +108,5 @@ jobs:
           name: should-have-param-envs
           script:
             - printenv
-            - test "KEY1" == "value1"
-            - test "KEY2" == "value2"
+            - test "$KEY1" == "value1"
+            - test "$KEY2" == "value2"

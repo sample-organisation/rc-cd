@@ -18,6 +18,24 @@ jobs:
             - test "$OS_VERSION" == "16.04"
             - shipctl retry echo "it works"
 
+  - name: x86-64-ubuntu-16-04-host-ssh
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
+    flags:
+      - x86-64
+      - ubuntu-16-04
+    steps:
+      - IN: x86-64-trigger
+      - IN: ubuntu-16-04-trigger
+      - TASK:
+          name: ssh-should-work
+          script:
+            - export OS_VERSION=$(lsb_release -a | head -3 | tail -1 | awk '{print $2}')
+            - test "$OS_VERSION" == "16.04"
+            - ssh ubuntu@34.213.228.98 "echo hello"
 
   - name: x86-64-ubuntu-16-04-host-basic-multiple-error
     type: runSh

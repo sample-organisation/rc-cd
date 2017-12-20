@@ -89,3 +89,24 @@ jobs:
             - printenv
             - test "$MASTERGITREPO_BRANCH" == "master"
             - test "$MASTERGITREPO_OPERATION" == "IN"
+
+  - name: x86-64-ubuntu-16-04-host-envs-in-param
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
+    flags:
+      - x86-64
+      - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: ubuntu-16-04-trigger
+      - IN: master-params
+      - TASK:
+          name: should-have-param-envs
+          script:
+            - printenv
+            - test "KEY1" == "value1"
+            - test "KEY2" == "value2"

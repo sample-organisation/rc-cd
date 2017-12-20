@@ -89,7 +89,7 @@ jobs:
             - test "$SHIPPABLE_NODE_ARCHITECTURE" == "x86_64"
             - test "$SHIPPABLE_NODE_OPERATING_SYSTEM" == "Ubuntu_16.04"
             - test "$TASK_NAME" == "should-have-inbuilt-envs"
-            - test "$TASK_IN_CONTAINER" == "false"
+            - test "$TASK_IN_CONTAINER" == "true"
 
   - name: x86-64-ubuntu-16-04-container-envs-in-gitRepo
     type: runSh

@@ -15,6 +15,7 @@ resources:
   - name: master-file
     type: file
     pointer:
+      versionName: "quotes.1"
       sourceName: "https://scriptnull.github.io/data/quotes.md"
 
   - name: master-gitRepo

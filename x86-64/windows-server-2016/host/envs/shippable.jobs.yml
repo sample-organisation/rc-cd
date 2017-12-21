@@ -40,7 +40,7 @@ jobs:
           runtime:
             options:
               env:
-                HELLO: "this contains a \" special character"
+                HELLO: "this contains a "@ special character"
           script:
             - gci env:*
 

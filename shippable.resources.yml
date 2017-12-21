@@ -180,3 +180,7 @@ resources:
   - name: checking-ssh-integration
     type: integration
     integration: checking-ssh-key
+
+  - name: checking-key-value-pair
+    type: integration
+    integration: checking-key-value-pair

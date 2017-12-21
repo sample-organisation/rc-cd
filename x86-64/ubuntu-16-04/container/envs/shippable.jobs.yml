@@ -167,6 +167,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: ubuntu-16-04-trigger
       - IN: checking-do-integration
+      - IN: checking-key-value-pair
       - TASK:
           name: should-have-image-envs
           script:

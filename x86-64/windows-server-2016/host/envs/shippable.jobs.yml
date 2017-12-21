@@ -197,3 +197,28 @@ jobs:
           script:
             - gci env:*
             - echo $env:HELLO
+
+  - name: x86-64-windows-server-2016-host-envs-nested
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: should-pass-for-nested-envs
+          runtime:
+            options:
+              env:
+                MYROOT: "/root"
+                MYFILE: "$env:MYROOT/myfile.txt"
+          script:
+            - gci env:*
+            - if ( "$env:MYROOT" -ne "/root" ) { Write-Error "incorrect env" }
+            - if ( "$env:MYFILE" -ne "/root/myfile.txt" ) { Write-Error "incorrect env" }

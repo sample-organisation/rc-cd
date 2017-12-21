@@ -217,8 +217,8 @@ jobs:
             options:
               env:
                 MYROOT: "root"
-                MYFILE: "$env:MYROOT/myfile.txt"
+                MYFILE: "$env:MYROOT myfile.txt"
           script:
             - gci env:*
             - if ( "$env:MYROOT" -ne "root" ) { Write-Error "incorrect env" }
-            - if ( "$env:MYFILE" -ne "root/myfile.txt" ) { Write-Error "incorrect env" }
+            - if ( "$env:MYFILE" -ne "root myfile.txt" ) { Write-Error "incorrect env" }

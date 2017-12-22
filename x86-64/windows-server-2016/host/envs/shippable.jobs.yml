@@ -108,8 +108,7 @@ jobs:
       - TASK:
           name: should-have-gitRepo-envs
           script:
-            - gci env:*
-            - ls C:\Users\Administrator\Shippable\Runtime\104eae2b-5923-4a90-aee8-3acf76818f0a\build\IN\master-gitRepo\gitRepo
+            - gci env:*                        
             - if ( "$env:MASTERGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:MASTERGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 

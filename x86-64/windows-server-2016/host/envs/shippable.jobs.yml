@@ -110,6 +110,7 @@ jobs:
           script:
             - gci env:*
             - Start-Sleep -s 120
+            - ls $env:MASTERGITREPO_PATH
             - if ( "$env:MASTERGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:MASTERGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 

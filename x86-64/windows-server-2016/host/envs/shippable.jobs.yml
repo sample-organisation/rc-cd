@@ -113,6 +113,7 @@ jobs:
             - echo $env:MASTERGITREPO_PATH
             - cd $env:MASTERGITREPO_PATH\gitRepo
             - dir
+            - cat README.md
             - if ( "$env:MASTERGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:MASTERGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 

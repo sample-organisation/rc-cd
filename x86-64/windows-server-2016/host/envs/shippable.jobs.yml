@@ -111,7 +111,7 @@ jobs:
             - gci env:*
             # - Start-Sleep -s 120
             - echo $env:MASTERGITREPO_PATH
-            - cd $env:MASTERGITREPO_PATH
+            - cd $env:MASTERGITREPO_PATH\gitRepo
             - dir
             - if ( "$env:MASTERGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:MASTERGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }

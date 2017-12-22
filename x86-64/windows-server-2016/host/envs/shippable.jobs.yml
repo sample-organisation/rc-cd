@@ -109,7 +109,7 @@ jobs:
           name: should-have-gitRepo-envs
           script:
             - gci env:*
-            - Start-Sleep -s 120s
+            - Start-Sleep -s 120
             - if ( "$env:MASTERGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:MASTERGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 

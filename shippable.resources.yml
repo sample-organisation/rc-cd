@@ -24,6 +24,7 @@ resources:
     pointer:
       sourceName: sample-organisation/gitRepo
       branch: master
+      buildOnPullRequest: true
 
   - name: master-image
     type: image

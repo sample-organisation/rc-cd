@@ -42,11 +42,11 @@ resources:
       branch: master
       buildOnPullRequest: true
 
-  - name: bitbucket-public-gitRepo-1
+  - name: bitbucket-public-gitRepo-2
     type: gitRepo
     integration: test-bitbucket
     pointer:
-      sourceName: scriptnull/public
+      sourceName: "Vishnu Bharathi/public"
       branch: master
       buildOnPullRequest: true
 

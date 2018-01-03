@@ -42,6 +42,14 @@ resources:
       branch: master
       buildOnPullRequest: true
 
+  - name: bitbucket-public-gitRepo
+    type: gitRepo
+    integration: test-bitbucket
+    pointer:
+      sourceName: scriptnull/public
+      branch: master
+      buildOnPullRequest: true
+
   - name: master-image
     type: image
     pointer:

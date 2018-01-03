@@ -110,13 +110,20 @@ jobs:
           name: should-have-gitRepo-envs
           script:
             - gci env:*
-            # - Start-Sleep -s 120
+            # for github public repo
             - echo $env:MASTERGITREPO_PATH
             - cd $env:MASTERGITREPO_PATH\gitRepo
             - dir
             - cat README.md
             - if ( "$env:MASTERGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:MASTERGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
+            # for gitlab public repo
+            - echo $env:GITLABPUBLICGITREPO_PATH
+            - cd $env:GITLABPUBLICGITREPO_PATH\gitRepo
+            - dir
+            - cat README.md
+            - if ( "$env:GITLABPUBLICGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
+            - if ( "$env:GITLABPUBLICGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 
   - name: x86-64-windows-server-2016-host-envs-in-private-gitRepo
     type: runSh

@@ -105,6 +105,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - IN: master-gitRepo
+      - IN: gitlab-public-gitRepo
       - TASK:
           name: should-have-gitRepo-envs
           script:
@@ -141,7 +142,6 @@ jobs:
             - cat README.md
             - if ( "$env:GITLABPRIVATEGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:GITLABPRIVATEGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
-
 
   - name: x86-64-windows-server-2016-host-envs-in-param
     type: runSh

@@ -26,11 +26,11 @@ resources:
       branch: master
       buildOnPullRequest: true
 
-  - name: github-private-gitRepo
+  - name: gitlab-private-gitRepo
     type: gitRepo
-    integration: github-scriptnull
+    integration: gitlab-scriptnull
     pointer:
-      sourceName: Shippable/org_private
+      sourceName: scriptnull/private
       branch: master
       buildOnPullRequest: true
 

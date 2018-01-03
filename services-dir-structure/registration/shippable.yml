@@ -1,0 +1,8 @@
+jobs:
+  - name: example-registration-billing
+    type: runSh
+    flags:
+      - example
+    steps:
+      - TASK:
+        - script: echo "deploy registration"

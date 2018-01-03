@@ -1,0 +1,8 @@
+jobs:
+  - name: example-notification-billing-1
+    type: runSh
+    flags:
+      - example
+    steps:
+      - TASK:
+        - script: echo "deploy notification"

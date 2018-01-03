@@ -117,6 +117,32 @@ jobs:
             - if ( "$env:MASTERGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:MASTERGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 
+  - name: x86-64-windows-server-2016-host-envs-in-private-gitRepo
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - IN: gitlab-private-gitRepo
+      - TASK:
+          name: should-have-gitRepo-envs
+          script:
+            - gci env:*
+            - echo $env:GITLABPRIVATEGITREPO_PATH
+            - cd $env:GITLABPRIVATEGITREPO\gitRepo
+            - dir
+            - cat README.md
+            - if ( "$env:GITLABPRIVATEGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
+            - if ( "$env:GITLABPRIVATEGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
+
+
   - name: x86-64-windows-server-2016-host-envs-in-param
     type: runSh
     runtime:

@@ -50,12 +50,6 @@ resources:
       branch: master
       buildOnPullRequest: true
 
-  - name: public-gitRepo
-    type: gitRepo
-    pointer:
-      sourceUrl: https://github.com/scriptnull/vici.git
-      branch: master
-
   - name: master-image
     type: image
     pointer:

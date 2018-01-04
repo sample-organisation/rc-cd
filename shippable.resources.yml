@@ -50,7 +50,7 @@ resources:
       branch: master
       buildOnPullRequest: true
 
-  - name: master-image
+  - name: master-image-1
     type: image
     pointer:
       sourceName: scriptnull/sample_node

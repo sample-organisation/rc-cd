@@ -146,12 +146,12 @@ jobs:
     steps:
       - IN: x86-64-trigger
       - IN: ubuntu-16-04-trigger
-      - OUT: master-image
+      - OUT: master-image-1
       - TASK:
           name: should-have-image-envs
           script:
             - printenv
-            - test "$MASTERIMAGE_NAME" == "master-image"
+            - test "$MASTERIMAGE1_NAME" == "master-image-1"
 
   - name: x86-64-ubuntu-16-04-host-envs-integration
     type: runSh

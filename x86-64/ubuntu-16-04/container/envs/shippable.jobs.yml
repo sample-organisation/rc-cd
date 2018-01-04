@@ -146,12 +146,12 @@ jobs:
     steps:
       - IN: x86-64-trigger
       - IN: ubuntu-16-04-trigger
-      - OUT: master-image
+      - OUT: master-image-1
       - TASK:
           name: should-have-image-envs
           script:
             - printenv
-            - test "$MASTERIMAGE_NAME" == "master-image"
+            - test "$MASTERIMAGE1_NAME" == "master-image-1"
 
   - name: x86-64-ubuntu-16-04-container-envs-integration
     type: runSh
@@ -216,7 +216,7 @@ jobs:
       - IN: master-dockerOptions
       - IN: master-file
       - IN: master-gitRepo
-      - IN: master-image
+      - IN: master-image-1
       - IN: checking-do-integration
       - IN: checking-ssh-integration
       - IN: master-params

@@ -223,6 +223,7 @@ jobs:
           script:
             - gci env:*
             - if ( "$env:MASTERIMAGE_NAME" -ne "master-image" ) { Write-Error "incorrect env" }
+            - echo "versionName=master.$env:BUILD_NUMBER" | Out-File -filepath $env:JOB_STATE/master-image.env
 
   - name: x86-64-windows-server-2016-host-envs-integration
     type: runSh

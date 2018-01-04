@@ -133,6 +133,25 @@ jobs:
             - if ( "$env:BITBUCKETPUBLICGITREPO3_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:BITBUCKETPUBLICGITREPO3_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 
+  - name: x86-64-windows-server-2016-host-envs-in-syncRepo
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - IN: rc-cd_master
+      - TASK:
+          name: should-have-syncRepo-envs
+          script:
+            - gci env:*
+
   - name: x86-64-windows-server-2016-host-envs-in-private-gitRepo
     type: runSh
     runtime:

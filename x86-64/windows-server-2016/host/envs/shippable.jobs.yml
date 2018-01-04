@@ -151,12 +151,12 @@ jobs:
           name: should-have-syncRepo-envs
           script:
             - gci env:*
-            - echo $env:RCCDMASTER_PATH
-            - cd $env:RCCDMASTER_PATH\gitRepo
+            - echo $env:RCCD_MASTER_PATH
+            - cd $env:RCCD_MASTER_PATH\gitRepo
             - dir
             - cat README.md
-            - if ( "$env:RCCDMASTER_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
-            - if ( "$env:RCCDMASTER_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
+            - if ( "$env:RCCD_MASTER_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
+            - if ( "$env:RCCD_MASTER_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 
   - name: x86-64-windows-server-2016-host-envs-in-private-gitRepo
     type: runSh
@@ -223,7 +223,7 @@ jobs:
           script:
             - gci env:*
             - if ( "$env:MASTERIMAGE_NAME" -ne "master-image" ) { Write-Error "incorrect env" }
-            - echo "versionName=master.$env:BUILD_NUMBER" | Out-File -filepath $env:JOB_STATE/master-image.env
+            - Write-Output "versionName=master.$env:BUILD_NUMBER" | Out-File -Encoding utf8 -FilePath $env:JOB_STATE/master-image.env
 
   - name: x86-64-windows-server-2016-host-envs-integration
     type: runSh

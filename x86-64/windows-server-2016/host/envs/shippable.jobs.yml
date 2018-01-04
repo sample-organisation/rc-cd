@@ -156,8 +156,6 @@ jobs:
             - cd $env:RCCD_MASTER_PATH
             - dir
             - cat README.md
-            - if ( "$env:RCCD_MASTER_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
-            - if ( "$env:RCCD_MASTER_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 
   - name: x86-64-windows-server-2016-host-envs-in-private-gitRepo
     type: runSh

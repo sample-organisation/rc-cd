@@ -50,6 +50,13 @@ resources:
       branch: master
       buildOnPullRequest: true
 
+  - name: public-gitRepo
+    type: gitRepo
+    integration: test-git-creds
+    pointer:
+      sourceName: scriptnull/vici
+      branch: master
+
   - name: master-image
     type: image
     pointer:

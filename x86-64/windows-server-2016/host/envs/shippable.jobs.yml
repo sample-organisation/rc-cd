@@ -106,6 +106,7 @@ jobs:
       - IN: windows-server-2016-trigger
       - IN: master-gitRepo
       - IN: gitlab-public-gitRepo
+      - IN: bitbucket-public-gitRepo-3
       - TASK:
           name: should-have-gitRepo-envs
           script:
@@ -124,6 +125,13 @@ jobs:
             - cat README.md
             - if ( "$env:GITLABPUBLICGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:GITLABPUBLICGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
+            # for bitbucket public repo
+            - echo $env:BITBUCKETPUBLICGITREPO3_PATH
+            - cd $env:BITBUCKETPUBLICGITREPO3_PATH\gitRepo
+            - dir
+            - cat README.md
+            - if ( "$env:BITBUCKETPUBLICGITREPO3_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
+            - if ( "$env:BITBUCKETPUBLICGITREPO3_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 
   - name: x86-64-windows-server-2016-host-envs-in-private-gitRepo
     type: runSh

@@ -153,7 +153,7 @@ jobs:
             - gci env:*
             - $env:RCCD_MASTER_PATH = "$env:BUILD_DIR\IN\rc-cd_master\syncRepo"
             - echo $env:RCCD_MASTER_PATH
-            - cd $env:RCCD_MASTER_PATH\gitRepo
+            - cd $env:RCCD_MASTER_PATH
             - dir
             - cat README.md
             - if ( "$env:RCCD_MASTER_BRANCH" -ne "master" ) { Write-Error "incorrect env" }

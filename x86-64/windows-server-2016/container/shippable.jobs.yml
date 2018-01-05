@@ -1,0 +1,23 @@
+jobs:
+  - name: x86-64-windows-server-2016-container-dev
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: WindowsServer_2016
+      container: true
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: hello_container_world
+          runtime:
+            options:
+              imageName: "microsoft/windowsservercore"
+              imageTag: "10.0.14393.1884"
+              env:
+                HELLO: world
+          script:
+            - Write-Output "Greetings from Windows on Shippable"

@@ -17,7 +17,7 @@ jobs:
           name: should-post-resource-state
           script:
             - printenv
-            - echo "versionName=master.$BUILD_NUMBER" > $JOB_STATE/$MASTERIMAGE1_NAME.env'
+            - echo "versionName=master.$BUILD_NUMBER" > $JOB_STATE/$MASTERIMAGE1_NAME.env
 
   - name: x86-64-ubuntu-16-04-host-out-image-put
     type: runSh
@@ -37,5 +37,5 @@ jobs:
           name: should-put-resource-state
           script:
             - printenv
-            - echo "key.$BUILD_NUMBER=value.$BUILD_NUMBER" >> $JOB_STATE/$MASTERIMAGE1_NAME.env'
-            - echo "key2.$BUILD_NUMBER=value2.$BUILD_NUMBER" >> $JOB_STATE/$MASTERIMAGE1_NAME.env'
+            - echo "key.$BUILD_NUMBER=value.$BUILD_NUMBER" >> $JOB_STATE/$MASTERIMAGE1_NAME.env
+            - echo "key2.$BUILD_NUMBER=value2.$BUILD_NUMBER" >> $JOB_STATE/$MASTERIMAGE1_NAME.env

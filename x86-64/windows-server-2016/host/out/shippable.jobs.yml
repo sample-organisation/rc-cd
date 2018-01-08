@@ -40,4 +40,5 @@ jobs:
             - gci env:*
             - if ( "$env:MASTERIMAGE1_NAME" -ne "master-image-1" ) { Write-Error "incorrect env" }
             - '"key.$env:BUILD_NUMBER=value.$env:BUILD_NUMBER" | Out-File -Append -Encoding utf8 -FilePath $env:JOB_STATE\$env:MASTERIMAGE1_NAME.env -NoNewLine'
+            - '"`nkey2.$env:BUILD_NUMBER=value2.$env:BUILD_NUMBER" | Out-File -Append -Encoding utf8 -FilePath $env:JOB_STATE\$env:MASTERIMAGE1_NAME.env -NoNewLine'
             - cat $env:JOB_STATE\$env:MASTERIMAGE1_NAME.env

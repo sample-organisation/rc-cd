@@ -1,0 +1,41 @@
+jobs:
+  - name: x86-64-ubuntu-16-04-host-out-image-post
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
+    flags:
+      - x86-64
+      - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-out
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - OUT: master-image-1
+      - TASK:
+          name: should-post-resource-state
+          script:
+            - printenv
+            - echo "versionName=master.$BUILD_NUMBER" > $JOB_STATE/$MASTERIMAGE1_NAME.env'
+
+  - name: x86-64-ubuntu-16-04-host-out-image-put
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
+    flags:
+      - x86-64
+      - ubuntu-16-04
+      - x86-64-ubuntu-16-04-host-out
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - OUT: master-image-1
+      - TASK:
+          name: should-put-resource-state
+          script:
+            - printenv
+            - echo "key.$BUILD_NUMBER=value.$BUILD_NUMBER" >> $JOB_STATE/$MASTERIMAGE1_NAME.env'
+            - echo "key2.$BUILD_NUMBER=value2.$BUILD_NUMBER" >> $JOB_STATE/$MASTERIMAGE1_NAME.env'

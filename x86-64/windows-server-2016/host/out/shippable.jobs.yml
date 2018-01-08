@@ -35,7 +35,7 @@ jobs:
       - IN: windows-server-2016-trigger
       - OUT: master-image-1
       - TASK:
-          name: should-post-resource-state
+          name: should-put-resource-state
           script:
             - gci env:*
             - if ( "$env:MASTERIMAGE1_NAME" -ne "master-image-1" ) { Write-Error "incorrect env" }

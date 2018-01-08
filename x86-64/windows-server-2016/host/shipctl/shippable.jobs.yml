@@ -13,6 +13,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - OUT: master-image-1
+        overwrite: true
       - TASK:
           name: should-put-resource-state
           script:

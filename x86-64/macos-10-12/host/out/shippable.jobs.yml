@@ -1,0 +1,42 @@
+jobs:
+  - name: x86-64-macos-10-12-host-out-image-post
+    type: runSh
+    runtime:
+      architecture: x86_64
+      cluster: x8664m10custom
+      container: false
+    flags:
+      - x86-64
+      - macos-10-12
+      - x86-64-macos-10-12-host-out
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - OUT: master-image-1
+        overwrite: true
+      - TASK:
+          name: should-post-resource-state
+          script:
+            - printenv
+            - echo "versionName=master.$BUILD_NUMBER" > $JOB_STATE/$MASTERIMAGE1_NAME.env
+
+  - name: x86-64-macos-10-12-host-out-image-put
+    type: runSh
+    runtime:
+      architecture: x86_64
+      cluster: x8664m10custom
+      container: false
+    flags:
+      - x86-64
+      - macos-10-12
+      - x86-64-macos-10-12-host-out
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - OUT: master-image-1
+      - TASK:
+          name: should-put-resource-state
+          script:
+            - printenv
+            - echo "key.$BUILD_NUMBER=value.$BUILD_NUMBER" >> $JOB_STATE/$MASTERIMAGE1_NAME.env
+            - echo "key2.$BUILD_NUMBER=value2.$BUILD_NUMBER" >> $JOB_STATE/$MASTERIMAGE1_NAME.env

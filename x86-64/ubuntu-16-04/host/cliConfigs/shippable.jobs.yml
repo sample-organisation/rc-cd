@@ -3,7 +3,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: false
     flags:
       - x86-64
@@ -25,7 +25,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: false
     flags:
       - x86-64
@@ -46,7 +46,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: false
     flags:
       - x86-64
@@ -67,7 +67,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: false
     flags:
       - x86-64
@@ -91,7 +91,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: false
     flags:
       - x86-64
@@ -113,7 +113,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: false
     flags:
       - x86-64
@@ -152,7 +152,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: false
     flags:
       - x86-64

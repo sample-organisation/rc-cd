@@ -4,7 +4,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: false
     steps:
       - IN: aarch64-host-ssh-trigger

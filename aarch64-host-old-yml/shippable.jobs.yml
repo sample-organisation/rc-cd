@@ -4,7 +4,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: false
     steps:
       - IN: aarch64-host-old-yml-trigger
@@ -17,7 +17,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: false
     steps:
       - IN: aarch64-host-old-yml-trigger
@@ -30,7 +30,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: true
     steps:
       - IN: aarch64-host-old-yml-gitRepo
@@ -44,7 +44,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: true
     steps:
       - IN: heap-1635-trigger

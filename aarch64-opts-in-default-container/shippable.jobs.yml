@@ -4,7 +4,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: true
       options:
         env:
@@ -24,7 +24,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: true
     steps:
       - IN: aarch64-default-container-trigger
@@ -44,7 +44,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: true
       options:
         options: -m 300m
@@ -62,7 +62,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: true
     steps:
       - IN: aarch64-default-container-trigger
@@ -81,7 +81,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: true
       options:
         options: -v /root/hello:/greetings
@@ -99,7 +99,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: true
     steps:
       - IN: aarch64-default-container-trigger
@@ -117,7 +117,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: true
       options:
         options: -m 200mb -v /root/hello:/greetings
@@ -136,7 +136,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: true
     steps:
       - IN: aarch64-default-container-trigger

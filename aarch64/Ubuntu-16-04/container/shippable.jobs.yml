@@ -3,7 +3,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      os: Ubuntu_16.04
+      cluster: x8664u16custom
       container: true
     flags:
       - aarch64

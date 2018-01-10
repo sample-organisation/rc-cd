@@ -34,6 +34,29 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - OUT: master-image-1
+        overwrite: true
+      - TASK:
+          name: should-put-resource-state
+          script:
+            - gci env:*
+            - if ( "$env:MASTERIMAGE1_NAME" -ne "master-image-1" ) { Write-Error "incorrect env" }
+            - shipctl post_resource_state $env:MASTERIMAGE1_NAME versionName "master.${env:BUILD_NUMBER}"
+
+  - name: x86-64-windows-server-2016-host-shipctl-post-out-image
+    type: runSh
+    runtime:
+      architecture: x86_64
+      cluster: x8664win2016custom
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-shipctl
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - OUT: master-image-1
+        overwrite: true
       - TASK:
           name: should-put-resource-state
           script:

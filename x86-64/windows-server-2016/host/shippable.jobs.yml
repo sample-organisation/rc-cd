@@ -3,7 +3,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: WindowsServer_2016
+      cluster: x8664win2016custom
       container: false
     flags:
       - x86-64
@@ -20,7 +20,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: WindowsServer_2016
+      cluster: x8664win2016custom
       container: false
     flags:
       - x86-64
@@ -37,7 +37,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: WindowsServer_2016
+      cluster: x8664win2016custom
       container: false
     flags:
       - x86-64
@@ -55,7 +55,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: WindowsServer_2016
+      cluster: x8664win2016custom
       container: false
     flags:
       - x86-64
@@ -73,7 +73,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: WindowsServer_2016
+      cluster: x8664win2016custom
       container: false
     flags:
       - x86-64
@@ -92,7 +92,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: WindowsServer_2016
+      cluster: x8664win2016custom
       container: false
     flags:
       - x86-64
@@ -111,7 +111,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: WindowsServer_2016
+      cluster: x8664win2016custom
       container: false
     flags:
       - x86-64
@@ -134,7 +134,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: WindowsServer_2016
+      cluster: x8664win2016custom
       container: false
     flags:
       - x86-64
@@ -153,7 +153,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: WindowsServer_2016
+      cluster: x8664win2016custom
       container: false
     flags:
       - x86-64
@@ -172,7 +172,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: WindowsServer_2016
+      cluster: x8664win2016custom
       container: false
     flags:
       - x86-64
@@ -193,7 +193,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      os: WindowsServer_2016
+      cluster: x8664win2016custom
       container: false
     flags:
       - x86-64

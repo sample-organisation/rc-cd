@@ -36,29 +36,7 @@ jobs:
       - OUT: master-image-1
         overwrite: true
       - TASK:
-          name: should-put-resource-state
-          script:
-            - gci env:*
-            - if ( "$env:MASTERIMAGE1_NAME" -ne "master-image-1" ) { Write-Error "incorrect env" }
-            - shipctl post_resource_state $env:MASTERIMAGE1_NAME versionName "master.${env:BUILD_NUMBER}"
-
-  - name: x86-64-windows-server-2016-host-shipctl-post-out-image
-    type: runSh
-    runtime:
-      architecture: x86_64
-      cluster: x8664win2016custom
-      container: false
-    flags:
-      - x86-64
-      - windows-server-2016
-      - x86-64-windows-server-2016-host-shipctl
-    steps:
-      - IN: x86-64-trigger
-      - IN: windows-server-2016-trigger
-      - OUT: master-image-1
-        overwrite: true
-      - TASK:
-          name: should-put-resource-state
+          name: should-post-resource-state
           script:
             - gci env:*
             - if ( "$env:MASTERIMAGE1_NAME" -ne "master-image-1" ) { Write-Error "incorrect env" }
@@ -83,4 +61,26 @@ jobs:
           script:
             - gci env:*
             - if ( "$env:MASTERIMAGE1_NAME" -ne "master-image-1" ) { Write-Error "incorrect env" }
-            - shipctl put_resource_state_multi $env:MASTERIMAGE1_NAME "versionName=master.${env:BUILD_NUMBER}" "multi.key=value.${env:BUILD_NUMBER}" "multi.2.key=value.${env:BUILD_NUMBER}"
+            - shipctl put_resource_state_multi $env:MASTERIMAGE1_NAME "versionName=master.${env:BUILD_NUMBER}" "multi.key.${env:BUILD_NUMBER}=value.${env:BUILD_NUMBER}" "multi.2.key.${env:BUILD_NUMBER}=value.${env:BUILD_NUMBER}"
+
+  - name: x86-64-windows-server-2016-host-shipctl-post-multi-out-image
+    type: runSh
+    runtime:
+      architecture: x86_64
+      cluster: x8664win2016custom
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-shipctl
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - OUT: master-image-1
+        overwrite: true
+      - TASK:
+          name: should-post-resource-state
+          script:
+            - gci env:*
+            - if ( "$env:MASTERIMAGE1_NAME" -ne "master-image-1" ) { Write-Error "incorrect env" }
+            - shipctl post_resource_state_multi $env:MASTERIMAGE1_NAME "versionName=master.${env:BUILD_NUMBER}" "post.multi.key.${env:BUILD_NUMBER}=value.${env:BUILD_NUMBER}" "post.multi.2.key.${env:BUILD_NUMBER}=value.${env:BUILD_NUMBER}"

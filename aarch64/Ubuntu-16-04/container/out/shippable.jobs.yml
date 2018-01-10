@@ -1,0 +1,41 @@
+jobs:
+  - name: aarch64-ubuntu-16-04-container-out-image-post
+    type: runSh
+    runtime:
+      cluster: aarch64u16custom
+      container: true
+    flags:
+      - aarch64
+      - ubuntu-16-04
+      - aarch64-ubuntu-16-04-container-out
+    steps:
+      - IN: aarch64-trigger
+      - IN: windows-server-2016-trigger
+      - OUT: master-image-1
+        overwrite: true
+      - TASK:
+          name: should-post-resource-state
+          script:
+            - printenv
+            - echo "versionName=master.$BUILD_NUMBER" > $JOB_STATE/$MASTERIMAGE1_NAME.env
+
+  - name: aarch64-ubuntu-16-04-container-out-image-put
+    type: runSh
+    runtime:
+      architecture: x86_64
+      cluster: aarch64u16custom
+      container: true
+    flags:
+      - aarch64
+      - ubuntu-16-04
+      - aarch64-ubuntu-16-04-container-out
+    steps:
+      - IN: aarch64-trigger
+      - IN: windows-server-2016-trigger
+      - OUT: master-image-1
+      - TASK:
+          name: should-put-resource-state
+          script:
+            - printenv
+            - echo "key.$BUILD_NUMBER=value.$BUILD_NUMBER" >> $JOB_STATE/$MASTERIMAGE1_NAME.env
+            - echo "key2.$BUILD_NUMBER=value2.$BUILD_NUMBER" >> $JOB_STATE/$MASTERIMAGE1_NAME.env

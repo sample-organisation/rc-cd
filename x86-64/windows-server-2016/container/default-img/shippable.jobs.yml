@@ -1,0 +1,18 @@
+jobs:
+  - name: x86-64-windows-server-2016-container-default-img-single-valid
+    type: runSh
+    runtime:
+      architecture: x86_64
+      cluster: x8664win2016custom
+      container: true
+    flags:
+      - x86-64
+      - windows-server-2016
+      - windows-server-2016-default-img
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: single-cmd-should-work
+          script:
+            - dir

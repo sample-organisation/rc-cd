@@ -63,6 +63,8 @@ jobs:
               imageName: "microsoft/windowsservercore"
               imageTag: "10.0.14393.1884"
           script:
+            - docker ps
+            - docker inspect --format='{{.Config.Image}}' reqExec.$env:BUILD_JOB_ID.0
             - dir
 
   - name: x86-64-windows-server-2016-container-custom-img-single-invalid
@@ -227,7 +229,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: on-success-should-work
           runtime:
             options:
               imageName: "microsoft/windowsservercore"
@@ -251,7 +253,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: on-failure-should-work
           runtime:
             options:
               imageName: "microsoft/windowsservercore"
@@ -275,7 +277,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: on-success-always-should-work
           runtime:
             options:
               imageName: "microsoft/windowsservercore"
@@ -301,7 +303,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: on-failure-always-should-work
           runtime:
             options:
               imageName: "microsoft/windowsservercore"

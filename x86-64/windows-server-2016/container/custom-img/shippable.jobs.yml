@@ -63,8 +63,6 @@ jobs:
               imageName: "microsoft/windowsservercore"
               imageTag: "10.0.14393.1884"
           script:
-            - docker ps
-            - docker inspect --format='{{.Config.Image}}' reqExec.$env:BUILD_JOB_ID.0
             - dir
 
   - name: x86-64-windows-server-2016-container-custom-img-single-invalid
@@ -111,6 +109,7 @@ jobs:
           script:
             - dir
             - echo "hello world"
+            - Start-Sleep -s 2
 
   - name: x86-64-windows-server-2016-container-custom-img-multiple-invalid
     type: runSh

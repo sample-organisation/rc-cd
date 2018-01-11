@@ -1,5 +1,5 @@
 jobs:
-  - name: x86-64-windows-server-2016-container-dev
+  - name: x86-64-windows-server-2016-container-valid-image
     type: runSh
     runtime:
       architecture: x86_64
@@ -12,12 +12,31 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: hello_container_world
+          name: say-hello-world
           runtime:
             options:
               imageName: "microsoft/windowsservercore"
               imageTag: "10.0.14393.1884"
-              env:
-                HELLO: world
           script:
-            - Write-Output "Greetings from Windows on Shippable"
+            - Write-Output "Hello world"
+
+  - name: x86-64-windows-server-2016-container-invalid-image
+    type: runSh
+    runtime:
+      architecture: x86_64
+      cluster: x8664win2016custom
+      container: true
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: should-fail-in-boot
+          runtime:
+            options:
+              imageName: "microsoft/windowsservercore"
+              imageTag: "invalid.image.tag"
+          script:
+            - Write-Output "Did you just use a valid image tag?"

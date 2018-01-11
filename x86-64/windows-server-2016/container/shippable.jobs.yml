@@ -1,0 +1,25 @@
+jobs:
+  - name: x86-64-windows-server-2016-container-envs-single
+    type: runSh
+    runtime:
+      architecture: x86_64
+      cluster: x8664win2016custom
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-container-envs
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: should-pass-for-single-envs
+          runtime:
+            options:
+              imageName: "microsoft/windowsservercore"
+              imageTag: "10.0.14393.1884"
+              env:
+                HELLO: world
+          script:
+            - gci env:*
+            - if ( "$env:HELLO" -ne "world" ) { Write-Error "incorrect env" }

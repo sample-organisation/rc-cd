@@ -181,7 +181,7 @@ jobs:
             - exit 1
             - echo "this command should not even be executed"
 
-  - name: x86-64-windows-server-2016-host-multitask-multiple-valid
+  - name: x86-64-windows-server-2016-container-custom-img-multitask-multiple-valid
     type: runSh
     runtime:
       architecture: x86_64

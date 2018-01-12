@@ -108,6 +108,7 @@ jobs:
               imageTag: "10.0.14393.1884"
           script:
             - dir
+            - choco -h
             - echo "hello world"
             - Start-Sleep -s 120
             - echo "This should not show up if job was cancelled 1"

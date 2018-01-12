@@ -228,7 +228,7 @@ jobs:
           script:
             - dir
             - echo "hello world"
-            - Start-Sleep -s 180
+            - Start-Sleep -s 100
             - echo "This should not show up if job was cancelled 1"
             - echo "This should not show up if job was cancelled 2"
             - echo "This should not show up if job was cancelled 3"

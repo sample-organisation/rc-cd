@@ -109,8 +109,17 @@ jobs:
           script:
             - dir
             - echo "hello world"
-            - Start-Sleep -s 60
-            - echo "This should not show up if job was cancelled"
+            - Start-Sleep -s 120
+            - echo "This should not show up if job was cancelled 1"
+            - echo "This should not show up if job was cancelled 2"
+            - echo "This should not show up if job was cancelled 3"
+            - echo "This should not show up if job was cancelled 4"
+            - echo "This should not show up if job was cancelled 5"
+            - echo "This should not show up if job was cancelled 6"
+            - echo "This should not show up if job was cancelled 7"
+            - echo "This should not show up if job was cancelled 8"
+            - echo "This should not show up if job was cancelled 9"
+            - echo "This should not show up if job was cancelled 10"
 
   - name: x86-64-windows-server-2016-container-custom-img-multiple-invalid
     type: runSh

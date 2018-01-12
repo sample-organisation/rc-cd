@@ -108,7 +108,6 @@ jobs:
               imageTag: "10.0.14393.1884"
           script:
             - dir
-            - choco -h
             - echo "hello world"
             - Start-Sleep -s 120
             - echo "This should not show up if job was cancelled 1"
@@ -121,6 +120,7 @@ jobs:
             - echo "This should not show up if job was cancelled 8"
             - echo "This should not show up if job was cancelled 9"
             - echo "This should not show up if job was cancelled 10"
+            - choco -h
 
   - name: x86-64-windows-server-2016-container-custom-img-multiple-invalid
     type: runSh

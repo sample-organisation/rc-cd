@@ -15,7 +15,7 @@ jobs:
           name: single-cmd-should-work
           script:
             - dir
-            
+
   - name: x86-64-windows-server-2016-host-basic-single-invalid
     type: runSh
     runtime:
@@ -50,7 +50,7 @@ jobs:
           script:
             - dir
             - echo "hello world"
-            
+
   - name: x86-64-windows-server-2016-host-basic-multiple-invalid
     type: runSh
     runtime:
@@ -87,7 +87,7 @@ jobs:
             - echo "next command will throw error"
             - cat x
             - echo "this command should not even be executed"
-            
+
   - name: x86-64-windows-server-2016-host-basic-exit-cmd
     type: runSh
     runtime:
@@ -129,7 +129,7 @@ jobs:
           script:
             - echo "hello 1"
             - echo "hello 2"
-            
+
   - name: x86-64-windows-server-2016-host-basic-on-success
     type: runSh
     runtime:
@@ -148,7 +148,7 @@ jobs:
             - dir
     on_success:
       - script: echo "this should be logged"
-      
+
   - name: x86-64-windows-server-2016-host-basic-on-failure
     type: runSh
     runtime:
@@ -167,7 +167,7 @@ jobs:
             - invalidCommand
     on_failure:
       - script: echo "this should be logged"
-      
+
   - name: x86-64-windows-server-2016-host-basic-on-success-always
     type: runSh
     runtime:
@@ -188,7 +188,7 @@ jobs:
       - script: echo "this should be logged"
     always:
       - script: echo "this is always script"
-      
+
   - name: x86-64-windows-server-2016-host-basic-on-failure-always
     type: runSh
     runtime:
@@ -209,3 +209,34 @@ jobs:
       - script: echo "this should be logged"
     always:
       - script: echo "this is always script"
+
+
+  - name: x86-64-windows-server-2016-host-cancel
+    type: runSh
+    runtime:
+      architecture: x86_64
+      cluster: x8664win2016custom
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: cancel-job-should-stop-task
+          script:
+            - dir
+            - echo "hello world"
+            - Start-Sleep -s 60
+            - echo "This should not show up if job was cancelled 1"
+            - echo "This should not show up if job was cancelled 2"
+            - echo "This should not show up if job was cancelled 3"
+            - echo "This should not show up if job was cancelled 4"
+            - echo "This should not show up if job was cancelled 5"
+            - echo "This should not show up if job was cancelled 6"
+            - echo "This should not show up if job was cancelled 7"
+            - echo "This should not show up if job was cancelled 8"
+            - echo "This should not show up if job was cancelled 9"
+            - echo "This should not show up if job was cancelled 10"
+            - choco -h

@@ -21,6 +21,8 @@ jobs:
           script:
             - printenv
             - test "$HELLO" == "world"
+            - sleep 1m
+            - echo "This should not show up if job was cancelled"
 
   - name: x86-64-ubuntu-16-04-container-envs-single-break
     type: runSh

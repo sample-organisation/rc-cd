@@ -1,0 +1,19 @@
+jobs:
+  - name: x86-64-windows-server-2016-host-cliConfig-aws
+    type: runSh
+    runtime:
+      architecture: x86_64
+      cluster: x8664win2016custom
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - IN: test-aws-cli
+      - TASK:
+          name: should-list-ec2-instances
+          script:
+            - echo "$PATH"
+            - aws ec2 describe-instances

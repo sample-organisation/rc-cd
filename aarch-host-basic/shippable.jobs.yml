@@ -4,7 +4,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: false
     steps:
       - IN: heap-1635-trigger
@@ -18,7 +18,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: false
     steps:
       - IN: heap-1635-trigger
@@ -31,7 +31,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: false
     steps:
       - IN: heap-1635-trigger
@@ -48,7 +48,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: true
     steps:
       - IN: heap-1635-trigger

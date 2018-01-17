@@ -3,7 +3,7 @@ jobs:
 #     type: runSh
 #     runtime:
 #       architecture: aarch64
-#       cluster: x8664u16custom
+#       nodePool: x8664u16custom
 #       container: true
 #     steps:
 #       - IN: aarch-gitRepo
@@ -18,7 +18,7 @@ jobs:
 #     type: runSh
 #     runtime:
 #       architecture: aarch64
-#       cluster: x8664u16custom
+#       nodePool: x8664u16custom
 #       container: true
 #     steps:
 #       - TASK:
@@ -44,7 +44,7 @@ jobs:
 #     type: runSh
 #     runtime:
 #       architecture: x86_64
-#       cluster: x8664u16custom
+#       nodePool: x8664u16custom
 #       container: false
 #     steps:
 #       - TASK:

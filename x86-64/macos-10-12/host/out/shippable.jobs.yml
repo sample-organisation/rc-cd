@@ -3,7 +3,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      cluster: x8664m10custom
+      nodePool: x8664m10custom
       container: false
     flags:
       - x86-64
@@ -24,7 +24,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      cluster: x8664m10custom
+      nodePool: x8664m10custom
       container: false
     flags:
       - x86-64

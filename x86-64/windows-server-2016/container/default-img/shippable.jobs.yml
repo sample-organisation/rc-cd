@@ -3,7 +3,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      cluster: x8664win2016custom
+      nodePool: x8664win2016custom
       container: true
     flags:
       - x86-64

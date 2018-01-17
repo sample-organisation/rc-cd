@@ -2,7 +2,7 @@ jobs:
   - name: aarch64-ubuntu-16-04-container-out-image-post
     type: runSh
     runtime:
-      cluster: aarch64u16custom
+      nodePool: aarch64u16custom
       container: true
     flags:
       - aarch64
@@ -23,7 +23,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      cluster: aarch64u16custom
+      nodePool: aarch64u16custom
       container: true
     flags:
       - aarch64

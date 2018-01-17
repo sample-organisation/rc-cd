@@ -4,7 +4,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: true
       options:
         imageName: drydockaarch64/u16pyt
@@ -28,7 +28,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: true
     steps:
       - IN: aarch64-custom-container-trigger
@@ -52,7 +52,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: true
       options:
         imageName: drydockaarch64/u16pyt
@@ -74,7 +74,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: true
     steps:
       - IN: aarch64-custom-container-trigger
@@ -97,7 +97,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: true
       options:
         imageName: drydockaarch64/u16pyt
@@ -119,7 +119,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: true
     steps:
       - IN: aarch64-custom-container-trigger
@@ -141,7 +141,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: true
       options:
         imageName: drydockaarch64/u16pyt
@@ -164,7 +164,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: true
     steps:
       - IN: aarch64-custom-container-trigger

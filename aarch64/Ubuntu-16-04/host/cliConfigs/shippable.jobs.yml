@@ -3,7 +3,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: false
     flags:
       - aarch64
@@ -24,7 +24,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: false
     flags:
       - aarch64
@@ -44,7 +44,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: false
     flags:
       - aarch64
@@ -64,7 +64,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: false
     flags:
       - aarch64
@@ -84,7 +84,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: false
     flags:
       - aarch64
@@ -122,7 +122,7 @@ jobs:
     type: runSh
     runtime:
       architecture: aarch64
-      cluster: x8664u16custom
+      nodePool: x8664u16custom
       container: false
     flags:
       - aarch64

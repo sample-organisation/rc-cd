@@ -3,7 +3,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64
@@ -28,7 +28,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64
@@ -52,7 +52,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64
@@ -79,7 +79,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64
@@ -105,7 +105,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64
@@ -151,7 +151,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64
@@ -179,7 +179,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64
@@ -208,7 +208,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64
@@ -233,7 +233,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64
@@ -260,7 +260,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64
@@ -284,7 +284,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64
@@ -311,7 +311,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664win2016custom
+      nodePool: custom__x86_64__WindowsServer_2016
       container: true
     flags:
       - x86-64

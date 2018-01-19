@@ -13,6 +13,19 @@ jobs:
           script:
             - echo "hello"
 
+  - name: emergency-2
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__Ubuntu_16_04
+      container: false
+    flags:
+      - emergency
+    steps:
+      - TASK:
+          name: echo-hello
+          script:
+            - echo "hello"
 #   - name: aarch64-new-yml-def-container
 #     type: runSh
 #     runtime:

@@ -1,4 +1,18 @@
 jobs:
+  - name: emergency-1
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: true
+    flags:
+      - emergency
+    steps:
+      - TASK:
+          name: echo-hello
+          script:
+            - echo "hello"
+
 #   - name: aarch64-new-yml-def-container
 #     type: runSh
 #     runtime:

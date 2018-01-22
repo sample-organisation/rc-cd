@@ -39,7 +39,7 @@ jobs:
             # implementing get_integration_resource_keys
             - |
               get_integration_resource_keys() {
-                UP_RES=$(get_resource_name "$1")
+                UP_RES=$(shipctl get_resource_name "$1")
                 RES_INT_PREFIX="$UP_RES"_INTEGRATION
                 printenv | grep "$RES_INT_PREFIX" | awk -F "=" '{print $1}' | sed -r "s/$RES_INT_PREFIX//g"
               }

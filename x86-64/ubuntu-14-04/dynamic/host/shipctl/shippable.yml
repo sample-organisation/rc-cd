@@ -11,6 +11,6 @@ jobs:
       - shipctl
     steps:
       - TASK:
-          name: echo-hello
+          name: intro-important-variables
           script:
-            - echo "hello"
+            - echo "$JOB_STATE"

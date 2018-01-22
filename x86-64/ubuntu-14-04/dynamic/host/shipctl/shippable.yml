@@ -41,6 +41,7 @@ jobs:
               get_integration_resource_keys() {
                 echo "inside get_integration_resource_keys"
               }
+            - get_integration_resource_keys
       - TASK:
           name: modify-job-state
           script:

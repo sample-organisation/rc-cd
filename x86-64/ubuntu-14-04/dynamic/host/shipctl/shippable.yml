@@ -27,3 +27,7 @@ jobs:
             # What does $INTEGRATIONNAME_STATE variable have?
             - file $CHECKINGDOINTEGRATION_STATE
             - ls -la $CHECKINGDOINTEGRATION_STATE
+      - TASK:
+          name: modify-job-state
+          script:
+            - echo "modify-job-state-$BUILD_NUMBER=value.$BUILD_NUMBER" > "$JOB_STATE/$JOB_NAME.env"

@@ -20,3 +20,4 @@ jobs:
             - echo "$JOB_STATE"
             - ls -la "$JOB_STATE"
             - cat "$JOB_STATE/$JOB_NAME.env"
+            - cat "$JOB_STATE/$CHECKINGDOINTEGRATION_NAME.env"

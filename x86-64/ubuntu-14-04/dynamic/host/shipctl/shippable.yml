@@ -14,10 +14,15 @@ jobs:
       - TASK:
           name: intro-important-variables
           script:
+            # basic envs
             - printenv
+            # /var/lib/shippable -> place where everything happens
             - ls -la /var/lib/shippable
             - ls -la /var/lib/shippable/build
+            # Inspect JOB_STATE folder?
             - echo "$JOB_STATE"
             - ls -la "$JOB_STATE"
             - cat "$JOB_STATE/$JOB_NAME.env"
             - cat "$JOB_STATE/$CHECKINGDOINTEGRATION_NAME.env"
+            # What does $INTEGRATIONNAME_STATE variable have?
+            - file $CHECKINGDOINTEGRATION_STATE

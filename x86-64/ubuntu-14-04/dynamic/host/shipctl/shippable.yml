@@ -10,6 +10,7 @@ jobs:
       - dynamic
       - shipctl
     steps:
+      - IN: checking-do-integration
       - TASK:
           name: intro-important-variables
           script:

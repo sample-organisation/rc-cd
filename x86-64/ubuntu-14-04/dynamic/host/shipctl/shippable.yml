@@ -26,3 +26,4 @@ jobs:
             - cat "$JOB_STATE/$CHECKINGDOINTEGRATION_NAME.env"
             # What does $INTEGRATIONNAME_STATE variable have?
             - file $CHECKINGDOINTEGRATION_STATE
+            - ls -la $CHECKINGDOINTEGRATION_STATE

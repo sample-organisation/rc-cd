@@ -40,8 +40,7 @@ jobs:
             - |
               get_integration_resource_keys() {
                 UP_RES=$(shipctl get_resource_name "$1")
-                echo "$UP_RES"
-                RES_INT_PREFIX="$UP_RES"_INTEGRATION
+                RES_INT_PREFIX="$UP_RES"_INTEGRATION_
                 printenv | grep "$RES_INT_PREFIX" | awk -F "=" '{print $1}' | sed -r "s/$RES_INT_PREFIX//g"
               }
             - get_integration_resource_keys checking-do-integration

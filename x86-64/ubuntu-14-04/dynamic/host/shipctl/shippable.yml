@@ -32,7 +32,7 @@ jobs:
             # checking what's in meta
             - ls -la $CHECKINGDOINTEGRATION_META
             - cat "$CHECKINGDOINTEGRATION_META/integration.json"
-            - printenv | grep "$CHECKINGDOINTEGRATION_INTEGRATION"
+            - printenv | grep "CHECKINGDOINTEGRATION_INTEGRATION"
       - TASK:
           name: modify-job-state
           script:

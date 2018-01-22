@@ -18,3 +18,4 @@ jobs:
             - ls -la /var/lib/shippable/build
             - echo "$JOB_STATE"
             - ls -la "$JOB_STATE"
+            - cat "$JOB_STATE/$JOB_NAME.env"

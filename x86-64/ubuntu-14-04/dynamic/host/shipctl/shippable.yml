@@ -50,3 +50,28 @@ jobs:
           name: modify-job-state
           script:
             - echo "modify-job-state-$BUILD_NUMBER=value.$BUILD_NUMBER" > "$JOB_STATE/$JOB_NAME.env"
+
+
+  - name: x86-64-ubuntu-14-04-dynamic-host-shipctl-state
+    type: runSh
+    runtime:
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - ubuntu-16-04
+      - dynamic
+      - shipctl
+    steps:
+      - TASK:
+          name: get-previous-build-number
+          script:
+            - get_resource_state $JOB_NAME "buildNumber"
+      - TASK:
+          name: save-current-build-number
+          script:
+            - |
+              put_resource () {
+                shipctl put_resource_state "JOB_NAME" "$1" "$2"
+              }
+            - put_resource "buildNumber" "$BUILD_NUMBER"

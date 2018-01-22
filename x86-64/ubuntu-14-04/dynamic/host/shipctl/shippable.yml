@@ -72,6 +72,6 @@ jobs:
           script:
             - |
               put_resource () {
-                shipctl put_resource_state "JOB_NAME" "$1" "$2"
+                shipctl put_resource_state "$JOB_NAME" "$1" "$2"
               }
             - put_resource "buildNumber" "$BUILD_NUMBER"

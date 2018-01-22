@@ -29,6 +29,8 @@ jobs:
             - ls -la $CHECKINGDOINTEGRATION_STATE
             # what is in OUT
             - ls -la "$BUILD_DIR/OUT"
+            # checking what's in meta
+            - ls -la $CHECKINGDOINTEGRATION_META
       - TASK:
           name: modify-job-state
           script:

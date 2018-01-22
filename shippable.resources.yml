@@ -209,3 +209,7 @@ resources:
   - name: checking-key-value-pair
     type: integration
     integration: checking-key-value-pair
+
+  - name: checking-gcl-integration
+    type: integration
+    integration: checking-google-cloud

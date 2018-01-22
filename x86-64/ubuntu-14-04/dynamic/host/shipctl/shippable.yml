@@ -39,7 +39,7 @@ jobs:
             # implementing get_integration_resource_keys
             - |
               get_integration_resource_keys() {
-                printenv | grep "CHECKINGDOINTEGRATION_INTEGRATION"
+                printenv | grep "CHECKINGDOINTEGRATION_INTEGRATION" | awk -F "=" '{print $2}'
               }
             - get_integration_resource_keys
       - TASK:

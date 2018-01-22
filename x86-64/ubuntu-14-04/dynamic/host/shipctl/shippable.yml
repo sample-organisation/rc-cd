@@ -27,6 +27,8 @@ jobs:
             # What does $INTEGRATIONNAME_STATE variable have?
             - file $CHECKINGDOINTEGRATION_STATE
             - ls -la $CHECKINGDOINTEGRATION_STATE
+            # what is in OUT
+            - ls -la "BUILD_DIR/OUT"
       - TASK:
           name: modify-job-state
           script:

@@ -31,6 +31,7 @@ jobs:
             - ls -la "$BUILD_DIR/OUT"
             # checking what's in meta
             - ls -la $CHECKINGDOINTEGRATION_META
+            - cat "$CHECKINGDOINTEGRATION_META/integration.json"
       - TASK:
           name: modify-job-state
           script:

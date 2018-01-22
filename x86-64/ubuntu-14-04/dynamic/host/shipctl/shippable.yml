@@ -13,4 +13,7 @@ jobs:
       - TASK:
           name: intro-important-variables
           script:
+            - ls -la /var/lib/shippable
+            - ls -la /var/lib/shippable/build
             - echo "$JOB_STATE"
+            - ls -la "$JOB_STATE"

@@ -13,6 +13,7 @@ jobs:
       - TASK:
           name: intro-important-variables
           script:
+            - printenv
             - ls -la /var/lib/shippable
             - ls -la /var/lib/shippable/build
             - echo "$JOB_STATE"

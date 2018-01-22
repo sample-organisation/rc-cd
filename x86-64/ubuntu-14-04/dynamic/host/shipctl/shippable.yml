@@ -39,7 +39,8 @@ jobs:
             # implementing get_integration_resource_keys
             - |
               get_integration_resource_keys() {
-                printenv | grep "CHECKINGDOINTEGRATION_INTEGRATION" | awk -F "=" '{print $2}'
+                $RES_INT_PREFIX="CHECKINGDOINTEGRATION_INTEGRATION"
+                printenv | grep "$RES_INT_PREFIX" | awk -F "=" '{print $1}' | sed -r "s/$RES_INT_PREFIX//g"
               }
             - get_integration_resource_keys
       - TASK:

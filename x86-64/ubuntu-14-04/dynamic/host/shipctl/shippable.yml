@@ -36,6 +36,11 @@ jobs:
             - cat "$CHECKINGDOINTEGRATION_META/version.json"
             - cat "$CHECKINGDOINTEGRATION_META/replace_placeholders.sh"
             - printenv | grep "CHECKINGDOINTEGRATION_INTEGRATION"
+            # implementing get_integration_resource_keys
+            - |
+              get_integration_resource_keys() {
+                echo "inside get_integration_resource_keys"
+              }
       - TASK:
           name: modify-job-state
           script:

@@ -1,0 +1,16 @@
+jobs:
+  - name: x86-64-dynamic-ubuntu-14-04-host-shipctl
+    type: runSh
+    runtime:
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - ubuntu-16-04
+      - dynamic
+      - shipctl
+    steps:
+      - TASK:
+          name: echo-hello
+          script:
+            - echo "hello"

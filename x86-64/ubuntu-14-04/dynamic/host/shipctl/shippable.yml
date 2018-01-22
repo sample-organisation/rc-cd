@@ -75,3 +75,4 @@ jobs:
                 shipctl put_resource_state "$JOB_NAME" "$1" "$2"
               }
             - put_resource "buildNumber" "$BUILD_NUMBER"
+            - cat "$JOB_STATE/JOB_NAME.env"

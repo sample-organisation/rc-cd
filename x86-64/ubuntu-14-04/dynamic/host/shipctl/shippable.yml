@@ -44,7 +44,7 @@ jobs:
                 RES_INT_PREFIX="$UP_RES"_INTEGRATION
                 printenv | grep "$RES_INT_PREFIX" | awk -F "=" '{print $1}' | sed -r "s/$RES_INT_PREFIX//g"
               }
-            - get_integration_resource_keys
+            - get_integration_resource_keys checking-do-integration
       - TASK:
           name: modify-job-state
           script:

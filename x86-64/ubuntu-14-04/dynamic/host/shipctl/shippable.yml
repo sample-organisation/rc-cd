@@ -66,6 +66,7 @@ jobs:
       - TASK:
           name: get-previous-build-number
           script:
+            - printenv
             - shipctl get_resource_version_key $JOB_NAME "buildNumber" || true
       - TASK:
           name: save-current-build-number

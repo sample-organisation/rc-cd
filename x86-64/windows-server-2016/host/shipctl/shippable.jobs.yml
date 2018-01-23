@@ -84,3 +84,29 @@ jobs:
             - gci env:*
             - if ( "$env:MASTERIMAGE1_NAME" -ne "master-image-1" ) { Write-Error "incorrect env" }
             - shipctl post_resource_state_multi $env:MASTERIMAGE1_NAME "versionName=master.${env:BUILD_NUMBER}" "post.multi.key.${env:BUILD_NUMBER}=value.${env:BUILD_NUMBER}" "post.multi.2.key.${env:BUILD_NUMBER}=value.${env:BUILD_NUMBER}"
+
+  - name: x86-64-windows-server-2016-host-shipctl-get-integration-resource-keys
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-shipctl
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - IN: checking-do-integration
+      - IN: master-cluster
+      - TASK:
+          name: check-digital-ocean-integration
+          script:
+            - gci env:*
+            - shipctl get_integration_resource_keys checking-do-integration
+      - TASK:
+          name: check-aws-integration-in-cluster
+          script:
+            - gci env:*
+            - shipctl get_integration_resource_keys master-cluster

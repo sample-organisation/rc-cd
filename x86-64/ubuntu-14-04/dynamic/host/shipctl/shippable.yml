@@ -70,9 +70,5 @@ jobs:
       - TASK:
           name: save-current-build-number
           script:
-            - |
-              put_resource () {
-                shipctl put_resource_state "$JOB_NAME" "$1" "$2"
-              }
-            - put_resource "buildNumber" "$BUILD_NUMBER"
+            - shipctl put_resource_state "$JOB_NAME" "key.buildNumber" "$BUILD_NUMBER"
             - cat "$JOB_STATE/$JOB_NAME.env"

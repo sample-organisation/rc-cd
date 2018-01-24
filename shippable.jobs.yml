@@ -111,8 +111,8 @@ jobs:
       - TASK:
           name: test-azure-cli-vm-list
           script:
-            - echo "hello"
-            - az vm list
-            - az --version
-            - az account list
+            - echo "hello" || true
+            - az vm list || true
+            - az --version || true
+            - az account list || true
             - sleep 10

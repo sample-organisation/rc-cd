@@ -113,3 +113,4 @@ jobs:
           script:
             - echo "hello"
             - az vm list
+            - az --version

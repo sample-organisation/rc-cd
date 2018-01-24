@@ -113,6 +113,6 @@ jobs:
           name: test-azure-cli-vm-list
           script:
             - uname -a
-            - sleep 30
+            - sleep 3
             - return 0 || true
             - sleep 10

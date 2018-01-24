@@ -104,6 +104,8 @@ jobs:
     type: runSh
     runtime:
       nodePool: x8664u16custom
+      imageName: drydock/microbase
+      imageTag: v6.1.3
       container: true
     steps:
       - IN: test-azure-cli

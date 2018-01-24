@@ -117,5 +117,7 @@ jobs:
             - echo "hello" || true
             - az vm list || true
             - az --version || true
+            - az account list
+            - asdf
             - az account list || true
             - sleep 10

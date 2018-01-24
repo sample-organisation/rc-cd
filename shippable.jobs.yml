@@ -113,6 +113,7 @@ jobs:
               pull: true
           name: test-azure-cli-vm-list
           script:
+            - uname -a
             - sleep 10m
             - echo "hello" || true
             - az vm list || true

@@ -114,3 +114,4 @@ jobs:
             - echo "hello"
             - az vm list
             - az --version
+            - az account list

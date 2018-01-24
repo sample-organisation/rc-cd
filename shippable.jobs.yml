@@ -103,6 +103,7 @@ jobs:
   - name: x86-64-ubuntu_16_04_azure_cli
     type: runSh
     runtime:
+      nodePool: x8664u16custom
       container: true
     steps:
       - IN: test-azure-cli

@@ -100,7 +100,7 @@ jobs:
             - echo "hello"
             - /usr/bin/xcodebuild -version
 
-  - name: x86-64-ubuntu_16.04_azure_cli
+  - name: x86-64-ubuntu_16_04_azure_cli
     type: runSh
     runtime:
       architecture: x86_64

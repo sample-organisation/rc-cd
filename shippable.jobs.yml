@@ -103,9 +103,11 @@ jobs:
   - name: x86-64-ubuntu_16_04_azure_cli
     type: runSh
     runtime:
-      imageName: drydock/microbase
-      imageTag: v6.1.3
       container: true
+      options:
+        imageName: drydock/microbase
+        imageTag: v6.1.3
+        pull: true
     steps:
       - IN: test-azure-cli
       - TASK:

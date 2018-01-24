@@ -114,5 +114,5 @@ jobs:
           script:
             - uname -a
             - sleep 3
-            - return 0 || true
+            - exit 0 || true
             - sleep 10

@@ -99,3 +99,17 @@ jobs:
           script:
             - echo "hello"
             - /usr/bin/xcodebuild -version
+
+  - name: x86-64-ubuntu_16.04_azure_cli
+    type: runSh
+    runtime:
+      architecture: x86_64
+      os: Ubuntu_16.04
+      container: false
+    steps:
+      - IN: test-azure-cli
+      - TASK:
+          name: test-azure-cli-vm-list
+          script:
+            - echo "hello"
+            - az vm list

@@ -103,7 +103,6 @@ jobs:
   - name: x86-64-ubuntu_16_04_azure_cli
     type: runSh
     steps:
-      - IN: test-azure-cli
       - TASK:
           runtime:
             container: true
@@ -115,9 +114,5 @@ jobs:
           script:
             - uname -a
             - sleep 30
-            - echo "hello" || true
-            - az vm list || true
-            - az --version || true
-            - az account list
-            - az account list || true
+            - return 0 || true
             - sleep 10

@@ -107,10 +107,6 @@ jobs:
       - TASK:
           runtime:
             container: true
-            options:
-              imageName: drydock/microbase
-              imageTag: v6.1.3
-              pull: true
           name: test-azure-cli-vm-list
           script:
             - uname -a

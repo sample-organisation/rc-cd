@@ -41,4 +41,5 @@ jobs:
           name: check-param
           script:
             - printenv
-            - shipctl get_params_resource master-params key1
+            - TEST_VAL="$(shipctl get_params_resource "master-params" "key1")"
+            - echo $TEST_VAL

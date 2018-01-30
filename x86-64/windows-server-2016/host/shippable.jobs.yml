@@ -104,7 +104,7 @@ jobs:
           name: multiple-cmd-should-not-work
           script:
             - echo "next command will be exit"
-            - exit 1
+            - exit 0
             - echo "this command should not even be executed"
 
   - name: x86-64-windows-server-2016-host-multitask-multiple-valid

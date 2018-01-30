@@ -88,7 +88,7 @@ jobs:
             - cat x
             - echo "this command should not even be executed"
 
-  - name: x86-64-windows-server-2016-host-basic-exit-cmd
+  - name: x86-64-windows-server-2016-host-basic-exit-0-cmd
     type: runSh
     runtime:
       architecture: x86_64
@@ -101,7 +101,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: multiple-cmd-should-not-work
+          name: multiple-cmd-should-exit
           script:
             - echo "next command will be exit"
             - exit 0

@@ -380,7 +380,7 @@ jobs:
     - TASK:
         name: run_fail_script
         script:
-          - $env:foo = "bar"
+          - $env:foo = "barz"
     on_success:
       - script: echo $env:foo
       - script: $env:foo = "on_success"

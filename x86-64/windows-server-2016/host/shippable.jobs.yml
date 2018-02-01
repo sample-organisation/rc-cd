@@ -533,3 +533,23 @@ jobs:
     always:
       - script: exit 1
       - script: echo "always"
+
+  - name: windows_exit_0
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_succeed
+    - TASK:
+        script: exit 0
+
+  - name: windows_exit_1
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_fail
+    - TASK:
+        script: exit 1

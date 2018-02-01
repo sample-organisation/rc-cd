@@ -360,6 +360,8 @@ jobs:
           - echo $env:foo
           - exit 1
           - echo "shouldnt come here"
+    on_success:
+      - script: echo "shouldnt be a success"
     on_failure:
       - script: echo "failure :("
       - script: echo $env:foo

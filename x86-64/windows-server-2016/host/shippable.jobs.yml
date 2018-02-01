@@ -329,6 +329,8 @@ jobs:
     - TASK:
         name: wrong_command
         script: foo
+    on_failure:
+    - script: echo "fail :("
 
   - name: windows_multi_line_incorrect_command
     type: runSh

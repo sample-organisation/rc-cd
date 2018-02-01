@@ -357,7 +357,7 @@ jobs:
           - $foo = "bar"
           - echo $foo
           - exit 1
-          - echo "shouldn't come here"
+          - echo "shouldnt come here"
     on_failure:
       - script: echo "failure :("
       - script: echo $foo

@@ -317,7 +317,7 @@ jobs:
         script: >
             echo "first line";
             foo;
-            echo "this shouldn't be executed";
+            echo "this shouldnt be executed";
 
   - name: windows_simple_incorrect_command
     type: runSh
@@ -342,7 +342,7 @@ jobs:
         script: |
             echo "first line";
             foo;
-            echo "this shouldn't be executed";
+            echo "this shouldnt be executed";
 
   - name: windows_simple_non_zero_exit
     type: runSh

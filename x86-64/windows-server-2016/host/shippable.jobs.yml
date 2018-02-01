@@ -354,19 +354,19 @@ jobs:
     - TASK:
         name: non_zero_exit
         script:
-          - $foo = "bar"
+          - $env:foo = "bar"
           - echo $foo
           - exit 1
           - echo "shouldnt come here"
     on_failure:
       - script: echo "failure :("
       - script: echo $foo
-      - script: $foo = "baz"
+      - script: $env:foo = "baz"
       - script: echo $foo
       - script: echo "failed"
     always:
       - script: echo $foo
-      - script: $foo = "always"
+      - script: $env:foo = "always"
       - script: echo $foo
       - script: echo "always done"
 
@@ -380,10 +380,10 @@ jobs:
     - TASK:
         name: run_fail_script
         script:
-          - $foo = "bar"
+          - $env:foo = "bar"
     on_success:
       - script: echo $foo
-      - script: $foo = "on_success"
+      - script: $env:foo = "on_success"
       - script: Start-Sleep -s 5
     always:
       - script: echo $foo
@@ -399,11 +399,11 @@ jobs:
     - TASK:
         name: run_fail_script
         script:
-          - $foo = "hi :)"
+          - $env:foo = "hi :)"
           - lol
     on_failure:
       - script: echo $foo
-      - script: $foo = "on_failure"
+      - script: $env:foo = "on_failure"
       - script: Start-Sleep -s 5
     always:
       - script: echo $foo
@@ -445,7 +445,7 @@ jobs:
     steps:
     - IN: windows_tests_that_fail
     - TASK:
-        script: $foo = 123
+        script: $env:foo = 123
     on_success:
       - script: echo $foo
       - script: exit 1
@@ -461,7 +461,7 @@ jobs:
     - IN: windows_tests_that_fail
     - TASK:
         script:
-          - $foo = 123
+          - $env:foo = 123
           - echo $foo
     on_failure:
       - script: echo $foo
@@ -479,7 +479,7 @@ jobs:
     - TASK:
         script: sl
     on_failure:
-      - script: $foo = 321
+      - script: $env:foo = 321
     always:
       - script: echo $foo
       - script: exit 0

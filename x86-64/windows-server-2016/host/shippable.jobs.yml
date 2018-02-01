@@ -367,11 +367,11 @@ jobs:
         script:
           - $foo = "bar"
     on_success:
-      - script: $foo
+      - script: echo $foo
       - script: $foo = "on_success"
       - script: Start-Sleep -s 5
     always:
-      - script: $foo
+      - script: echo $foo
       - script: Start-Sleep -s 5
 
   - name: windows_sleep_in_always_on_failure
@@ -387,7 +387,7 @@ jobs:
           - $foo = "hi :)"
           - lol
     on_failure:
-      - script: $foo
+      - script: echo $foo
       - script: $foo = "on_failure"
       - script: Start-Sleep -s 5
     always:
@@ -432,7 +432,7 @@ jobs:
     - TASK:
         script: $foo = 123
     on_success:
-      - script: $foo
+      - script: echo $foo
       - script: exit 1
     always:
       - script: echo "this should not be executed"
@@ -447,9 +447,9 @@ jobs:
     - TASK:
         script:
           - $foo = 123
-          - $foo
+          - echo $foo
     on_failure:
-      - script: $foo
+      - script: echo $foo
       - script: exit 0
     always:
       - script: echo "is this getting executed?"

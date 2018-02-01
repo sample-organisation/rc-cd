@@ -240,3 +240,276 @@ jobs:
             - echo "This should not show up if job was cancelled 9"
             - echo "This should not show up if job was cancelled 10"
             - choco -h
+
+########################################################################
+#### bharath92 windows tests ###########################################
+
+  - name: windows_tests_that_succeed
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: x86-64-trigger
+    - TASK:
+        name: trigger_tests_that succeed
+        script: echo "trigger success tests"
+
+  - name: windows_tests_that_fail
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: x86-64-trigger
+    - TASK:
+        name: trigger_tests_that succeed
+        script: echo "trigger fail tests"
+
+  - name: windows_verify_success_cases
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_succeed
+    - TASK:
+        name: simple
+        script:
+          - echo "Hi :)"
+    - TASK:
+        name: multi_simple
+        script: |
+            echo "Testing multi-line script - line 1"
+            echo "Testing multi-line script - line 2"
+            echo "Testing multi-line script - line 3"
+    - TASK:
+        name: multi_exit_0
+        script: |
+            echo "first line"
+            exit 0
+            echo "third line"
+    - TASK:
+        name: exit-0->
+        script: >
+            exit 0
+    on_success:
+      - script: Start-Sleep -s 5
+      - script: echo "success :)"
+    on_failure:
+      - script: Start-Sleep -s 3
+      - script: echo "failure :)"
+    always:
+      - script: Start-Sleep -s 10
+      - script: echo always
+
+  - name: windows_single_line_incorrect_command
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_fail
+    - TASK:
+        name: host_exit_1
+        runtime:
+          container: false
+        script: >
+            echo "first line";
+            foo;
+            echo "this shouldn't be executed";
+
+  - name: windows_simple_incorrect_command
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_fail
+    - TASK:
+        name: wrong_command
+        script: foo
+
+  - name: windows_multi_line_incorrect_command
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_fail
+    - TASK:
+        name: multi-line-fail
+        script: |
+            echo "first line";
+            foo;
+            echo "this shouldn't be executed";
+
+  - name: windows_simple_non_zero_exit
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_fail
+    - TASK:
+        name: non_zero_exit
+        script: exit -1
+
+  - name: windows_sleep_in_always_on_success
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_succeed
+    - TASK:
+        name: run_fail_script
+        script:
+          - $foo = "bar"
+    on_success:
+      - script: $foo
+      - script: $foo = "on_success"
+      - script: Start-Sleep -s 5
+    always:
+      - script: $foo
+      - script: Start-Sleep -s 5
+
+  - name: windows_sleep_in_always_on_failure
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_fail
+    - TASK:
+        name: run_fail_script
+        script:
+          - $foo = "hi :)"
+          - lol
+    on_failure:
+      - script: $foo
+      - script: $foo = "on_failure"
+      - script: Start-Sleep -s 5
+    always:
+      - script: echo $foo
+      - script: Start-Sleep -s 5
+
+  - name: windows_exit_0_in_on_success
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_succeed
+    - TASK:
+        script: echo "foo"
+    on_success:
+      - script: exit 0
+    always:
+      - script: echo "this will not be executed"
+
+  - name: windows_wrong_command_in_on_success
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_succeed
+    - TASK:
+        script: echo "foo"
+    on_success:
+      - script: foo
+    always:
+      - script: echo "always"
+
+  - name: windows_exit_1_in_on_success
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_fail
+    - TASK:
+        script: $foo = 123
+    on_success:
+      - script: $foo
+      - script: exit 1
+    always:
+      - script: echo "this should not be executed"
+
+  - name: windows_exit_0_in_on_failure
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_fail
+    - TASK:
+        script: $foo = 123
+        script: foo
+    on_failure:
+      - script: $foo
+      - script: exit 0
+    always:
+      - script: echo "is this getting executed?"
+
+  - name: windows_exit_0_in_always_in_failed_script
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_fail
+    - TASK:
+        script: sl
+    on_failure:
+      - script: $foo = 321
+    always:
+      - script: echo $foo
+      - script: exit 0
+      - script: echo "is this getting executed"
+
+  - name: windows_exit_1_in_always_in_success_script
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_fail
+    - TASK:
+        script: echo "hi :)"
+    on_success:
+      - script: echo "success!!!"
+    always:
+      - script: exit 1
+      - script: echo "always"
+
+  - name: windows_exit_0_in_always_in_success_script
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_succeed
+    - TASK:
+        script: echo "hi :)"
+    on_success:
+      - script: echo "success!!!"
+    always:
+      - script: exit 0
+      - script: echo "always"
+
+  - name: windows_exit_1_in_always_in_fail_script
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    steps:
+    - IN: windows_tests_that_fail
+    - TASK:
+        script: foo
+    on_failure:
+      - script: echo "failure!!!"
+    always:
+      - script: exit 1
+      - script: echo "always"

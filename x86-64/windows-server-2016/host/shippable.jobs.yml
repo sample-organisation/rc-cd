@@ -445,8 +445,9 @@ jobs:
     steps:
     - IN: windows_tests_that_fail
     - TASK:
-        script: $foo = 123
-        script: foo
+        script:
+          - $foo = 123
+          - $foo
     on_failure:
       - script: $foo
       - script: exit 0

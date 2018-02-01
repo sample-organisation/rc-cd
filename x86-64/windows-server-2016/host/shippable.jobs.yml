@@ -355,19 +355,19 @@ jobs:
         name: non_zero_exit
         script:
           - $env:foo = "bar"
-          - echo $foo
+          - echo $env:foo
           - exit 1
           - echo "shouldnt come here"
     on_failure:
       - script: echo "failure :("
-      - script: echo $foo
+      - script: echo $env:foo
       - script: $env:foo = "baz"
-      - script: echo $foo
+      - script: echo $env:foo
       - script: echo "failed"
     always:
-      - script: echo $foo
+      - script: echo $env:foo
       - script: $env:foo = "always"
-      - script: echo $foo
+      - script: echo $env:foo
       - script: echo "always done"
 
   - name: windows_sleep_in_always_on_success
@@ -382,11 +382,11 @@ jobs:
         script:
           - $env:foo = "bar"
     on_success:
-      - script: echo $foo
+      - script: echo $env:foo
       - script: $env:foo = "on_success"
       - script: Start-Sleep -s 5
     always:
-      - script: echo $foo
+      - script: echo $env:foo
       - script: Start-Sleep -s 5
 
   - name: windows_sleep_in_always_on_failure
@@ -402,11 +402,11 @@ jobs:
           - $env:foo = "hi :)"
           - lol
     on_failure:
-      - script: echo $foo
+      - script: echo $env:foo
       - script: $env:foo = "on_failure"
       - script: Start-Sleep -s 5
     always:
-      - script: echo $foo
+      - script: echo $env:foo
       - script: Start-Sleep -s 5
 
   - name: windows_exit_0_in_on_success
@@ -447,7 +447,7 @@ jobs:
     - TASK:
         script: $env:foo = 123
     on_success:
-      - script: echo $foo
+      - script: echo $env:foo
       - script: exit 1
     always:
       - script: echo "this should not be executed"
@@ -462,9 +462,9 @@ jobs:
     - TASK:
         script:
           - $env:foo = 123
-          - echo $foo
+          - echo $env:foo
     on_failure:
-      - script: echo $foo
+      - script: echo $env:foo
       - script: exit 0
     always:
       - script: echo "is this getting executed?"
@@ -481,7 +481,7 @@ jobs:
     on_failure:
       - script: $env:foo = 321
     always:
-      - script: echo $foo
+      - script: echo $env:foo
       - script: exit 0
       - script: echo "is this getting executed"
 

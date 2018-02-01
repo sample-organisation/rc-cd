@@ -353,7 +353,22 @@ jobs:
     - IN: windows_tests_that_fail
     - TASK:
         name: non_zero_exit
-        script: exit -1
+        script:
+          - $foo = "bar"
+          - echo $foo
+          - exit 1
+          - echo "shouldn't come here"
+    on_failure:
+      - script: echo "failure :("
+      - script: echo $foo
+      - script: $foo = "baz"
+      - script: echo $foo
+      - script: echo "failed"
+    always:
+      - script: echo $foo
+      - script: $foo = "always"
+      - script: echo $foo
+      - script: echo "always done"
 
   - name: windows_sleep_in_always_on_success
     type: runSh

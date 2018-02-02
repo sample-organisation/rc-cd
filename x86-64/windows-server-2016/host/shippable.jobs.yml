@@ -88,25 +88,6 @@ jobs:
             - cat x
             - echo "this command should not even be executed"
 
-  - name: x86-64-windows-server-2016-host-basic-exit-0-cmd
-    type: runSh
-    runtime:
-      architecture: x86_64
-      nodePool: custom__x86_64__WindowsServer_2016
-      container: false
-    flags:
-      - x86-64
-      - windows-server-2016
-    steps:
-      - IN: x86-64-trigger
-      - IN: windows-server-2016-trigger
-      - TASK:
-          name: multiple-cmd-should-exit
-          script:
-            - echo "next command will be exit"
-            - exit 0
-            - echo "this command should not even be executed"
-
   - name: x86-64-windows-server-2016-host-multitask-multiple-valid
     type: runSh
     runtime:
@@ -240,3 +221,53 @@ jobs:
             - echo "This should not show up if job was cancelled 9"
             - echo "This should not show up if job was cancelled 10"
             - choco -h
+
+#### Checking exit behaviour
+
+  - name: x86-64-windows-server-2016-host-basic-exit-0-cmd
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-basic
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: multiple-cmd-should-exit
+          script:
+            - echo "next command will be exit"
+            - exit 0
+            - echo "this command should not be executed"
+    on_success:
+      - script: echo "This should be logged"
+    on_failure:
+      - script: echo "This should not be logged"
+
+  - name: x86-64-windows-server-2016-host-basic-exit-1-cmd
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-basic
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: multiple-cmd-should-exit
+          script:
+            - echo "next command will be exit"
+            - exit 1
+            - echo "this command should not even be executed"
+    on_success:
+      - script: echo "This should not be logged"
+    on_failure:
+      - script: echo "This should be logged"

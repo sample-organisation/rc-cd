@@ -245,6 +245,7 @@ jobs:
             - echo "this command should not be executed"
     on_success:
       - script: echo "This should be logged"
+      - script: echo "and this too"
     on_failure:
       - script: echo "This should not be logged"
 

@@ -14,7 +14,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: should-show-on-success
           script:
             - ls
     on_success:
@@ -34,7 +34,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: should-show-on-failure
           script:
             - invalidCommand
     on_failure:
@@ -54,7 +54,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: should-show-on-success-always
           script:
             - ls
     on_success:
@@ -76,7 +76,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: should-on-failure-always
           script:
             - invalidCommand
     on_failure:
@@ -98,7 +98,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: should-show-on-success
           script:
             - ls
     on_success:
@@ -121,7 +121,7 @@ jobs:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
       - TASK:
-          name: shipctl-should-work
+          name: should-show-on-failure-invalid-command
           script:
             - invalidCommand
     on_failure:

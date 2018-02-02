@@ -272,3 +272,27 @@ jobs:
       - script: echo "This should not be logged"
     on_failure:
       - script: echo "This should be logged"
+
+  - name: x86-64-windows-server-2016-host-basic-throw
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-basic
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: multiple-cmd-should-exit
+          script:
+            - echo "next command will be exit"
+            - Throw "dummy error"
+            - echo "this command should not even be executed"
+    on_success:
+      - script: echo "This should not be logged"
+    on_failure:
+      - script: echo "This should be logged"

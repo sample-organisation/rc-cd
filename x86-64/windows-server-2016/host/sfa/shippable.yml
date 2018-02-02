@@ -9,6 +9,7 @@ jobs:
     flags:
       - x86-64
       - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
     steps:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
@@ -47,6 +48,7 @@ jobs:
     flags:
       - x86-64
       - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
     steps:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
@@ -68,6 +70,7 @@ jobs:
     flags:
       - x86-64
       - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
     steps:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
@@ -89,6 +92,7 @@ jobs:
     flags:
       - x86-64
       - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
     steps:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger

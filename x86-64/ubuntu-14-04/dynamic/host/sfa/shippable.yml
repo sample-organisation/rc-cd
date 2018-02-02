@@ -16,7 +16,7 @@ jobs:
       - TASK:
           name: shipctl-should-work
           script:
-            - dir
+            - ls
     on_success:
       - script: echo "this should be logged"
 
@@ -56,7 +56,7 @@ jobs:
       - TASK:
           name: shipctl-should-work
           script:
-            - dir
+            - ls
     on_success:
       - script: echo "this should be logged"
     always:
@@ -100,7 +100,7 @@ jobs:
       - TASK:
           name: shipctl-should-work
           script:
-            - dir
+            - ls
     on_success:
       - script: echo "this should be shown"
       - script: invalidCommand

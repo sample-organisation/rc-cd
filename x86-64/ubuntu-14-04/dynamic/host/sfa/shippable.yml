@@ -1,15 +1,15 @@
 # sfa deals with testing on_success, on_failure, always
 jobs:
-  - name: x86-64-windows-server-2016-host-sfa-on-success
+  - name: x86-64-ubuntu-14-04-dynamic-host-sfa-on-success
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: custom__x86_64__WindowsServer_2016
+      nodePool: x8664u14dynamic
       container: false
     flags:
       - x86-64
       - windows-server-2016
-      - x86-64-windows-server-2016-host-sfa
+      - x86-64-ubuntu-14-04-dynamic-host-sfa
     steps:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
@@ -20,16 +20,16 @@ jobs:
     on_success:
       - script: echo "this should be logged"
 
-  - name: x86-64-windows-server-2016-host-sfa-on-failure
+  - name: x86-64-ubuntu-14-04-dynamic-host-sfa-on-failure
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: custom__x86_64__WindowsServer_2016
+      nodePool: x8664u14dynamic
       container: false
     flags:
       - x86-64
       - windows-server-2016
-      - x86-64-windows-server-2016-host-sfa
+      - x86-64-ubuntu-14-04-dynamic-host-sfa
     steps:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
@@ -40,16 +40,16 @@ jobs:
     on_failure:
       - script: echo "this should be logged"
 
-  - name: x86-64-windows-server-2016-host-sfa-on-success-always
+  - name: x86-64-ubuntu-14-04-dynamic-host-sfa-on-success-always
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: custom__x86_64__WindowsServer_2016
+      nodePool: x8664u14dynamic
       container: false
     flags:
       - x86-64
       - windows-server-2016
-      - x86-64-windows-server-2016-host-sfa
+      - x86-64-ubuntu-14-04-dynamic-host-sfa
     steps:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
@@ -62,16 +62,16 @@ jobs:
     always:
       - script: echo "this is always script"
 
-  - name: x86-64-windows-server-2016-host-sfa-on-failure-always
+  - name: x86-64-ubuntu-14-04-dynamic-host-sfa-on-failure-always
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: custom__x86_64__WindowsServer_2016
+      nodePool: x8664u14dynamic
       container: false
     flags:
       - x86-64
       - windows-server-2016
-      - x86-64-windows-server-2016-host-sfa
+      - x86-64-ubuntu-14-04-dynamic-host-sfa
     steps:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
@@ -84,16 +84,16 @@ jobs:
     always:
       - script: echo "this is always script"
 
-  - name: x86-64-windows-server-2016-host-sfa-on-success-invalid-command
+  - name: x86-64-ubuntu-14-04-dynamic-host-sfa-on-success-invalid-command
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: custom__x86_64__WindowsServer_2016
+      nodePool: x8664u14dynamic
       container: false
     flags:
       - x86-64
       - windows-server-2016
-      - x86-64-windows-server-2016-host-sfa
+      - x86-64-ubuntu-14-04-dynamic-host-sfa
     steps:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger
@@ -107,16 +107,16 @@ jobs:
       - script: echo "this should be shown"
       - script: echo "build status should be success"
 
-  - name: x86-64-windows-server-2016-host-sfa-on-failure-invalid-command
+  - name: x86-64-ubuntu-14-04-dynamic-host-sfa-on-failure-invalid-command
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: custom__x86_64__WindowsServer_2016
+      nodePool: x8664u14dynamic
       container: false
     flags:
       - x86-64
       - windows-server-2016
-      - x86-64-windows-server-2016-host-sfa
+      - x86-64-ubuntu-14-04-dynamic-host-sfa
     steps:
       - IN: x86-64-trigger
       - IN: windows-server-2016-trigger

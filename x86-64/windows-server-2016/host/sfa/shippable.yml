@@ -1,4 +1,10 @@
 # sfa deals with testing on_success, on_failure, always
+
+
+# there are two types of error in powershell
+# - terminating errors => exit ps session => example invalidCommand
+# - non-terminating errors => does not exis ps session => example Write-Error "something"
+
 jobs:
   - name: x86-64-windows-server-2016-host-sfa-on-success
     type: runSh
@@ -102,9 +108,10 @@ jobs:
           script:
             - dir
     on_success:
-      - script: echo "this should be shown"
+      - script: echo "this should be shown and ErrorActionPreference = $ErrorActionPreference"
+      - script: Write-Error "This is a non-terminating error"
       - script: invalidCommand
-      - script: echo "this should be shown"
+      - script: echo "this line is after a terminating error"
       - script: echo "build status should be success"
 
   - name: x86-64-windows-server-2016-host-sfa-on-failure-invalid-command
@@ -126,6 +133,7 @@ jobs:
             - invalidCommand
     on_failure:
       - script: echo "this should be shown and ErrorActionPreference = $ErrorActionPreference"
+      - script: Write-Error "This is a non-terminating error"
       - script: invalidCommand
-      - script: echo "this should be shown"
+      - script: echo "this line is after a terminating error"
       - script: echo "build status should be failure"

@@ -103,7 +103,6 @@ jobs:
             - ls
     on_success:
       - script: echo "this should be shown"
-      - script: echo "value if ErrorActionPreference is $ErrorActionPreference"
       - script: invalidCommand
       - script: echo "this should be shown"
       - script: echo "build status should be success"

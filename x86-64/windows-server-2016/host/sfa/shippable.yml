@@ -125,7 +125,7 @@ jobs:
           script:
             - invalidCommand
     on_failure:
-      - script: echo "this should be shown"
+      - script: echo "this should be shown and ErrorActionPreference = $ErrorActionPreference"
       - script: invalidCommand
       - script: echo "this should be shown"
       - script: echo "build status should be failure"

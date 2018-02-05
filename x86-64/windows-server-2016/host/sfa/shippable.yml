@@ -219,8 +219,9 @@ jobs:
           script:
             - dir
     on_success:
-      - script: Fail-ShippableBuild
       - script: echo "Build should fail and this should be logged"
+      - script: Fail-ShippableBuild
+      - script: echo "this line should not be shown"
 
   - name: x86-64-windows-server-2016-host-sfa-on-failure-fsb
     type: runSh
@@ -240,8 +241,31 @@ jobs:
           script:
             - invalidCommand
     on_failure:
-      - script: Fail-ShippableBuild
       - script: echo "Build should fail and this should be logged"
+      - script: Fail-ShippableBuild
+      - script: echo "this line should not be shown"
+
+  - name: x86-64-windows-server-2016-host-sfa-always-fsb
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: test-should-work
+          script:
+            - dir
+    always:
+      - script: echo "Build should fail and this should be logged"
+      - script: Fail-ShippableBuild
+      - script: echo "this line should not be shown"
 
   - name: x86-64-windows-server-2016-host-sfa-on-success-always-fsb
     type: runSh
@@ -263,8 +287,9 @@ jobs:
     on_success:
       - script: echo "this should be logged"
     always:
-      - script: Fail-ShippableBuild
       - script: echo "Build should fail and this should be logged"
+      - script: Fail-ShippableBuild
+      - script: echo "this line should not be shown"
 
   - name: x86-64-windows-server-2016-host-sfa-on-failure-always-fsb
     type: runSh
@@ -286,8 +311,9 @@ jobs:
     on_failure:
       - script: echo "this should be logged"
     always:
-      - script: Fail-ShippableBuild
       - script: echo "Build should fail and this should be logged"
+      - script: Fail-ShippableBuild
+      - script: echo "this line should not be shown"
 
   - name: x86-64-windows-server-2016-host-sfa-on-success-error-fsb
     type: runSh
@@ -311,8 +337,9 @@ jobs:
       - script: Write-Error "This is a non-terminating error"
       - script: invalidCommand
       - script: echo "this line is after a terminating error"
-      - script: Fail-ShippableBuild
       - script: echo "build status should be failure"
+      - script: Fail-ShippableBuild
+      - script: echo "this line should not be shown"
 
   - name: x86-64-windows-server-2016-host-sfa-on-failure-error-fsb
     type: runSh
@@ -336,8 +363,9 @@ jobs:
       - script: Write-Error "This is a non-terminating error"
       - script: invalidCommand
       - script: echo "this line is after a terminating error"
-      - script: Fail-ShippableBuild
       - script: echo "build status should be failure"
+      - script: Fail-ShippableBuild
+      - script: echo "this line should not be shown"
 
   - name: x86-64-windows-server-2016-host-sfa-on-success-always-error-fsb
     type: runSh
@@ -367,8 +395,9 @@ jobs:
       - script: Write-Error "This is a non-terminating error"
       - script: invalidCommand
       - script: echo "this line is after a terminating error"
-      - script: Fail-ShippableBuild
       - script: echo "end of always"
+      - script: Fail-ShippableBuild
+      - script: echo "this line should not be shown"
 
 
   - name: x86-64-windows-server-2016-host-sfa-on-failure-always-error-sfa
@@ -393,8 +422,9 @@ jobs:
       - script: Write-Error "This is a non-terminating error"
       - script: invalidCommand
       - script: echo "this line is after a terminating error"
-      - script: Fail-ShippableBuild
       - script: echo "build status should be failure"
+      - script: Fail-ShippableBuild
+      - script: echo "this line should not be shown"
     always:
       - script: echo "always begins and ErrorActionPreference = $ErrorActionPreference"
       - script: Write-Error "This is a non-terminating error"

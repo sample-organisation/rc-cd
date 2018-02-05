@@ -198,3 +198,118 @@ jobs:
       - script: invalidCommand
       - script: echo "this line is after a terminating error"
       - script: echo "end of always"
+
+########### Tests Fail-ShippableBuild command in on_success, on_failure, always
+
+  - name: x86-64-windows-server-2016-host-sfa-on-success-error-fsb
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: on-success-error
+          script:
+            - dir
+    on_success:
+      - script: echo "this should be shown and ErrorActionPreference = $ErrorActionPreference"
+      - script: Write-Error "This is a non-terminating error"
+      - script: invalidCommand
+      - script: echo "this line is after a terminating error"
+      - script: Fail-ShippableBuild
+      - script: echo "build status should be failure"
+
+  - name: x86-64-windows-server-2016-host-sfa-on-failure-error-fsb
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: on-failure-error
+          script:
+            - invalidCommand
+    on_failure:
+      - script: echo "this should be shown and ErrorActionPreference = $ErrorActionPreference"
+      - script: Write-Error "This is a non-terminating error"
+      - script: invalidCommand
+      - script: echo "this line is after a terminating error"
+      - script: Fail-ShippableBuild
+      - script: echo "build status should be failure"
+
+  - name: x86-64-windows-server-2016-host-sfa-on-success-always-error-fsb
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: on-success-always-error
+          script:
+            - dir
+    on_success:
+      - script: echo "this should be shown and ErrorActionPreference = $ErrorActionPreference"
+      - script: Write-Error "This is a non-terminating error"
+      - script: invalidCommand
+      - script: echo "this line is after a terminating error"
+      - script: echo "build status should be success"
+    always:
+      - script: echo "always begins and ErrorActionPreference = $ErrorActionPreference"
+      - script: Write-Error "This is a non-terminating error"
+      - script: invalidCommand
+      - script: echo "this line is after a terminating error"
+      - script: Fail-ShippableBuild
+      - script: echo "end of always"
+
+
+  - name: x86-64-windows-server-2016-host-sfa-on-failure-always-error-sfa
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: on-failure-always-error
+          script:
+            - invalidCommand
+    on_failure:
+      - script: echo "this should be shown and ErrorActionPreference = $ErrorActionPreference"
+      - script: Write-Error "This is a non-terminating error"
+      - script: invalidCommand
+      - script: echo "this line is after a terminating error"
+      - script: Fail-ShippableBuild
+      - script: echo "build status should be failure"
+    always:
+      - script: echo "always begins and ErrorActionPreference = $ErrorActionPreference"
+      - script: Write-Error "This is a non-terminating error"
+      - script: invalidCommand
+      - script: echo "this line is after a terminating error"
+      - script: echo "end of always"

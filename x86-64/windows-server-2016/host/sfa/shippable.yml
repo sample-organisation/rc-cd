@@ -431,3 +431,25 @@ jobs:
       - script: invalidCommand
       - script: echo "this line is after a terminating error"
       - script: echo "end of always"
+
+  - name: x86-64-windows-server-2016-host-sfa-on-success-time
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: test-should-work
+          script:
+            - echo "Sleeping for 10 seconds"
+            - Start-Sleep -s 10
+    on_success:
+      - script: echo "Sleeping for 10 seconds"
+      - script: Start-Sleep -s 10

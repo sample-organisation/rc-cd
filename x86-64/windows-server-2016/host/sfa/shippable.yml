@@ -273,7 +273,7 @@ jobs:
       - script: Write-Error "This is a non-terminating error"
       - script: invalidCommand
       - script: echo "this line is after a terminating error"
-      - script: echo "build status should be success"
+      - script: echo "build status should be failure"
     always:
       - script: echo "always begins and ErrorActionPreference = $ErrorActionPreference"
       - script: Write-Error "This is a non-terminating error"

@@ -1,6 +1,7 @@
 ########################################################################
 #### bharath92 windows tests ###########################################
 
+jobs:
   - name: windows_tests_that_succeed
     type: runSh
     runtime:

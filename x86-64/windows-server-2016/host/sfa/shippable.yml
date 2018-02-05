@@ -313,3 +313,92 @@ jobs:
       - script: invalidCommand
       - script: echo "this line is after a terminating error"
       - script: echo "end of always"
+
+
+  - name: x86-64-windows-server-2016-host-sfa-on-success-fsb
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - dir
+    on_success:
+      - script: Fail-ShippableBuild
+      - script: echo "Build should fail and this should be logged"
+
+  - name: x86-64-windows-server-2016-host-sfa-on-failure-fsb
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - invalidCommand
+    on_failure:
+      - script: Fail-ShippableBuild
+      - script: echo "Build should fail and this should be logged"
+
+  - name: x86-64-windows-server-2016-host-sfa-on-success-always-fsb
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - dir
+    on_success:
+      - script: echo "this should be logged"
+    always:
+      - script: Fail-ShippableBuild
+      - script: echo "Build should fail and this should be logged"
+
+  - name: x86-64-windows-server-2016-host-sfa-on-failure-always-fsb
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: shipctl-should-work
+          script:
+            - invalidCommand
+    on_failure:
+      - script: echo "this should be logged"
+    always:
+      - script: Fail-ShippableBuild
+      - script: echo "Build should fail and this should be logged"

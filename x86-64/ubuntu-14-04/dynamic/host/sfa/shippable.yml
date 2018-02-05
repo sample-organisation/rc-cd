@@ -129,3 +129,49 @@ jobs:
       - script: invalidCommand
       - script: echo "this should be shown"
       - script: echo "build status should be failure"
+
+  - name: x86-64-ubuntu-14-04-dynamic-host-sfa-on-success-exit-1
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-ubuntu-14-04-dynamic-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: should-show-on-success
+          script:
+            - ls
+    on_success:
+      - script: echo "this should be shown"
+      - script: echo "build status should be failure"
+      - script: exit 1
+      - script: echo "this should not be shown"
+
+  - name: x86-64-ubuntu-14-04-dynamic-host-sfa-on-failure-exit-1
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-ubuntu-14-04-dynamic-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: should-show-on-failure-invalid-command
+          script:
+            - invalidCommand
+    on_failure:
+      - script: echo "this should be shown"
+      - script: echo "build status should be failure"
+      - script: exit 1
+      - script: echo "this should not be shown"

@@ -453,3 +453,100 @@ jobs:
     on_success:
       - script: echo "Sleeping for 10 seconds"
       - script: Start-Sleep -s 10
+
+  - name: x86-64-windows-server-2016-host-sfa-on-failure-time
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: test-should-work
+          script:
+            - echo "Sleeping for 10 seconds"
+            - Start-Sleep -s 10
+            - invalidCommand
+    on_failure:
+      - script: echo "Sleeping for 10 seconds"
+      - script: Start-Sleep -s 10
+
+  - name: x86-64-windows-server-2016-host-sfa-always-time
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: test-should-work
+          script:
+            - echo "Sleeping for 10 seconds"
+            - Start-Sleep -s 10
+            - dir
+    always:
+      - script: echo "Sleeping for 10 seconds"
+      - script: Start-Sleep -s 10
+
+  - name: x86-64-windows-server-2016-host-sfa-on-success-always-time
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: test-should-work
+          script:
+            - echo "Sleeping for 10 seconds"
+            - Start-Sleep -s 10
+    on_success:
+      - script: echo "Sleeping for 10 seconds"
+      - script: Start-Sleep -s 10
+    always:
+      - script: echo "Sleeping for 10 seconds"
+      - script: Start-Sleep -s 10
+
+  - name: x86-64-windows-server-2016-host-sfa-on-failure-always-time
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - x86-64-windows-server-2016-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: test-should-work
+          script:
+            - echo "Sleeping for 10 seconds"
+            - Start-Sleep -s 10
+            - invalidCommand
+    on_failure:
+      - script: echo "Sleeping for 10 seconds"
+      - script: Start-Sleep -s 10
+    always:
+      - script: echo "Sleeping for 10 seconds"
+      - script: Start-Sleep -s 10

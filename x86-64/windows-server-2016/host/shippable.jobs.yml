@@ -215,3 +215,23 @@ jobs:
       - script: echo "This should not be logged"
     on_failure:
       - script: echo "This should be logged"
+
+########### Tests Fail-ShippableBuild command
+  - name: x86-64-windows-server-2016-host-basic-fsb
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: custom__x86_64__WindowsServer_2016
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+    steps:
+      - IN: x86-64-trigger
+      - IN: windows-server-2016-trigger
+      - TASK:
+          name: single-cmd-should-work
+          script:
+            - dir
+            - Fail-ShippableBuild
+            - echo "this should not be executed"

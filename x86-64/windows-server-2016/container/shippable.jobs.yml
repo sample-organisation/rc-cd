@@ -198,7 +198,7 @@ jobs:
           script:
             - gci env:*
             - echo $env:GITLABPRIVATEGITREPO_PATH
-            - cd $env:GITLABPRIVATEGITREPO\gitRepo
+            - cd $env:GITLABPRIVATEGITREPO_PATH\gitRepo
             - dir
             - cat README.md
             - if ( "$env:GITLABPRIVATEGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }

@@ -58,13 +58,12 @@ resources:
       branch: master
       buildOnPullRequest: true
 
-  - name: github-private-gitRepo-3
+  - name: github-private-gitRepo-4
     type: gitRepo
-    integration: github-test
+    integration: github-scriptnull
     pointer:
       sourceName: sample-organisation/org_private
       branch: master
-      buildOnPullRequest: true
 
   - name: master-image-1
     type: image

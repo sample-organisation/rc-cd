@@ -58,11 +58,11 @@ resources:
       branch: master
       buildOnPullRequest: true
 
-  - name: github-private-gitRepo-5
+  - name: github-private-gitRepo-6
     type: gitRepo
     integration: github-scriptnull
     pointer:
-      sourceName: scriptnull/org_private
+      sourceName: Shippable/org_private
       branch: master
 
   - name: master-image-1

@@ -173,7 +173,7 @@ jobs:
       - IN: gitlab-private-gitRepo
       - IN: bitbucket-private-gitRepo
       - TASK:
-          name: should-have-gitRepo-envs
+          name: should-have-gitlab-private-gitRepo-envs
           script:
             - gci env:*
             - echo $env:GITLABPRIVATEGITREPO_PATH
@@ -182,6 +182,16 @@ jobs:
             - cat README.md
             - if ( "$env:GITLABPRIVATEGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:GITLABPRIVATEGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
+      - TASK:
+          name: should-have-bitbucket-private-gitRepo-envs
+          script:
+            - gci env:*
+            - echo $env:BITBUCKETPRIVATEGITREPO_PATH
+            - cd $env:BITBUCKETPRIVATEGITREPO_PATH\gitRepo
+            - dir
+            - cat README.md
+            - if ( "$env:BITBUCKETPRIVATEGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
+            - if ( "$env:BITBUCKETPRIVATEGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 
   - name: x86-64-windows-server-2016-host-envs-in-param
     type: runSh

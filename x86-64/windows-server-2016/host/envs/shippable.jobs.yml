@@ -172,7 +172,7 @@ jobs:
       - IN: windows-server-2016-trigger
       - IN: gitlab-private-gitRepo
       - IN: bitbucket-private-gitRepo
-      - IN: github-private-gitRepo-4
+      - IN: github-private-gitRepo-5
       - TASK:
           name: should-have-gitlab-private-gitRepo-envs
           script:

@@ -62,7 +62,7 @@ resources:
     type: gitRepo
     integration: github-test
     pointer:
-      sourceName: sample-organisation/private
+      sourceName: sample-organisation/org_private
       branch: master
       buildOnPullRequest: true
 

@@ -58,7 +58,7 @@ resources:
       branch: master
       buildOnPullRequest: true
 
-  - name: github-private-gitRepo
+  - name: github-private-gitRepo-1
     type: gitRepo
     integration: github-test
     pointer:

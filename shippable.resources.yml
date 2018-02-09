@@ -26,6 +26,14 @@ resources:
       branch: master
       buildOnPullRequest: true
 
+  - name: master-private-gitRepo
+    type: gitRepo
+    integration: github-test
+    pointer:
+      sourceName: vishnu-shippable/private
+      branch: master
+      buildOnPullRequest: true
+
   - name: gitlab-private-gitRepo
     type: gitRepo
     integration: gitlab-scriptnull
@@ -57,13 +65,6 @@ resources:
       sourceName: scriptnull/private
       branch: master
       buildOnPullRequest: true
-
-  - name: github-private-gitRepo-6
-    type: gitRepo
-    integration: github-scriptnull
-    pointer:
-      sourceName: Shippable/org_private
-      branch: master
 
   - name: master-image-1
     type: image

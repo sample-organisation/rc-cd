@@ -172,6 +172,7 @@ jobs:
       - IN: windows-server-2016-trigger
       - IN: gitlab-private-gitRepo
       - IN: bitbucket-private-gitRepo
+      - IN: master-private-gitRepo
       - TASK:
           name: should-have-gitlab-private-gitRepo-envs
           script:
@@ -192,6 +193,16 @@ jobs:
             - cat README.md
             - if ( "$env:BITBUCKETPRIVATEGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
             - if ( "$env:BITBUCKETPRIVATEGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
+      - TASK:
+          name: should-have-github-private-gitRepo-envs
+          script:
+            - gci env:*
+            - echo $env:MASTERPRIVATEGITREPO_PATH
+            - cd $env:MASTERPRIVATEGITREPO_PATH\gitRepo
+            - dir
+            - cat README.md
+            - if ( "$env:MASTERPRIVATEGITREPO_BRANCH" -ne "master" ) { Write-Error "incorrect env" }
+            - if ( "$env:MASTERPRIVATEGITREPO_OPERATION" -ne "IN" ) { Write-Error "incorrect env" }
 
   - name: x86-64-windows-server-2016-host-envs-in-param
     type: runSh

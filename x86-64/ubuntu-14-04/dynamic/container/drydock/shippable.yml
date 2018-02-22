@@ -1,6 +1,7 @@
 jobs:
   - name: x86-64-ubuntu-14-04-dynamic-container-u14nodall
     type: runSh
+    allowPublicAccess: true
     runtime:
       nodePool: x8664u14dynamic
       container: true

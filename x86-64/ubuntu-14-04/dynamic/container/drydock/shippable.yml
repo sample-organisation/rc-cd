@@ -14,7 +14,8 @@ jobs:
               imageName: "drydock/u14nodall"
               imageTag: master
           script:
-            - node --version
+            - nvm use 4.8.7
+            - test "(node --version)" == "v4.8.7"
       - TASK:
           name: check-node-5.12.0
           runtime:
@@ -22,7 +23,8 @@ jobs:
               imageName: "drydock/u14nodall"
               imageTag: master
           script:
-            - node --version
+            - nvm use 5.12.0
+            - test "(node --version)" == "v5.12.0"
       - TASK:
           name: check-node-6.11.5
           runtime:
@@ -30,7 +32,8 @@ jobs:
               imageName: "drydock/u14nodall"
               imageTag: master
           script:
-            - node --version
+            - nvm use 6.11.5
+            - test "(node --version)" == "v6.11.5"
       - TASK:
           name: check-node-7.10.1
           runtime:
@@ -38,7 +41,8 @@ jobs:
               imageName: "drydock/u14nodall"
               imageTag: master
           script:
-            - node --version
+            - nvm use 7.10.1
+            - test "(node --version)" == "v7.10.1"
       - TASK:
           name: check-node-8.9.4
           runtime:
@@ -46,7 +50,8 @@ jobs:
               imageName: "drydock/u14nodall"
               imageTag: master
           script:
-            - node --version
+            - nvm use 8.9.4
+            - test "(node --version)" == "v8.9.4"
       - TASK:
           name: check-node-9.5.0
           runtime:
@@ -54,4 +59,5 @@ jobs:
               imageName: "drydock/u14nodall"
               imageTag: master
           script:
-            - node --version
+            - nvm use 9.5.0
+            - test "(node --version)" == "v9.5.0"

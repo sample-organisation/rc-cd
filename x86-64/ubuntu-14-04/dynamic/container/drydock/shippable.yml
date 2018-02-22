@@ -1,0 +1,57 @@
+jobs:
+  - name: x86-64-ubuntu-14-04-dynamic-container-u14nodall
+    type: runSh
+    runtime:
+      nodePool: x8664u14dynamic
+      container: true
+    flags:
+      - drydock
+    steps:
+      - TASK:
+          name: check-node-4.8.7
+          runtime:
+            options:
+              imageName: "drydock/u14nodall"
+              imageTag: master
+          script:
+            - node --version
+      - TASK:
+          name: check-node-5.12.0
+          runtime:
+            options:
+              imageName: "drydock/u14nodall"
+              imageTag: master
+          script:
+            - node --version
+      - TASK:
+          name: check-node-6.11.5
+          runtime:
+            options:
+              imageName: "drydock/u14nodall"
+              imageTag: master
+          script:
+            - node --version
+      - TASK:
+          name: check-node-7.10.1
+          runtime:
+            options:
+              imageName: "drydock/u14nodall"
+              imageTag: master
+          script:
+            - node --version
+      - TASK:
+          name: check-node-8.9.4
+          runtime:
+            options:
+              imageName: "drydock/u14nodall"
+              imageTag: master
+          script:
+            - node --version
+      - TASK:
+          name: check-node-9.5.0
+          runtime:
+            options:
+              imageName: "drydock/u14nodall"
+              imageTag: master
+          script:
+            - node --version

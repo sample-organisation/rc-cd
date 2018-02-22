@@ -69,5 +69,5 @@ jobs:
               imageName: "drydock/u14nodall"
               imageTag: master
           script:
-            - nvm use 9.4.0
+            - nvm use 9.4.0 || true
             - test "$(node --version)" == "v9.4.0"

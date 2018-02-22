@@ -1,5 +1,5 @@
 jobs:
-  - name: x86-64-ubuntu-14-04-dynamic-container-u14nodall
+  - name: x86-64-ubuntu-14-04-dynamic-container-drydock-u14nodall
     type: runSh
     allowPublicAccess: true
     runtime:
@@ -70,4 +70,6 @@ jobs:
               imageTag: master
           script:
             - nvm use 9.4.0 || true
+            - nvm install 9.4.0
+            - nvm use 9.4.0
             - test "$(node --version)" == "v9.4.0"

@@ -73,3 +73,43 @@ jobs:
             - nvm install 9.4.0
             - nvm use 9.4.0
             - test "$(node --version)" == "v9.4.0"
+
+  - name: x86-64-ubuntu-14-04-dynamic-container-drydock-u14phpall
+    type: runSh
+    allowPublicAccess: true
+    runtime:
+      nodePool: x8664u14dynamic
+      container: true
+    flags:
+      - drydock
+    steps:
+      - TASK:
+          name: check-php-5.6
+          runtime:
+            options:
+              imageName: "drydock/u14phpall"
+              imageTag: master
+          script:
+            - eval "$(phpenv init -)"
+            - /root/.phpenv/bin/phpenv global 5.6
+            - php --version
+      - TASK:
+          name: check-php-7.0
+          runtime:
+            options:
+              imageName: "drydock/u14phpall"
+              imageTag: master
+          script:
+            - eval "$(phpenv init -)"
+            - /root/.phpenv/bin/phpenv global 7.0
+            - php --version
+      - TASK:
+          name: check-php-7.1
+          runtime:
+            options:
+              imageName: "drydock/u14phpall"
+              imageTag: master
+          script:
+            - eval "$(phpenv init -)"
+            - /root/.phpenv/bin/phpenv global 7.1
+            - php --version

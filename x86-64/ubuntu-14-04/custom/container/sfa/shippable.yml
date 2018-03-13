@@ -6,7 +6,7 @@ jobs:
       container: true
     flags:
       - x86-64
-      - x86-64-ubuntu-14-04-custom-host-sfa
+      - x86-64-ubuntu-14-04-custom-container-sfa
     steps:
       - TASK:
           name: should-show-on-success

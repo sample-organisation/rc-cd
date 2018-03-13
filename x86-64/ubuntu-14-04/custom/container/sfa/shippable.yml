@@ -1,0 +1,16 @@
+jobs:
+  - name: x86-64-ubuntu-14-04-custom-container-sfa-on-success
+    type: runSh
+    runtime:
+      nodePool: custom__x86_64__Ubuntu_14_04
+      container: true
+    flags:
+      - x86-64
+      - x86-64-ubuntu-14-04-custom-host-sfa
+    steps:
+      - TASK:
+          name: should-show-on-success
+          script:
+            - ls
+    on_success:
+      - script: echo "this should be logged"

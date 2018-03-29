@@ -4,7 +4,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664u14dynamic
+      nodePool: dynamic__x86_64__CentOS_7__c4_large
       container: false
     flags:
       - x86-64
@@ -22,7 +22,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664u14dynamic
+      nodePool: dynamic__x86_64__CentOS_7__c4_large
       container: false
     flags:
       - x86-64
@@ -40,7 +40,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664u14dynamic
+      nodePool: dynamic__x86_64__CentOS_7__c4_large
       container: false
     flags:
       - x86-64
@@ -61,7 +61,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664u14dynamic
+      nodePool: dynamic__x86_64__CentOS_7__c4_large
       container: false
     flags:
       - x86-64
@@ -82,7 +82,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664u14dynamic
+      nodePool: dynamic__x86_64__CentOS_7__c4_large
       container: false
     flags:
       - x86-64
@@ -104,7 +104,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664u14dynamic
+      nodePool: dynamic__x86_64__CentOS_7__c4_large
       container: false
     flags:
       - x86-64
@@ -126,7 +126,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664u14dynamic
+      nodePool: dynamic__x86_64__CentOS_7__c4_large
       container: false
     flags:
       - x86-64
@@ -148,7 +148,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664u14dynamic
+      nodePool: dynamic__x86_64__CentOS_7__c4_large
       container: false
     flags:
       - x86-64
@@ -170,7 +170,7 @@ jobs:
     type: runSh
     runtime:
       architecture: x86_64
-      nodePool: x8664u14dynamic
+      nodePool: dynamic__x86_64__CentOS_7__c4_large
       container: false
     flags:
       - x86-64

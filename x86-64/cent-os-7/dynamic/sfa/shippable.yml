@@ -1,0 +1,188 @@
+# sfa deals with testing on_success, on_failure, always
+jobs:
+  - name: cent-os-7-dynamic-host-sfa-on-success
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - cent-os-7-dynamic-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - TASK:
+          name: should-show-on-success
+          script:
+            - ls
+    on_success:
+      - script: echo "this should be logged"
+
+  - name: cent-os-7-dynamic-host-sfa-on-failure
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - cent-os-7-dynamic-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - TASK:
+          name: should-show-on-failure
+          script:
+            - invalidCommand
+    on_failure:
+      - script: echo "this should be logged"
+
+  - name: cent-os-7-dynamic-host-sfa-on-success-always
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - cent-os-7-dynamic-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - TASK:
+          name: should-show-on-success-always
+          script:
+            - ls
+    on_success:
+      - script: echo "this should be logged"
+    always:
+      - script: echo "this is always script"
+
+  - name: cent-os-7-dynamic-host-sfa-on-failure-always
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - cent-os-7-dynamic-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - TASK:
+          name: should-on-failure-always
+          script:
+            - invalidCommand
+    on_failure:
+      - script: echo "this should be logged"
+    always:
+      - script: echo "this is always script"
+
+  - name: cent-os-7-dynamic-host-sfa-on-success-invalid-command
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - cent-os-7-dynamic-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - TASK:
+          name: should-show-on-success
+          script:
+            - ls
+    on_success:
+      - script: echo "this should be shown"
+      - script: invalidCommand
+      - script: echo "this should be shown"
+      - script: echo "build status should be success"
+
+  - name: cent-os-7-dynamic-host-sfa-on-failure-invalid-command
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - cent-os-7-dynamic-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - TASK:
+          name: should-show-on-failure-invalid-command
+          script:
+            - invalidCommand
+    on_failure:
+      - script: echo "this should be shown"
+      - script: invalidCommand
+      - script: echo "this should be shown"
+      - script: echo "build status should be failure"
+
+  - name: cent-os-7-dynamic-host-sfa-on-success-exit-1
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - cent-os-7-dynamic-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - TASK:
+          name: should-show-on-success
+          script:
+            - ls
+    on_success:
+      - script: echo "this should be shown"
+      - script: echo "build status should be failure"
+      - script: exit 1
+      - script: echo "this should not be shown"
+
+  - name: cent-os-7-dynamic-host-sfa-on-failure-exit-1
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - cent-os-7-dynamic-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - TASK:
+          name: should-show-on-failure-invalid-command
+          script:
+            - invalidCommand
+    on_failure:
+      - script: echo "this should be shown"
+      - script: echo "build status should be failure"
+      - script: exit 1
+      - script: echo "this should not be shown"
+
+  - name: cent-os-7-dynamic-host-sfa-on-success-time
+    type: runSh
+    runtime:
+      architecture: x86_64
+      nodePool: x8664u14dynamic
+      container: false
+    flags:
+      - x86-64
+      - windows-server-2016
+      - cent-os-7-dynamic-host-sfa
+    steps:
+      - IN: x86-64-trigger
+      - TASK:
+          name: test-should-work
+          script:
+            - echo "Sleeping for 10 seconds"
+            - sleep 10s
+    on_success:
+      - script: echo "Sleeping for 10 seconds"
+      - script: sleep 10s

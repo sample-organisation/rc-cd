@@ -15,6 +15,7 @@ jobs:
           name: should-show-on-success
           script:
             - ls
+            - hostnamectl
     on_success:
       - script: echo "this should be logged"
 

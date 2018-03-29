@@ -11,3 +11,17 @@ jobs:
           name: single-cmd-should-work
           script:
             - dir
+
+
+  - name: x86-64-windows-server-2016-dynamic-host-basic-single-valid-1
+    type: runSh
+    runtime:
+      nodePool: dynamic__x86_64__WindowsServer_2016__c4_large
+      container: false
+    flags:
+      - x86-64-windows-server-2016-dynamic-host
+    steps:
+      - TASK:
+          name: single-cmd-should-work
+          script:
+            - dir
